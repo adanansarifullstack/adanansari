@@ -1,0 +1,200 @@
+' =====================================================================
+'  CURRENCY IN WORDS  —  a free Excel function by Adan Ansari
+'  Turns any amount into words for USD, AED and INR.
+'  adanansari1234@gmail.com   ·   Finance brain. Writer's voice.
+' =====================================================================
+'
+'  HOW TO ADD IT  (about 60 seconds, one time only):
+'    1. Select all of this text and copy it   ->  Ctrl+A, then Ctrl+C
+'    2. In your Excel workbook press   Alt + F11   to open the VBA editor.
+'    3. Menu:  Insert  ->  Module.  Click the blank window, paste  ->  Ctrl+V
+'    4. Close the editor (Alt+Q) and save your file as
+'       "Excel Macro-Enabled Workbook (*.xlsm)".
+'
+'  HOW TO USE IT  —  type this into any cell:
+'    =CurrencyInWords(1250.50, "USD")  ->  One Thousand Two Hundred Fifty Dollars and Fifty Cents Only
+'    =CurrencyInWords(500.75,  "AED")  ->  Five Hundred Dirhams and Seventy Five Fils Only
+'    =CurrencyInWords(150000,  "INR")  ->  One Lakh Fifty Thousand Rupees Only
+'    (Leave the currency out  —  =CurrencyInWords(100)  —  and it defaults to USD.)
+'
+'  TROUBLESHOOTING:
+'    Cell shows  #NAME?     ->  the code wasn't imported, or macros are switched off.
+'    Windows blocked it     ->  right-click the downloaded file, Properties, tick Unblock.
+' =====================================================================
+
+Option Explicit
+
+' ==============================================================================
+' MAIN FUNCTION: =CurrencyInWords(Amount, "CurrencyType")
+' CurrencyType options: "USD", "AED", "INR"
+' ==============================================================================
+Function CurrencyInWords(ByVal MyNumber As Double, Optional ByVal CurrType As String = "USD") As String
+    Dim TempStr As String, DecimalPlace As Integer
+    Dim WholePart As String, FractionPart As String
+    Dim WholeWords As String, FractionWords As String
+    Dim MajorCurrency As String, MinorCurrency As String
+
+    CurrType = UCase(Trim(CurrType))
+    MyNumber = Round(MyNumber, 2)
+    TempStr = CStr(MyNumber)
+
+    DecimalPlace = InStr(TempStr, ".")
+    If DecimalPlace > 0 Then
+        FractionPart = Left(Mid(TempStr, DecimalPlace + 1) & "00", 2)
+        WholePart = Left(TempStr, DecimalPlace - 1)
+    Else
+        FractionPart = "00"
+        WholePart = TempStr
+    End If
+
+    If WholePart = "" Then WholePart = "0"
+
+    ' Assign currency names and choose the numbering system
+    Select Case CurrType
+        Case "USD"
+            MajorCurrency = " Dollars"
+            MinorCurrency = " Cents"
+            WholeWords = ConvertWestern(WholePart)
+        Case "AED"
+            MajorCurrency = " Dirhams"
+            MinorCurrency = " Fils"
+            WholeWords = ConvertWestern(WholePart)
+        Case "INR"
+            MajorCurrency = " Rupees"
+            MinorCurrency = " Paise"
+            WholeWords = ConvertIndian(WholePart)
+        Case Else
+            MajorCurrency = " " & CurrType
+            MinorCurrency = " Units"
+            WholeWords = ConvertWestern(WholePart)
+    End Select
+
+    If WholeWords = "" Then WholeWords = "Zero"
+
+    Dim Result As String
+    Result = WholeWords & MajorCurrency
+
+    If FractionPart <> "00" Then
+        FractionWords = ConvertTens(FractionPart)
+        Result = Result & " and " & FractionWords & MinorCurrency
+    End If
+
+    CurrencyInWords = Trim(Result) & " Only"
+End Function
+
+' --- HELPER: Western System (Millions, Billions) for USD and AED ---
+Function ConvertWestern(ByVal NumStr As String) As String
+    Dim Result As String, Temp As String
+    Dim Count As Integer
+    Dim Place(5) As String
+
+    Place(1) = ""
+    Place(2) = " Thousand "
+    Place(3) = " Million "
+    Place(4) = " Billion "
+    Place(5) = " Trillion "
+
+    Count = 1
+    Do While NumStr <> ""
+        Temp = GetHundreds(Right("000" & NumStr, 3))
+        If Temp <> "" Then Result = Temp & Place(Count) & Result
+        If Len(NumStr) > 3 Then
+            NumStr = Left(NumStr, Len(NumStr) - 3)
+        Else
+            NumStr = ""
+        End If
+        Count = Count + 1
+    Loop
+    ConvertWestern = Trim(Result)
+End Function
+
+' --- HELPER: Indian System (Lakhs, Crores) for INR ---
+Function ConvertIndian(ByVal NumStr As String) As String
+    Dim Result As String
+    If Len(NumStr) > 9 Then
+        ConvertIndian = "Number too large for INR formatting"
+        Exit Function
+    End If
+
+    Dim Crores As String, Lakhs As String, Thousands As String, Hundreds As String
+    NumStr = Right(String(9, "0") & NumStr, 9)
+
+    Crores = Left(NumStr, 2)
+    Lakhs = Mid(NumStr, 3, 2)
+    Thousands = Mid(NumStr, 5, 2)
+    Hundreds = Right(NumStr, 3)
+
+    If Val(Crores) > 0 Then Result = Result & ConvertTens(Crores) & " Crore "
+    If Val(Lakhs) > 0 Then Result = Result & ConvertTens(Lakhs) & " Lakh "
+    If Val(Thousands) > 0 Then Result = Result & ConvertTens(Thousands) & " Thousand "
+    If Val(Hundreds) > 0 Then Result = Result & GetHundreds(Hundreds)
+
+    ConvertIndian = Trim(Result)
+End Function
+
+' --- HELPER: Convert 3-digit groups ---
+Function GetHundreds(ByVal NumStr As String) As String
+    Dim Result As String
+    If Val(NumStr) = 0 Then Exit Function
+    NumStr = Right("000" & NumStr, 3)
+
+    If Left(NumStr, 1) <> "0" Then
+        Result = ConvertDigit(Left(NumStr, 1)) & " Hundred "
+    End If
+
+    If Mid(NumStr, 2, 1) <> "0" Then
+        Result = Result & ConvertTens(Mid(NumStr, 2))
+    Else
+        Result = Result & ConvertDigit(Mid(NumStr, 3))
+    End If
+    GetHundreds = Trim(Result)
+End Function
+
+' --- HELPER: Convert 2-digit groups (Tens) ---
+Function ConvertTens(ByVal TensText As String) As String
+    Dim Result As String
+    Result = ""
+    If Val(Left(TensText, 1)) = 1 Then
+        Select Case Val(TensText)
+            Case 10: Result = "Ten"
+            Case 11: Result = "Eleven"
+            Case 12: Result = "Twelve"
+            Case 13: Result = "Thirteen"
+            Case 14: Result = "Fourteen"
+            Case 15: Result = "Fifteen"
+            Case 16: Result = "Sixteen"
+            Case 17: Result = "Seventeen"
+            Case 18: Result = "Eighteen"
+            Case 19: Result = "Nineteen"
+        End Select
+    Else
+        Select Case Val(Left(TensText, 1))
+            Case 2: Result = "Twenty "
+            Case 3: Result = "Thirty "
+            Case 4: Result = "Forty "
+            Case 5: Result = "Fifty "
+            Case 6: Result = "Sixty "
+            Case 7: Result = "Seventy "
+            Case 8: Result = "Eighty "
+            Case 9: Result = "Ninety "
+        End Select
+        Result = Result & ConvertDigit(Right(TensText, 1))
+    End If
+    ConvertTens = Trim(Result)
+End Function
+
+' --- HELPER: Convert 1-digit (Units) ---
+Function ConvertDigit(ByVal Digit As String) As String
+    Select Case Val(Digit)
+        Case 1: ConvertDigit = "One"
+        Case 2: ConvertDigit = "Two"
+        Case 3: ConvertDigit = "Three"
+        Case 4: ConvertDigit = "Four"
+        Case 5: ConvertDigit = "Five"
+        Case 6: ConvertDigit = "Six"
+        Case 7: ConvertDigit = "Seven"
+        Case 8: ConvertDigit = "Eight"
+        Case 9: ConvertDigit = "Nine"
+        Case Else: ConvertDigit = ""
+    End Select
+End Function

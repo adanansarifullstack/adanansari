@@ -1,8 +1,10 @@
 # Excel Tools by Aden Ansari
 
-Two working Excel systems, free to download. No installation. No subscription. Open the file, enable macros, follow the built-in help sheet.
+Three free Excel tools. No installation. No subscription.
 
-> **Note on macros:** Both tools are macro-enabled workbooks (`.xlsm`). After downloading, right-click the file → Properties → tick **Unblock** (Windows blocks macros in downloaded files by default), then open in Excel and enable macros.
+The first two are complete macro-enabled workbooks — open the file, enable macros, follow the built-in help sheet. The third is a single function you paste into your own workbook.
+
+> **Note on macros:** The two workbooks (`.xlsm`) are macro-enabled. After downloading, right-click the file → Properties → tick **Unblock** (Windows blocks macros in downloaded files by default), then open in Excel and enable macros. The Currency Converter is a `.txt` file — copy the code and paste it into a module (steps below).
 
 ---
 
@@ -78,6 +80,50 @@ Employee database, attendance register, and salary calculation — connected and
 Small and medium businesses running payroll manually. Shops, workshops, contractors, and trading firms with 5 to 100 staff. Accountants handling payroll for multiple clients. Any owner who has ever paid a salary twice — or late — because of a spreadsheet mess.
 
 If payroll eats your month-end, this gives it back.
+
+---
+
+## 3. Currency Converter (Amount in Words)
+
+**[⬇ Get the code — Currency-Converter.txt](https://github.com/adanansarifullstack/adanansari/raw/main/tools/Currency-Converter.txt)**
+
+### What it is
+
+One Excel function that writes any amount in words — the way invoices and cheques demand it.
+
+USD, AED and INR. Dollars and Cents, Dirhams and Fils, Rupees in Lakhs and Crores. Not a workbook to open — a single function you paste in once and keep forever.
+
+### What it does
+
+You type one formula. It hands back the words.
+
+- `=CurrencyInWords(1250.50, "USD")` → One Thousand Two Hundred Fifty Dollars and Fifty Cents Only
+- `=CurrencyInWords(500.75, "AED")` → Five Hundred Dirhams and Seventy Five Fils Only
+- `=CurrencyInWords(150000, "INR")` → One Lakh Fifty Thousand Rupees Only
+
+It knows each currency properly (Dollars/Cents, Dirhams/Fils, Rupees/Paise), uses the right number system for each (Millions and Billions for USD/AED, Lakhs and Crores for INR), reads the decimals as minor units, and closes every amount with **"Only"** — exactly how a cheque or invoice needs it. Leave the currency out — `=CurrencyInWords(100)` — and it defaults to USD.
+
+### Before you use it — about 60 seconds, one time
+
+1. Open the code file and **copy everything** (Ctrl+A, then Ctrl+C).
+2. In your Excel workbook, press **Alt+F11** to open the VBA editor.
+3. Menu: **Insert → Module**. Click the blank window and paste (Ctrl+V).
+4. Close the editor (Alt+Q) and **save your file as Excel Macro-Enabled Workbook (.xlsm)**.
+
+Then type `=CurrencyInWords(...)` in any cell. If a cell shows **#NAME?**, macros are off or the code wasn't pasted in.
+
+### How it will help
+
+- Invoices, cheques and payment vouchers get their amount-in-words line without a second thought.
+- No more typing long amounts by hand — and no more mismatches between the figures and the words.
+- It works inside any workbook you already have — your invoice template, your voucher, your cheque sheet.
+- One function covers your UAE work and your India work both.
+
+### Who is this for
+
+Accountants and cashiers who write cheques, invoices and payment vouchers. Anyone billing in Dollars, Dirhams or Rupees who needs the words spelled correctly. Businesses working across the UAE and India, switching between Western and Indian number systems.
+
+If you have ever typed "Dirhams and Fils" by hand on an invoice, this ends that.
 
 ---
 
