@@ -17,6 +17,16 @@
 '    =CurrencyInWords(150000,  "INR")  ->  One Lakh Fifty Thousand Rupees Only
 '    (Leave the currency out  —  =CurrencyInWords(100)  —  and it defaults to USD.)
 '
+'  USE IT IN EVERY WORKBOOK  (even a plain .xlsx):
+'    VBA can only live in a macro-enabled file, but the workbook you TYPE the
+'    formula in does not have to be one. Paste this code ONCE into either:
+'      - your Personal Macro Workbook (Alt+F11 -> PERSONAL.XLSB -> Insert Module), or
+'      - a blank workbook saved as an Add-in (File -> Save As -> Excel Add-in .xlam,
+'        then File -> Options -> Add-ins -> Excel Add-ins -> Go -> tick it).
+'    After that, =CurrencyInWords(...) works in ANY workbook you open on that PC,
+'    .xlsx included. To hand a finished sheet to someone who has not set this up,
+'    Copy -> Paste Special -> Values first so the words stay as plain text.
+'
 '  TROUBLESHOOTING:
 '    Cell shows  #NAME?     ->  the code wasn't imported, or macros are switched off.
 '    Windows blocked it     ->  right-click the downloaded file, Properties, tick Unblock.

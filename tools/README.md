@@ -112,6 +112,26 @@ It knows each currency properly (Dollars/Cents, Dirhams/Fils, Rupees/Paise), use
 
 Then type `=CurrencyInWords(...)` in any cell. If a cell shows **#NAME?**, macros are off or the code wasn't pasted in.
 
+### Use it in any workbook — even .xlsx
+
+VBA can only live in a macro-enabled file (`.xlsm` / `.xlsb` / `.xlam`) — a plain `.xlsx` can't hold code. But the code doesn't have to sit in the file you type the formula in. Set it up **once** and the formula works in every workbook you open, `.xlsx` included:
+
+**Option A — Personal Macro Workbook (this PC):**
+
+1. No Personal Macro Workbook yet? Record any macro once with *Store macro in: Personal Macro Workbook*, then stop — that creates it.
+2. Press Alt+F11. In the left pane, open **VBAProject (PERSONAL.XLSB) → Insert → Module**.
+3. Paste the code and press Ctrl+S (keep PERSONAL.XLSB when asked).
+4. `=CurrencyInWords(...)` now works in every workbook you open. (From another file Excel may show it as `PERSONAL.XLSB!CurrencyInWords(...)`.)
+
+**Option B — Excel Add-in (.xlam):**
+
+1. Paste the code into a blank workbook's module (Alt+F11 → Insert → Module).
+2. **File → Save As → Excel Add-in (`*.xlam`)**.
+3. **File → Options → Add-ins → Manage: Excel Add-ins → Go →** tick it → **OK**.
+4. `=CurrencyInWords(...)` now works with no prefix in any workbook on that PC.
+
+**Sharing a finished sheet?** Copy → **Paste Special → Values** first, so the words stay as plain text with no macro needed. A file sent to someone who hasn't set this up will otherwise show `#NAME?` on recalculation.
+
 ### How it will help
 
 - Invoices, cheques and payment vouchers get their amount-in-words line without a second thought.
