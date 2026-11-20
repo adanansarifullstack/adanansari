@@ -3,920 +3,1060 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aden Ansari, Accountant &amp; Internal Auditor | Dubai, UAE</title>
-<meta name="description" content="Aden Ansari is a finance professional with 8+ years in internal audit, accounting, UAE VAT &amp; Corporate Tax across the UAE and India. Free Excel tools, plus finance writing.">
+<title>Aden Ansari | Accountant and internal auditor, UAE</title>
+<meta name="description" content="Aden Ansari, accountant and internal auditor in the UAE: audit, UAE VAT and Corporate Tax, IFRS accounts and Excel automation, now adding Power BI and SQL.">
+<meta property="og:title" content="Aden Ansari | Audit eyes. Analyst mind.">
+<meta property="og:description" content="Nine years of audit, tax and reporting across the UAE and India, plus free Excel tools.">
+<meta name="theme-color" content="#060d1a">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Wix+Madefor+Display:wght@600;700;800&family=Wix+Madefor+Text:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg1:#070d24; --bg2:#0e2a4d;
-    --ink:#eef3ff; --muted:rgba(238,243,255,.72); --dim:rgba(238,243,255,.55);
-    --gold:#e7c15b; --teal:#33d0e6; --violet:#8b6cf0;
-    --glass:rgba(255,255,255,.055);
-    --glass-solid:rgba(11,20,45,.62);
-    --edge:rgba(255,255,255,.20); --edge-soft:rgba(255,255,255,.10);
-    --radius:22px;
-    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --shadow:0 22px 54px -22px rgba(0,0,0,.7);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:92px}
-  body{font-family:var(--font);color:var(--ink);background:var(--bg1);line-height:1.62;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-  /* ---------- background ---------- */
-  .bg{position:fixed;inset:0;z-index:-3;background:
-    radial-gradient(1200px 800px at 12% 8%, #143063 0%, transparent 55%),
-    radial-gradient(1000px 700px at 88% 18%, #0f3a5c 0%, transparent 55%),
-    linear-gradient(160deg,var(--bg1),var(--bg2) 55%,var(--bg1));}
-  .orb{position:fixed;z-index:-2;border-radius:50%;filter:blur(74px);opacity:.5;animation:drift 24s ease-in-out infinite}
-  .orb.a{width:520px;height:520px;left:-130px;top:-90px;background:radial-gradient(circle at 30% 30%,var(--teal),transparent 65%)}
-  .orb.b{width:560px;height:560px;right:-150px;top:18%;background:radial-gradient(circle at 60% 40%,var(--violet),transparent 65%);animation-delay:-8s}
-  .orb.c{width:480px;height:480px;left:26%;bottom:-170px;background:radial-gradient(circle at 50% 50%,var(--gold),transparent 65%);opacity:.3;animation-delay:-15s}
-  @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(44px,32px) scale(1.08)}66%{transform:translate(-32px,22px) scale(.95)}}
-  #crystal{position:fixed;inset:0;z-index:-1;pointer-events:none}
-  /* ---------- layout ---------- */
-  .wrap{width:min(1140px,92vw);margin:0 auto}
-  section{padding:76px 0 8px}
-  .eyebrow{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
-  h1,h2,h3,h4{line-height:1.14;letter-spacing:-.01em}
-  h2{font-size:clamp(26px,3.4vw,40px);margin-bottom:12px;font-weight:800}
-  .sub{color:var(--muted);max-width:66ch;margin-bottom:28px}
-  p{color:var(--muted)}
-  a{color:inherit}
-  hr.rule{height:1px;border:0;background:var(--edge-soft);margin:0 0 30px}
-  /* ---------- glass ---------- */
-  .glass{background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
-    border:1px solid var(--edge-soft);border-top-color:var(--edge);border-left-color:var(--edge);
-    border-radius:var(--radius);box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.14)}
-  .solid{background:var(--glass-solid)}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:700;font-size:13.5px;
-    text-decoration:none;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;border:1px solid var(--edge)}
-  .btn.primary{background:linear-gradient(135deg,var(--gold),#f2d894);color:#241a03;border:none;box-shadow:0 10px 26px -10px rgba(231,193,91,.7)}
-  .btn.ghost{background:var(--glass-solid);color:var(--ink);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
-  .btn:hover{transform:translateY(-2px)}
-  /* ---------- nav ---------- */
-  nav{position:sticky;top:0;z-index:50;margin-top:16px}
-  .navbar{display:flex;align-items:center;gap:20px;padding:12px 22px;background:rgba(9,16,38,.58);
-    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--edge-soft);border-radius:16px;box-shadow:var(--shadow)}
-  .brand{font-weight:800;letter-spacing:.03em;margin-right:auto;text-transform:uppercase;font-size:15px}
-  .navlinks{display:flex;gap:22px}
-  .navlinks a{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
-  .navlinks a:hover{color:var(--gold)}
-  @media(max-width:820px){
-    .navbar{flex-wrap:wrap;gap:8px 14px;padding:10px 14px}
-    .brand{font-size:13.5px}
-    .navlinks{order:3;width:100%;gap:16px;overflow-x:auto;padding:4px 0 2px;
-      -webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}
-    .navlinks::-webkit-scrollbar{display:none}
-    .navlinks a{font-size:11.5px;white-space:nowrap;padding:2px 0}
-  }
-  /* ---------- hero ---------- */
-  .hero{display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:center;padding:40px 0 10px;min-height:74vh}
-  .hero h1{font-size:clamp(38px,6.4vw,76px);font-weight:800;letter-spacing:-.02em;margin:6px 0 0}
-  .hero h1 .g{background:linear-gradient(120deg,var(--gold),#fff 58%,var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero .lead{font-size:17px;max-width:62ch;margin:22px 0 26px}
-  .cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-  .avail{display:inline-block;font-size:12.5px;color:var(--ink);background:var(--glass-solid);border:1px solid var(--edge-soft);
-    padding:9px 16px;border-radius:999px}
-  @media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto;gap:28px}}
-  /* ---------- stats ---------- */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:30px}
-  .stat .n{font-size:clamp(28px,3.6vw,42px);font-weight:800;color:#fff;line-height:1}
-  .stat .l{font-size:12.5px;color:var(--muted);margin-top:8px}
-  @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
-  /* ---------- grids/cards ---------- */
-  .grid{display:grid;gap:20px}
-  .g2{grid-template-columns:repeat(2,1fr)}
-  .g3{grid-template-columns:repeat(3,1fr)}
-  @media(max-width:860px){.g2,.g3{grid-template-columns:1fr}}
-  .card{padding:26px}
-  .card::after{content:"";position:absolute;inset:0;border-radius:var(--radius);opacity:0;transition:opacity .3s;
-    background:linear-gradient(130deg,rgba(255,255,255,.10),transparent 42%);pointer-events:none}
-  .card:hover::after{opacity:1}
-  .card h3{font-size:19px;margin-bottom:8px}
-  .card p{font-size:14.5px}
-  .tag{display:block;font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
-  .linkline{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);text-decoration:none}
-  .linkline:hover{text-decoration:underline}
-  /* ---------- crystal skill facets ---------- */
-  .chip{--cut:10px;position:relative;isolation:isolate;display:inline-block;
-    font-size:13px;font-weight:600;letter-spacing:.01em;color:#f4f8ff;
-    background:none;border:0;padding:10px 17px;margin:7px 8px 0 0;
-    text-shadow:0 1px 3px rgba(0,8,24,.75);
-    clip-path:polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
-    transition:transform .3s cubic-bezier(.22,1,.36,1),color .25s ease,filter .3s ease}
-  /* outer crystal edge */
-  .chip::before{content:"";position:absolute;inset:0;z-index:-2;clip-path:inherit;
-    background:linear-gradient(140deg, rgba(255,255,255,.60) 0%, rgba(51,208,230,.40) 34%,
-      rgba(139,108,240,.34) 62%, rgba(231,193,91,.52) 100%);
-    transition:background .3s ease,filter .3s ease}
-  /* faceted body: two cut planes over a deep glass fill */
-  .chip::after{content:"";position:absolute;inset:1px;z-index:-1;clip-path:inherit;
-    background:
-      linear-gradient(133deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,.05) 34%, transparent 35%),
-      linear-gradient(298deg, rgba(255,255,255,.13) 0%, rgba(255,255,255,.02) 28%, transparent 29%),
-      linear-gradient(160deg, rgba(13,24,52,.94), rgba(18,38,74,.82));
-    -webkit-backdrop-filter:blur(7px) saturate(150%);backdrop-filter:blur(7px) saturate(150%);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -8px 18px -10px rgba(51,208,230,.35);
-    transition:background .3s ease}
-  .chip:hover{transform:translateY(-4px) scale(1.05);color:#fff;
-    filter:drop-shadow(0 12px 20px rgba(51,208,230,.30)) drop-shadow(0 2px 6px rgba(231,193,91,.22))}
-  .chip:hover::before{background:linear-gradient(140deg,#ffffff 0%, rgba(51,208,230,.75) 34%,
-    rgba(139,108,240,.55) 62%, rgba(231,193,91,.90) 100%)}
-  .chip:hover::after{background:
-      linear-gradient(133deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.08) 34%, transparent 35%),
-      linear-gradient(298deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.03) 28%, transparent 29%),
-      linear-gradient(160deg, rgba(20,36,74,.92), rgba(26,52,98,.84))}
-  .chip:active{transform:translateY(-1px) scale(.99);transition-duration:.1s}
-  /* ---------- experience ---------- */
-  .job{display:grid;grid-template-columns:186px 1fr;gap:22px;padding:24px 26px}
-  .job .when{font-size:13px}
-  .job .when b{display:block;color:var(--gold);font-weight:800;letter-spacing:.02em}
-  .job .when span{color:var(--dim);font-size:12.5px}
-  .job h3{font-size:17.5px;margin-bottom:3px}
-  .job .co{font-size:13.5px;color:var(--teal);font-weight:600;margin-bottom:9px}
-  .job p{font-size:14.5px}
-  @media(max-width:700px){.job{grid-template-columns:1fr;gap:10px}}
-  /* ---------- tools ---------- */
-  .tool{padding:clamp(24px,3.4vw,38px);margin-bottom:22px}
-  .tool h3{font-size:clamp(21px,2.5vw,27px);text-transform:uppercase;letter-spacing:.02em;margin-bottom:10px}
-  .tool .hook{font-weight:700;font-size:16.5px;color:var(--gold);margin-bottom:12px;line-height:1.4}
-  .tool .intro{font-size:15px;max-width:72ch;margin-bottom:26px}
-  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:26px clamp(22px,3vw,38px);margin-bottom:26px}
-  .cols h4{font-size:13.5px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;color:#fff}
-  .cols p{font-size:14px;margin-bottom:10px}
-  .cols p:last-child{margin-bottom:0}
-  .demo{border:1px solid var(--edge-soft);background:rgba(4,10,26,.45);border-radius:14px;padding:18px;margin-bottom:26px;
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
-  .demo .ex{background:rgba(255,255,255,.035);border:1px solid var(--edge-soft);border-radius:11px;padding:14px 15px;
-    display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.22,1,.36,1),border-color .3s ease,background .3s ease}
-  .demo .ex:hover{transform:translateY(-4px) scale(1.02);border-color:rgba(231,193,91,.4);background:rgba(255,255,255,.06)}
-  .demo .cur{display:inline-block;align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.12em;
-    color:var(--gold);border:1px solid rgba(231,193,91,.35);border-radius:5px;padding:3px 8px;margin-bottom:10px}
-  .demo code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#dbe6ff;display:block;margin-bottom:4px}
-  .demo .out{font-size:13.5px;color:var(--gold);margin-bottom:14px}
-  .demo .out:last-child{margin-bottom:0}
-  .steps{border-top:1px solid var(--edge-soft);padding-top:22px;margin-bottom:24px}
-  .steps h4{font-size:13.5px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;color:#fff}
-  .steps .note{font-size:12.5px;color:var(--dim);margin-bottom:14px}
-  .steps ol{margin:0 0 4px;padding-left:20px;font-size:14px;color:var(--muted)}
-  .steps li{margin-bottom:7px}
-  .opt{font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--teal);margin:16px 0 8px}
-  .foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
-  .foot span{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--dim)}
-  .custom{padding:clamp(28px,4vw,44px);background:linear-gradient(135deg,rgba(231,193,91,.14),rgba(139,108,240,.14));
-    border:1px solid var(--edge);border-radius:var(--radius);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:var(--shadow)}
-  /* ---------- hero "currently" panel ---------- */
-  .now{padding:26px 28px;align-self:center}
-  .nowhead{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
-    padding-bottom:12px;margin-bottom:6px;border-bottom:1px solid var(--edge-soft)}
-  .nowrow{display:grid;grid-template-columns:82px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05)}
-  .nowrow:last-child{border-bottom:0;padding-bottom:0}
-  .nowrow .k{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding-top:2px}
-  .nowrow .v{font-size:14px;color:var(--ink);line-height:1.45}
-  /* ---------- about grid ---------- */
-  .aboutgrid{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;align-items:stretch}
-  .aboutgrid>*{height:100%}
-  @media(max-width:900px){.aboutgrid{grid-template-columns:1fr}}
-  .focus{padding:26px 28px}
-  .focus h3{font-size:15px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;color:var(--gold)}
-  .frow{display:grid;grid-template-columns:78px 1fr;gap:14px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
-  .frow:last-child{border-bottom:0}
-  .frow b{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.01em}
-  .frow span{font-size:13.5px;color:var(--muted);line-height:1.45}
-  /* ---------- tool columns become panels (no ragged gaps) ---------- */
-  .cols{align-items:stretch}
-  .cols>div{background:rgba(4,10,26,.30);border:1px solid var(--edge-soft);border-radius:14px;padding:20px 20px 30px;
-    display:flex;flex-direction:column}
-  .cols>div::after{content:"";position:absolute;left:20px;right:20px;bottom:15px;height:2px;border-radius:2px;
-    background:linear-gradient(90deg,rgba(231,193,91,.55),rgba(51,208,230,.25) 45%,transparent);
-    transition:opacity .3s ease,left .35s ease;opacity:.7}
-  .cols>div:hover::after{opacity:1;left:20px;right:20px}
-  .cols h4{position:relative;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)}
-  .cols>div:hover{border-color:rgba(231,193,91,.35);background:rgba(4,10,26,.48)}
-  .cols>div p:last-child{margin-bottom:0}
-  /* equal-height cards everywhere */
-  .grid>*{height:100%}
-  .card{display:flex;flex-direction:column}
-  .cert .certlinks{margin-top:auto}
-  .job{align-items:start}
-  /* ---------- certifications ---------- */
-  .cert h3{font-size:17.5px;line-height:1.25;margin-bottom:8px}
-  .certmeta{font-size:12.5px;color:var(--teal);font-weight:600;margin-bottom:12px}
-  .cert p{font-size:14px;margin-bottom:14px}
-  .cid{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:var(--dim);
-    background:rgba(4,10,26,.45);border:1px solid var(--edge-soft);border-radius:8px;padding:8px 11px;margin-bottom:14px;word-break:break-all}
-  .certlinks{display:flex;gap:10px;flex-wrap:wrap}
-  .verifynote{font-size:12.5px;color:var(--dim);font-style:italic}
-  /* ---------- contact ---------- */
-  .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
-  @media(max-width:820px){.cgrid{grid-template-columns:1fr}}
-  .cbox{padding:20px 22px}
-  .cbox .k{font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
-  .cbox .v{font-size:14.5px;color:var(--ink);word-break:break-word;text-decoration:none}
-  .cbox a.v:hover{color:var(--gold)}
-  footer{padding:36px 0 54px;text-align:center;color:var(--dim);font-size:13px;border-top:1px solid var(--edge-soft);margin-top:46px}
-  /* back to top, cut as a crystal */
-  #backtop{position:fixed;right:24px;bottom:24px;width:56px;height:60px;display:grid;place-items:center;
-    isolation:isolate;background:none;border:0;padding:0;cursor:pointer;opacity:0;pointer-events:none;
-    color:var(--gold);font-size:19px;font-weight:800;line-height:1;text-shadow:0 1px 4px rgba(0,8,24,.85);
-    clip-path:polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-    transition:opacity .35s ease,transform .3s cubic-bezier(.22,1,.36,1),filter .3s ease,color .3s ease;z-index:60}
-  #backtop.show{opacity:1;pointer-events:auto}
-  #backtop::before{content:"";position:absolute;inset:0;z-index:-2;clip-path:inherit;
-    background:linear-gradient(140deg, rgba(255,255,255,.70) 0%, rgba(51,208,230,.48) 34%,
-      rgba(139,108,240,.38) 62%, rgba(231,193,91,.70) 100%);
-    animation:btshine 5.5s ease-in-out infinite;transition:background .3s ease}
-  #backtop::after{content:"";position:absolute;inset:1.5px;z-index:-1;clip-path:inherit;
-    background:
-      linear-gradient(133deg, rgba(255,255,255,.24) 0%, rgba(255,255,255,.06) 33%, transparent 34%),
-      linear-gradient(298deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.02) 27%, transparent 28%),
-      linear-gradient(206deg, rgba(255,255,255,.10) 0%, transparent 30%),
-      linear-gradient(160deg, rgba(13,24,52,.95), rgba(20,42,80,.86));
-    -webkit-backdrop-filter:blur(8px) saturate(150%);backdrop-filter:blur(8px) saturate(150%);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.26), inset 0 -10px 20px -12px rgba(51,208,230,.45)}
-  @keyframes btshine{0%,100%{filter:brightness(1)}50%{filter:brightness(1.4)}}
-  #backtop:hover{transform:translateY(-5px) scale(1.09) rotate(-4deg);color:#fff;
-    filter:drop-shadow(0 14px 24px rgba(51,208,230,.38)) drop-shadow(0 0 12px rgba(231,193,91,.35))}
-  #backtop:hover::before{background:linear-gradient(140deg,#ffffff 0%, rgba(51,208,230,.85) 34%,
-    rgba(139,108,240,.6) 62%, rgba(231,193,91,.95) 100%)}
-  #backtop:active{transform:translateY(-2px) scale(.97);transition-duration:.1s}
-  /* ---------- torch / cursor spotlight ---------- */
-  .torch{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:0;transition:opacity .45s ease;
-    mix-blend-mode:screen;
-    background:radial-gradient(circle 260px at var(--mx,50%) var(--my,50%),
-      rgba(255,231,170,.16) 0%, rgba(231,193,91,.10) 32%, rgba(51,208,230,.05) 55%, transparent 72%)}
-  .torch.on{opacity:1}
-  .torch2{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:0;transition:opacity .45s ease;
-    background:radial-gradient(circle 420px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.05), transparent 70%)}
-  .torch2.on{opacity:1}
-  /* ---------- card hover + click ---------- */
-  .card,.tool,.job,.custom,.now,.cbox,.stat,.cols>div,.demo,.steps{position:relative;
-    transition:transform .32s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease,background .3s ease}
-  .card,.tool,.job,.custom,.now,.cbox{overflow:hidden}
-  .card>*,.tool>*,.job>*,.custom>*,.now>*,.cbox>*{position:relative;z-index:2}
-  /* inner spotlight that follows the cursor across the surface */
-  .card::before,.tool::before,.job::before,.now::before,.cbox::before{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;
-    opacity:0;transition:opacity .35s ease;pointer-events:none;
-    background:radial-gradient(circle 200px at var(--cx,50%) var(--cy,50%), rgba(255,255,255,.14), rgba(231,193,91,.07) 40%, transparent 68%)}
-  .card:hover::before,.tool:hover::before,.job:hover::before,.now:hover::before,.cbox:hover::before{opacity:1}
-  /* the pop */
-  .card:hover,.tool:hover,.job:hover,.now:hover,.cbox:hover{border-color:rgba(231,193,91,.42);
-    box-shadow:0 34px 70px -26px rgba(0,0,0,.85), 0 0 0 1px rgba(231,193,91,.16), 0 0 28px -6px rgba(51,208,230,.20), inset 0 1px 0 rgba(255,255,255,.24);
-    z-index:3}
-  .card:hover{transform:translateY(-8px) scale(1.022)}
-  .job:hover,.tool:hover{transform:translateY(-5px) scale(1.012)}
-  .now:hover{transform:translateY(-6px) scale(1.015)}
-  .cbox:hover{transform:translateY(-5px) scale(1.03)}
-  .stat:hover{transform:translateY(-5px) scale(1.05)}
-  .cols>div:hover{transform:translateY(-4px) scale(1.015)}
-  .card:active,.tool:active,.job:active,.now:active,.cbox:active{transform:translateY(-2px) scale(.995);transition-duration:.1s}
-  /* click ripple */
-  .ripple{position:absolute;border-radius:50%;transform:translate(-50%,-50%) scale(0);z-index:1;pointer-events:none;
-    background:radial-gradient(circle,rgba(231,193,91,.34),transparent 68%);animation:rip .62s ease-out forwards}
-  @keyframes rip{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
-  /* chips + stats + links */
-  .stat:hover .n{color:var(--gold)}
-  .stat .n{transition:color .25s ease}
-  .linkline{transition:transform .2s ease,letter-spacing .2s ease}
-  .linkline:hover{transform:translateX(4px);letter-spacing:.08em}
-  .nowrow{transition:background .25s ease}
-  .nowrow:hover{background:rgba(231,193,91,.06)}
-  .frow{transition:transform .2s ease}
-  .frow:hover{transform:translateX(3px)}
-  .frow:hover b{color:var(--gold)}
-  .frow b{transition:color .2s ease}
-  @media(hover:none){
-    .torch,.torch2{display:none}
-    .card:active,.tool:active,.job:active,.now:active,.cbox:active{transform:translateY(-5px) scale(1.02)}
-    .chip:active{transform:translateY(-3px) scale(1.05);color:#fff}
-    .demo .ex:active{transform:translateY(-3px) scale(1.02)}
-    .stat:active{transform:translateY(-4px) scale(1.04)}
-  }
-  /* tap-lit spotlight, applied by JS on touch */
-  .lit::before{opacity:1 !important}
-  .lit{border-color:rgba(231,193,91,.42) !important;
-    box-shadow:0 34px 70px -26px rgba(0,0,0,.85), 0 0 0 1px rgba(231,193,91,.16), 0 0 28px -6px rgba(51,208,230,.20) !important}
-  @media(prefers-reduced-motion:reduce){.torch,.torch2{display:none}
-    .card:hover,.tool:hover,.job:hover{transform:none}}
-  /* ---------- deco + reveal ---------- */
-  .deco{position:absolute;pointer-events:none;opacity:.8;filter:drop-shadow(0 12px 26px rgba(0,0,0,.45));animation:bob 9s ease-in-out infinite}
-  @keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-15px) rotate(6deg)}}
-  [data-rev]{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
-  [data-rev].in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}[data-rev]{opacity:1;transform:none}}
+/* VOICE calm, premium and quietly confident, with a little wonder
+   IDEA a career as a voyage: a ship visits six worlds of experience and lands on Earth, where the CV waits and the tools orbit
+   PICTURE deep space drawn on the graphics card: stars, galaxies, nebulae, drifting asteroids; a dotted globe that turns to pin the UAE and trace the route from Kolkata
+   COLOUR deep navy night, off-white type, one gold accent, solid translucent panels (no blur on phones)
+   TYPE Wix Madefor Display for size, Instrument Serif italic for the turn of phrase, Wix Madefor Text for reading
+   LAYOUT laptop: worlds weave down the centre with logs either side, globe left of the landing panel; phone: worlds stack down the centre, globe above the panel */
+:root{color-scheme:dark;--bg:#060d1a;--ink:#eef1f7;--mute:#a9b3c7;--gold:#c9a84c;--gold2:#e6cc85;--panel:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015)),rgba(9,18,36,.8);--edge:rgba(255,255,255,.13)}
+*{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
+html{overflow-x:clip}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Wix Madefor Text",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#space{position:fixed;left:0;top:0;width:100%;height:100vh;height:100lvh;z-index:0;pointer-events:none;display:block}
+.neb{display:none;position:fixed;left:0;top:0;width:100%;height:100vh;height:100lvh;z-index:0;pointer-events:none;background:radial-gradient(40% 30% at 16% 28%,rgba(80,90,200,.17),transparent 72%),radial-gradient(36% 30% at 86% 64%,rgba(30,140,150,.13),transparent 72%),radial-gradient(44% 26% at 62% 6%,rgba(160,120,50,.1),transparent 72%),radial-gradient(60% 40% at 40% 100%,rgba(70,60,160,.1),transparent 70%)}
+.neb i{position:absolute;inset:0;opacity:0;will-change:opacity;background:radial-gradient(34% 40% at 32% 50%,rgba(90,120,230,.2),transparent 70%),radial-gradient(22% 28% at 20% 34%,rgba(40,140,160,.12),transparent 70%)}
+@media(max-width:860px){.neb i{background:radial-gradient(60% 30% at 50% 30%,rgba(90,120,230,.22),transparent 70%),radial-gradient(40% 20% at 25% 18%,rgba(40,140,160,.12),transparent 70%)}}
+.no3d #space{display:none}
+.no3d .neb{display:block}
+.no3d body{background:radial-gradient(1.5px 1.5px at 12% 20%,#e6cc85,transparent),radial-gradient(1.5px 1.5px at 38% 62%,#fff,transparent),radial-gradient(1.5px 1.5px at 72% 30%,#e6cc85,transparent),radial-gradient(1.5px 1.5px at 86% 78%,#fff,transparent),radial-gradient(60% 40% at 80% 10%,rgba(201,168,76,.12),transparent 70%),var(--bg);background-attachment:fixed}
+main,footer{position:relative;z-index:1}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:max(4vw,16px)}
+.glass{background:var(--panel);border:1px solid var(--edge);border-radius:20px}
+i{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;color:var(--gold2);letter-spacing:0}
+.cstar{position:fixed;left:0;top:0;z-index:61;pointer-events:none;opacity:0;transition:opacity .4s;will-change:transform}
+.cstar.on{opacity:1}
+.cstar span{position:absolute;left:-15px;top:-15px;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,#fffaf0 0 10%,rgba(236,211,145,.9) 20%,rgba(201,168,76,.28) 44%,transparent 70%);transition:transform .35s}
+.cstar span::before,.cstar span::after{content:"";position:absolute;left:50%;top:50%;width:42px;height:2px;margin:-1px 0 0 -21px;border-radius:2px;background:linear-gradient(90deg,transparent,#fff3c4 50%,transparent)}
+.cstar span::after{transform:rotate(90deg)}
+.cstar.big span{transform:scale(1.8)}
+.sparks{position:fixed;inset:0;z-index:60;pointer-events:none;overflow:hidden}
+.spk{position:absolute;left:0;top:0;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:radial-gradient(circle,#fff8e6 0 25%,rgba(236,211,145,.8) 45%,transparent 70%);opacity:0}
+.pill{position:fixed;z-index:50;top:12px;left:50%;transform:translateX(-50%);width:min(800px,calc(100% - 20px));display:flex;align-items:center;gap:8px;padding:6px 6px 6px 20px;border-radius:999px;background:rgba(9,18,36,.88);border:1px solid var(--edge)}
+.mark{font:700 17px/1 "Wix Madefor Display",sans-serif;text-decoration:none;white-space:nowrap;margin-right:auto}
+.links{display:flex;gap:2px}
+.links a{text-decoration:none;color:var(--mute);font-size:15px;padding:12px;border-radius:999px}
+.links a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font:600 15px/1 "Wix Madefor Text",sans-serif;text-decoration:none;white-space:nowrap;border:0;cursor:pointer;color:var(--ink)}
+.btn.sm{min-height:44px;padding:0 18px}
+.btn.gold{background:var(--gold);color:#0a1222}
+.btn.gold:hover{background:var(--gold2)}
+.btn.ghost{background:rgba(255,255,255,.05);border:1px solid var(--edge)}
+.btn.ghost:hover{border-color:var(--gold)}
+.cvq{display:none}
+.hero{position:relative;padding:clamp(112px,15vh,150px) 0 clamp(110px,12vw,150px)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 45% at 85% 8%,rgba(201,168,76,.14),transparent 70%)}
+.hero .wrap{position:relative}
+.eyebrow{display:inline-block;font-size:14px;color:var(--gold2);border:1px solid rgba(201,168,76,.38);padding:7px 14px;border-radius:999px;margin:0 0 14px}
+h1{font:800 clamp(64px,13vw,180px)/.9 "Wix Madefor Display",sans-serif;letter-spacing:-.055em;margin:0 0 clamp(28px,4vw,52px);padding:.08em 0 .04em;white-space:nowrap;background:linear-gradient(180deg,#fff 35%,#b6c2d9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,80px);align-items:start}
+.pitch{font:600 clamp(26px,2.8vw,38px)/1.15 "Wix Madefor Display",sans-serif;letter-spacing:-.02em;margin:0 0 16px}
+.lede{color:var(--mute);font-size:clamp(16px,1.3vw,18px);max-width:32em;margin:0 0 28px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.ribbon{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;list-style:none;margin:34px 0 0;padding:0;max-width:440px}
+.ribbon li{padding-left:14px;border-left:1px solid rgba(201,168,76,.4)}
+.ribbon b{display:block;font:700 clamp(22px,2.2vw,28px)/1.15 "Wix Madefor Display",sans-serif;color:var(--gold2);letter-spacing:-.02em}
+.ribbon span{font-size:13px;color:var(--mute)}
+.mockwrap{position:relative}
+.mock{padding:18px 20px 20px}
+.mock-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:15px}
+.dots{display:flex;gap:6px}.dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.2)}
+.tag{margin-left:auto;font-size:12px;color:var(--mute);border:1px solid var(--edge);border-radius:999px;padding:3px 10px}
+.checks{list-style:none;margin:0 0 14px;padding:0}
+.checks li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-top:1px solid rgba(255,255,255,.08);font-size:15px}
+.checks em{font-style:normal;font-size:13px;font-weight:600;color:#0a1222;background:var(--gold);padding:3px 10px;border-radius:999px;white-space:nowrap}
+.checks em.rev{background:none;color:var(--gold2);border:1px dashed var(--gold)}
+.checks em.pend{background:none;color:var(--mute);border:1px solid var(--edge)}
+.checks em.pop{animation:pop .6s cubic-bezier(.2,.8,.2,1.3)}
+@keyframes pop{0%{transform:scale(.6)}100%{transform:scale(1)}}
+.chart{border-top:1px solid rgba(255,255,255,.08);padding-top:12px;font-size:13px;color:var(--mute)}
+.chart svg{display:block;width:100%;height:88px;margin-top:8px}
+.chart rect{transform-box:fill-box;transform-origin:50% 100%;animation:grow 1.4s cubic-bezier(.2,.8,.2,1) both}
+.chart rect:nth-child(2){animation-delay:.1s}.chart rect:nth-child(3){animation-delay:.2s}.chart rect:nth-child(4){animation-delay:.3s}.chart rect:nth-child(5){animation-delay:.4s}.chart rect:nth-child(6){animation-delay:.5s}.chart rect:nth-child(7){animation-delay:.6s}.chart rect:nth-child(8){animation-delay:.7s}
+@keyframes grow{from{transform:scaleY(.15)}}
+.avail{position:absolute;right:-14px;bottom:-34px;display:flex;gap:12px;align-items:center;padding:14px 18px;font-size:14px;line-height:1.4;max-width:320px}
+.avail .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(201,168,76,.2);flex:none}
+.avail small{color:var(--mute);font-size:13px}
+.cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;color:var(--mute);text-decoration:none;padding:6px}
+.cue::after{content:"";width:1px;height:36px;background:linear-gradient(var(--gold2),transparent);transform-origin:top;animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.kicker{font-size:14px;color:var(--gold2);letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px}
+.mission{padding-block:clamp(80px,11vw,150px)}
+.statement{font:600 clamp(26px,3.6vw,52px)/1.22 "Wix Madefor Display",sans-serif;letter-spacing:-.025em;margin:0;max-width:24em;text-wrap:pretty}
+.statement .w{opacity:clamp(.3,calc((var(--p,0) * var(--n,60) * 1.15 - var(--i,0)) / 3 + .3),1)}
+.voyage{position:relative;padding-top:clamp(30px,5vw,70px);padding-bottom:clamp(40px,8vw,100px)}
+.route{position:absolute;left:0;top:0;z-index:1;pointer-events:none;overflow:visible}
+.route path{fill:none;stroke:rgba(230,204,133,.38);stroke-width:1.6;stroke-dasharray:1 9;stroke-linecap:round}
+.vhead{position:relative;z-index:2;text-align:center;max-width:920px;margin:0 auto clamp(90px,10vw,130px)}
+.vhead h2{font:700 clamp(36px,5.6vw,84px)/1.02 "Wix Madefor Display",sans-serif;letter-spacing:-.045em;margin:0 0 14px;text-wrap:balance}
+.vhead .sub{color:var(--mute);margin:0 auto;max-width:36em}
+.wps{list-style:none;margin:0 auto;padding:0;position:relative;z-index:2;max-width:1180px}
+.wp{display:grid;grid-template-columns:minmax(0,1fr) 170px minmax(0,1fr);align-items:center;min-height:clamp(380px,62vh,600px)}
+.wp .planet{grid-column:2;grid-row:1;justify-self:center;translate:var(--dx,0) 0}
+.wp .log{grid-column:3;grid-row:1;justify-self:start}
+.wp:nth-child(even) .log{grid-column:1;justify-self:end}
+.planet{position:relative;width:var(--ps,78px);aspect-ratio:1;border-radius:50%;border:0;padding:0;cursor:pointer;background:var(--pg);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 34px 6px var(--pglow,rgba(201,168,76,.25));transition:transform 1.2s cubic-bezier(.2,.8,.2,1),opacity 1.2s}
+.planet::before{content:"";position:absolute;inset:-18px;border-radius:50%;border:1px dashed rgba(230,204,133,.38);opacity:0;transition:opacity 1.2s}
+.planet.ring::after{content:"";position:absolute;left:-34%;right:-34%;top:41%;height:18%;border-radius:50%;border:2px solid rgba(236,211,145,.6);border-top-color:transparent;transform:rotate(-16deg)}
+.planet .flash{position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--gold2);opacity:0;pointer-events:none}
+.wp.on .planet::before{opacity:1}
+.live .wp:not(.on) .planet{transform:scale(.6);opacity:.45}
+.p1{--pg:radial-gradient(circle at 32% 30%,#f6e8bf,#b8943f 36%,#5e4718 72%,#1e1607);--pglow:rgba(201,168,76,.28)}
+.p2{--pg:radial-gradient(circle at 32% 30%,#d2f3ed,#3aa597 38%,#165249 72%,#06201c);--pglow:rgba(58,165,151,.3)}
+.p3{--pg:radial-gradient(circle at 32% 30%,#ffdcc0,#d0703e 38%,#6d2a12 72%,#200a03);--pglow:rgba(208,112,62,.42)}
+.p4{--pg:radial-gradient(circle at 32% 30%,#efeaff,#9488c9 38%,#43386f 72%,#130f26);--pglow:rgba(148,136,201,.3)}
+.p5{--ps:116px;--pg:repeating-linear-gradient(-18deg,transparent 0 9px,rgba(110,72,8,.2) 9px 14px),radial-gradient(circle at 32% 30%,#fff3c9,#e0b85a 30%,#9c7420 62%,#3a2a08);--pglow:rgba(230,190,90,.45)}
+.p6{--ps:88px;--pg:radial-gradient(circle,rgba(20,36,70,.95),rgba(6,13,26,.95));--pglow:rgba(130,160,220,.22)}
+.p6 svg{position:absolute;inset:8%;width:84%;height:84%}
+.log{width:min(100%,470px);padding:clamp(18px,2.2vw,26px);transition:opacity 1.2s cubic-bezier(.2,.8,.2,1),transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.live .wp:not(.on):not(.open) .log{opacity:.16;transform:translateY(28px) scale(.96)}
+.meta{font-size:13px;color:var(--gold2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px}
+.log h3{font:700 clamp(22px,2.2vw,28px)/1.15 "Wix Madefor Display",sans-serif;letter-spacing:-.02em;margin:0}
+.org{margin:2px 0 10px;color:var(--mute);font-weight:600}
+.log p{margin:0 0 6px}
+.badge{display:inline-block;font-size:13px;font-weight:700;color:#0a1222;background:var(--gold);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .8s cubic-bezier(.2,.8,.2,1)}
+.wp.open .more{grid-template-rows:1fr}
+.more>div{overflow:hidden}
+.more ul{margin:6px 0 4px;padding:0 0 0 18px;color:#c6cfdf;font-size:15px}
+.more li{margin:5px 0}
+.more li::marker{color:var(--gold)}
+.bars{display:grid;gap:8px;margin:10px 0 6px}
+.bar{display:grid;grid-template-columns:6.5em minmax(0,1fr) 4.6em;gap:10px;align-items:center;font-size:14px}
+.bar b{height:8px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar b i{display:block;height:100%;background:var(--gold)}
+.bar em{font-style:normal;text-align:right;color:var(--mute)}
+.logbtn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0;border:0;background:none;color:var(--gold2);font:600 14px/1 "Wix Madefor Text",sans-serif;cursor:pointer}
+.logbtn::after{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .3s}
+.wp.open .logbtn::after{transform:translateY(2px) rotate(-135deg)}
+.ship{position:fixed;left:0;top:0;z-index:55;width:64px;height:64px;margin:-32px 0 0 -32px;padding:0;border:0;background:none;cursor:pointer;will-change:transform}
+.ship .body{position:absolute;inset:0;display:grid;place-items:center;transition:transform .5s cubic-bezier(.3,1.5,.5,1),opacity .4s}
+.ship.gone{pointer-events:none}
+.ship.gone .body{transform:scale(.15);opacity:0}
+.ship .bob{position:relative;display:block;width:60px;height:32px}
+.ship.park .bob{animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateX(-5px)}}
+.ship svg{position:relative;display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 8px rgba(236,211,145,.55))}
+.flame{position:absolute;right:calc(100% - 12px);top:50%;width:38px;height:12px;margin-top:-6px;border-radius:50%;background:radial-gradient(ellipse at 100% 50%,#fffbe8 0,#f3c35a 30%,rgba(214,120,40,.55) 58%,transparent 72%);transform-origin:100% 50%;transform:scaleX(.4);animation:fl .1s steps(2) infinite alternate}
+.ship.gone .flame{animation:none}
+@keyframes fl{to{opacity:.72}}
+.earthsec{position:relative;height:400vh}
+.estage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.ecap{position:absolute;left:50%;top:clamp(78px,11vh,110px);transform:translateX(-50%);text-align:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);opacity:0;transition:opacity .6s;white-space:nowrap;pointer-events:none}
+.ecap.on{opacity:1}
+.elab,.slab{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;will-change:transform}
+.elab{pointer-events:none;padding:6px 11px;border-radius:999px;background:rgba(8,16,34,.86);border:1px solid var(--edge);font-size:12.5px;color:var(--mute);transition:opacity .5s}
+.elab b{color:var(--ink);margin-right:6px}
+.slab .sh{display:none}
+.elab.uae{border-color:var(--gold);box-shadow:0 0 24px rgba(201,168,76,.3)}
+.elab.uae b{color:var(--gold2)}
+.slab{min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--gold);background:rgba(8,16,34,.9);color:var(--gold2);font:600 12.5px/1 "Wix Madefor Text",sans-serif;cursor:pointer;visibility:hidden;transition:opacity .5s,visibility 0s .5s}
+.elab.on{opacity:1}
+.slab.on{opacity:1;visibility:visible;transition:opacity .5s,visibility 0s}
+.slab:hover{background:rgba(201,168,76,.2)}
+.pod{position:absolute;right:max(4vw,24px);top:50%;width:min(450px,40vw);padding:clamp(22px,2.6vw,34px);transform:translateY(-50%);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}
+.js .pod{opacity:0;pointer-events:none;transform:translateY(-46%)}
+.js .pod.on{opacity:1;pointer-events:auto;transform:translateY(-50%)}
+.pod h2{font:700 clamp(28px,3vw,44px)/1.05 "Wix Madefor Display",sans-serif;letter-spacing:-.035em;margin:0 0 10px}
+.pod>p{color:var(--mute);margin:0 0 18px}
+.ground{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--edge)}
+.cargo{margin:14px 0 0;font-size:14px;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid rgba(201,168,76,.5);background:rgba(201,168,76,.08);color:var(--gold2);font:600 13.5px/1 "Wix Madefor Text",sans-serif;cursor:pointer}
+.chip:hover{background:rgba(201,168,76,.2)}
+.fine{font-size:13.5px;color:var(--mute);margin:14px 0 0}
+.cvanchor{position:absolute;left:0;top:calc(100% - 100vh);top:calc(100% - 100svh);width:1px;height:1px}
+.toolcard{position:fixed;left:50%;bottom:18px;z-index:58;width:min(420px,calc(100vw - 24px));padding:22px 22px 20px;transform:translate(-50%,30px);opacity:0;visibility:hidden;transition:opacity .45s,transform .55s cubic-bezier(.2,.8,.2,1),visibility 0s .5s;background:rgba(9,18,36,.97);border:1px solid var(--gold);border-radius:20px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.toolcard.on{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .45s,transform .55s cubic-bezier(.2,.8,.2,1),visibility 0s}
+.toolcard h3{font:700 22px/1.2 "Wix Madefor Display",sans-serif;margin:0 0 8px;padding-right:40px}
+.toolcard p{margin:0 0 14px;color:var(--mute);font-size:15px}
+.toolcard code{display:block;margin:0 0 14px;font:500 14px/1.4 ui-monospace,Menlo,Consolas,monospace;color:var(--gold2)}
+.toolcard .x{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;background:none;color:var(--mute);font-size:26px;line-height:1;cursor:pointer;border-radius:10px}
+.samples{padding-block:clamp(70px,10vw,130px)}
+.samples h2{font:700 clamp(32px,4.6vw,64px)/1.04 "Wix Madefor Display",sans-serif;letter-spacing:-.04em;margin:0 0 12px;max-width:16em}
+.samples .sub{color:var(--mute);max-width:40em;margin:0 0 34px}
+.sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sample{display:flex;flex-direction:column;overflow:hidden;text-decoration:none;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s}
+.sample:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.6)}
+.sample img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--edge);background:#0b1628}
+.sample div{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.sample h3{font:700 21px/1.2 "Wix Madefor Display",sans-serif;margin:0}
+.sample p{margin:0;color:var(--mute);font-size:15px;flex:1}
+.sample .tags{font-size:12.5px;color:var(--gold2);letter-spacing:.04em}
+.sample .go{font-weight:600;color:var(--gold2)}
+.hire{margin:28px 0 0;color:var(--mute);display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+footer{padding-block:clamp(10px,3vw,30px) 28px;background:linear-gradient(transparent,rgba(4,11,24,.85) 30%)}
+.giant{display:block;width:100%;height:auto}
+.giant text{font:800 150px "Wix Madefor Display",sans-serif}
+.frow{display:flex;flex-wrap:wrap;gap:4px 22px;justify-content:space-between;align-items:center;color:var(--mute);font-size:14px;border-top:1px solid var(--edge);padding-top:14px;margin-top:18px}
+.frow a{text-decoration:none;padding-block:12px}
+.frow a:hover{color:var(--gold2)}
+.frow b{font:400 20px/1.2 "Instrument Serif",serif;font-style:italic;color:var(--gold2)}
+@media(hover:hover) and (pointer:fine) and (min-width:861px){.pill{background:rgba(9,18,36,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}}
+@media(max-width:1000px){.sgrid{grid-template-columns:minmax(0,1fr)}.sample{flex-direction:row}.sample img{width:42%;aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--edge)}}
+@media(max-width:860px){.links{display:none}.cvq{display:inline-flex}
+.wp{display:flex;flex-direction:column;align-items:center;gap:22px;min-height:0;padding:30px 0 34px}
+.wp .planet{translate:var(--mdx,0) 0;--ps:56px}.wp .p5{--ps:72px}.wp .p6{--ps:62px}
+.wp .log,.wp:nth-child(even) .log{width:100%;justify-self:auto}
+.planet::before{inset:-11px}
+.pod{left:12px;right:12px;top:auto;bottom:12px;width:auto;max-height:calc(100svh - 150px);overflow:auto;padding:18px 18px 16px;transform:none}
+.js .pod{transform:translateY(16px)}
+.js .pod.on{transform:none}
+.pod .kicker,.chips,.fine{display:none}
+.pod h2{font-size:26px;margin-bottom:8px}
+.pod>p{font-size:15px;margin-bottom:12px}
+.ground{margin-top:12px;padding-top:12px;gap:6px}
+.ground .btn{padding:0 14px}
+.cargo{margin-top:10px}
+.ecap{top:72px}
+.elab .yr,.elab .lg,.slab .lg{display:none}.slab .sh{display:inline}
+.ship{width:56px;height:56px;margin:-28px 0 0 -28px}.ship .bob{width:52px;height:28px}}
+@media(max-width:860px) and (orientation:landscape) and (max-height:520px){
+.pod{left:auto;right:12px;top:50%;bottom:auto;width:min(380px,48vw);max-height:calc(100svh - 24px);transform:translateY(-50%)}
+.js .pod{transform:translateY(-46%)}
+.js .pod.on{transform:translateY(-50%)}}
+@media(max-width:700px){h1{white-space:normal;font-size:clamp(64px,24vw,120px)}h1 span{display:block}
+.hero-grid{grid-template-columns:minmax(0,1fr)}.avail{position:static;margin-top:14px;max-width:none}
+.cue{display:none}.pill{padding-left:16px}
+.sample{flex-direction:column}.sample img{width:100%;aspect-ratio:16/10;border-right:0;border-bottom:1px solid var(--edge)}}
+.no3d .earthsec{height:auto}
+.no3d .estage{position:relative;height:auto;padding:120px 0 60px}
+.no3d .pod{position:relative;inset:auto;transform:none;opacity:1;pointer-events:auto;margin:0 auto;width:min(560px,calc(100% - 24px));max-height:none}
+.no3d .elab,.no3d .slab,.no3d .ecap{display:none}
+.no3d .chips{display:flex}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+.cvtoast{position:fixed;left:50%;bottom:22px;z-index:99;transform:translate(-50%,20px);opacity:0;pointer-events:none;max-width:min(92vw,460px);padding:12px 18px;border-radius:12px;background:var(--toast-bg,#0b1628);color:var(--toast-ink,#eef1f7);border:1px solid var(--toast-edge,rgba(236,211,145,.45));font:500 14px/1.45 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:opacity .3s,transform .3s}
+.cvtoast.on{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 <body>
-<div class="bg"></div><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
-<canvas id="crystal"></canvas>
-<div class="torch2" id="torch2"></div>
-<div class="torch" id="torch"></div>
+<div class="neb" aria-hidden="true"><i></i></div>
+<canvas id="space" aria-hidden="true"></canvas>
+<div class="sparks" id="sparks" aria-hidden="true"></div>
+<div class="cstar" aria-hidden="true"><span></span></div>
 
-<div class="wrap">
-  <nav>
-    <div class="navbar">
-      <span class="brand">Aden Ansari</span>
-      <div class="navlinks">
-        <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a>
-        <a href="#tools">Tools</a><a href="#skills">Skills</a><a href="#certs">Certs</a>
+<nav class="pill" aria-label="Main">
+  <a class="mark" href="#top">Aden Ansari</a>
+  <div class="links"><a href="#voyage">Voyage</a><a href="#cv">CV</a><a href="#samples">Websites</a></div>
+  <a class="btn ghost sm cvq" href="#cv">CV</a>
+  <a class="btn gold sm" data-email="" data-label="Email me" href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/" target="_blank" rel="noopener">Message me</a>
+</nav>
+
+<main>
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Accountant &amp; internal auditor &middot; UAE</p>
+    <h1><span>aden</span> <span>ansari</span></h1>
+    <div class="hero-grid">
+      <div>
+        <p class="pitch">The numbers hold. <i>I make sure of it.</i></p>
+        <p class="lede">Nine years of audit, tax and reporting across the UAE and India. I finalise accounts, test the controls and build the Excel tools that keep them clean. Power BI is under way; SQL is next.</p>
+        <div class="ctas"><a class="btn gold" data-email="Hello Aden" data-label="Email me" href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/" target="_blank" rel="noopener">Message me</a><a class="btn ghost" href="#voyage">Board the voyage</a></div>
+        <ul class="ribbon">
+          <li><b>9+</b><span>years in practice</span></li>
+          <li><b>1st</b><span>UAE Corporate Tax cycle</span></li>
+          <li><b>&#8377;50 lakh</b><span>irregularity traced</span></li>
+          <li><b>3</b><span>free Excel tools</span></li>
+        </ul>
       </div>
-      <a href="#contact" class="btn primary" style="padding:9px 18px">Get in touch</a>
-    </div>
-  </nav>
-
-  <!-- ================= HERO ================= -->
-  <section id="hero" class="hero">
-    <div>
-      <div class="eyebrow">Accountant &amp; Internal Auditor · UAE Corporate Tax, Controls &amp; FP&amp;A</div>
-      <h1>The numbers <span class="g">hold.</span><br>I make sure of it.</h1>
-      <p class="lead">I'm Aden Ansari, a finance professional with 8+ years across internal audit, accounting, compliance and financial reporting in the UAE and India. I oversee audit and finance for a nine-company group, delivered the group's first UAE Corporate Tax filing cycle, and build Excel automation from scratch. I once traced a ₹50&nbsp;lakh irregularity nobody else had seen. I also write, because clear numbers deserve clear words.</p>
-      <div class="cta">
-        <a class="btn primary" href="mailto:adanansari1234@gmail.com">Email me</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/adan-ansari-excel-accounting-ghostwriting-copywriting/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn ghost" href="https://typeshare.co/virtualansari" target="_blank" rel="noopener">Writing portfolio</a>
-      </div>
-      <span class="avail">Available on 30 days' notice · UAE employment visa · on-site UAE / GCC or remote</span>
-    </div>
-    <div class="glass now" data-rev>
-      <div class="nowhead">Currently</div>
-      <div class="nowrow"><span class="k">Role</span><span class="v">Audit &amp; finance oversight, nine-company group</span></div>
-      <div class="nowrow"><span class="k">Tax</span><span class="v">UAE Corporate Tax (first cycle filed), VAT201 reconciliation</span></div>
-      <div class="nowrow"><span class="k">Payroll</span><span class="v">EOSB under Article 51, MoHRE labour-card compliance</span></div>
-      <div class="nowrow"><span class="k">Building</span><span class="v">Three free Excel tools, published and downloadable</span></div>
-      <div class="nowrow"><span class="k">Learning</span><span class="v">Power BI, SQL, Python (Codebasics DA Bootcamp)</span></div>
-      <div class="nowrow"><span class="k">Based</span><span class="v">Dubai / Sharjah, UAE. Open to remote</span></div>
-    </div>
-  </section>
-
-  <!-- ================= STATS ================= -->
-  <section style="padding-top:14px">
-    <div class="glass stats" data-rev>
-      <div class="stat"><div class="n" data-count="8" data-suffix="+">0</div><div class="l">Years across audit, tax &amp; reporting</div></div>
-      <div class="stat"><div class="n" data-count="9">0</div><div class="l">Companies under audit &amp; finance oversight</div></div>
-      <div class="stat"><div class="n" data-count="50" data-prefix="₹" data-suffix="L">0</div><div class="l">Irregularity traced, documented, reported</div></div>
-      <div class="stat"><div class="n" data-count="15">0</div><div class="l">Finance staff trained &amp; supported</div></div>
-    </div>
-  </section>
-
-  <!-- ================= ABOUT ================= -->
-  <section id="about">
-    <div class="eyebrow" data-rev>About</div>
-    <hr class="rule">
-    <div class="aboutgrid">
-      <div class="glass card" data-rev style="padding:30px">
-      <span class="deco" style="right:-12px;top:-26px" aria-hidden="true">
-        <svg width="72" height="82" viewBox="0 0 72 82"><polygon points="36,4 64,29 48,72 24,72 8,29" fill="#33d0e6" opacity=".32" stroke="#e7c15b" stroke-opacity=".5"/></svg>
-      </span>
-      <p style="font-size:15.5px;max-width:72ch;margin-bottom:16px">Most of my work happens where the ledger meets the process: testing internal controls, closing the month, reconciling what the bank says against what the books believe. In Dubai I run audit and finance oversight for two client groups and a standalone company, nine entities in all, reviewing records, flagging risk gaps, and turning MIS and variance reports into decisions senior management can act on. My scope expanded to full audit oversight of all nine entities in May 2026.</p>
-      <p style="font-size:15.5px;max-width:72ch;margin-bottom:16px">On the tax side I delivered the group's first UAE Corporate Tax filing cycle: taxable-income computations, provisions and add-backs, connected-person and related-party rules, and sole-establishment versus LLC treatment across the structure. I prepare and reconcile VAT201 returns with workpapers that tie filed returns back to the general ledger, and maintain payroll and gratuity registers under Article 51 of the UAE Labour Law alongside MoHRE labour-card compliance.</p>
-      <p style="font-size:15.5px;max-width:72ch">The other half of my toolkit is automation. I'm a certified Excel VBA developer who has built payroll systems, attendance trackers and finance tools from a blank workbook, three of them now published free, and I'm currently adding Power BI, SQL and Python. Grounded in UAE VAT and Corporate Tax, GST, and the unglamorous discipline of getting filings in on time.</p>
-      </div>
-      <div class="glass card focus" data-rev>
-        <h3>What I work on</h3>
-        <div class="frow"><b>9</b><span>entities under audit and finance oversight</span></div>
-        <div class="frow"><b>1st</b><span>UAE Corporate Tax cycle delivered for the group</span></div>
-        <div class="frow"><b>VAT201</b><span>returns prepared, reconciled and tied to the GL</span></div>
-        <div class="frow"><b>10-15</b><span>finance staff trained and supported</span></div>
-        <div class="frow"><b>3</b><span>Excel tools built and published free</span></div>
-        <div class="frow"><b>8+</b><span>years across the UAE and India</span></div>
+      <div class="mockwrap">
+        <div class="mock glass" role="img" aria-label="Illustration: a month-end close checklist with a variance chart">
+          <div class="mock-top"><span class="dots"><span></span><span></span><span></span></span><b>Month-end close</b><span class="tag">Illustration</span></div>
+          <ul class="checks">
+            <li><span>Bank reconciliation</span><em>Matched</em></li>
+            <li><span>VAT201 tied to the books</span><em>Done</em></li>
+            <li><span>Gratuity register, Art. 51</span><em>Done</em></li>
+            <li><span>Variance review</span><em class="rev">In review</em></li>
+          </ul>
+          <div class="chart">Variance by month, against budget
+            <svg viewBox="0 0 300 88" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="6" y="48" width="24" height="40" rx="3" fill="rgba(255,255,255,.22)"/><rect x="43" y="34" width="24" height="54" rx="3" fill="rgba(255,255,255,.22)"/><rect x="80" y="42" width="24" height="46" rx="3" fill="rgba(255,255,255,.22)"/><rect x="117" y="26" width="24" height="62" rx="3" fill="rgba(255,255,255,.22)"/><rect x="154" y="40" width="24" height="48" rx="3" fill="rgba(255,255,255,.22)"/><rect x="191" y="22" width="24" height="66" rx="3" fill="rgba(255,255,255,.22)"/><rect x="228" y="30" width="24" height="58" rx="3" fill="rgba(255,255,255,.22)"/><rect x="265" y="14" width="24" height="74" rx="3" fill="#c9a84c"/>
+              <line x1="0" x2="300" y1="36" y2="36" stroke="rgba(255,255,255,.4)" stroke-dasharray="5 5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="avail glass"><span class="dot"></span><span>Open to finance and data analyst roles<br><small>30 days' notice &middot; UAE, GCC or remote</small></span></div>
       </div>
     </div>
-  </section>
+  </div>
+  <a class="cue" href="#mission">Scroll to launch</a>
+</header>
 
-  <!-- ================= EXPERIENCE ================= -->
-  <section id="experience">
-    <div class="eyebrow" data-rev>Experience</div>
-    <hr class="rule">
-    <div class="grid">
-      <div class="glass job" data-rev>
-        <div class="when"><b>May 2025 to Present</b><span>Dubai, UAE</span></div>
-        <div>
-          <h3>Junior Accountant, Audit &amp; Finance Oversight</h3>
-          <div class="co">Nadeem &amp; Umendra CA (secondment to a Sharjah client group)</div>
-          <ul style="margin:0;padding-left:18px;font-size:14.5px;color:var(--muted)"><li style="margin-bottom:7px">Oversee audit and finance across a nine-company group (two client groups of three and five entities plus one standalone), reviewing accounting records, testing internal controls and identifying process and risk gaps; scope expanded to full audit oversight of all nine entities in May 2026.</li><li style="margin-bottom:7px">Delivered the group's first UAE Corporate Tax filing cycle: taxable-income computations, provisions and add-backs, connected-person and related-party rules, and sole-establishment versus LLC treatment.</li><li style="margin-bottom:7px">Prepare and reconcile VAT201 returns, building workpapers that tie filed returns back to the general ledger and resolve output and input tax variances before submission.</li><li style="margin-bottom:7px">Maintain payroll and gratuity registers, provisioning end-of-service benefits under Article 51 of the UAE Labour Law, and monitor MoHRE labour-card compliance across the group.</li><li style="margin-bottom:7px">Prepare and review MIS and variance reports across entities, and manage end-to-end accounting for one entity: AP, AR, bank reconciliation, payroll and reporting.</li><li style="margin-bottom:7px">Designed and implemented the group's credit-control framework: collection procedures, credit-risk parameters and escalation processes.</li><li>Train and support a 10 to 15-person finance team, and coordinate with senior auditors and partners on audit planning and reporting.</li></ul>
-        </div>
-      </div>
-      <div class="glass job" data-rev>
-        <div class="when"><b>Jan 2025 to May 2025</b><span>Mumbai, India</span></div>
-        <div>
-          <h3>Junior Accountant</h3>
-          <div class="co">Nida Lifters</div>
-          <p>Managed AP/AR across the company's service contracts; prepared bills, invoices and MIS reports in Excel and Tally; reconciled accounts and kept the books compliant with taxation requirements.</p>
-        </div>
-      </div>
-      <div class="glass job" data-rev>
-        <div class="when"><b>May 2024 to Dec 2024</b><span>Kolkata, India</span></div>
-        <div>
-          <h3>Junior Accountant</h3>
-          <div class="co">MK Leathers</div>
-          <p>Identified a ₹50 lakh (≈ USD 52,990 / AED 194,625) financial irregularity during a routine audit, tracing a full year of undocumented collections and presented the findings directly to the owner. Prepared monthly and annual financial statements, managed tax filings, and ran stock audits.</p>
-        </div>
-      </div>
-      <div class="glass job" data-rev>
-        <div class="when"><b>Jun 2021 to May 2024</b><span>Kolkata, India</span></div>
-        <div>
-          <h3>Accounts Executive</h3>
-          <div class="co">R Ahmed Distributors</div>
-          <p>Built an automated Excel VBA payroll system from scratch for a 15-person workforce, created an attendance tracker and searchable employee database, and worked with sales on timely collections.</p>
-        </div>
-      </div>
-      <div class="glass job" data-rev>
-        <div class="when"><b>Jun 2017 to Mar 2021</b><span>Kolkata, India</span></div>
-        <div>
-          <h3>Accounts Clerk</h3>
-          <div class="co">Alpha Trading</div>
-          <p>Managed quarterly GST returns and e-way bills, assisted with monthly and annual financial reports, resolved invoice disputes with vendors and customers, and became proficient in Tally Prime.</p>
-        </div>
-      </div>
+<section class="mission wrap" id="mission" aria-label="How I work">
+  <p class="kicker">Mission log</p>
+  <p class="statement" id="sharp">Most of my work happens where the ledger meets the process. I test controls, close the month and reconcile what the bank says against what the books believe. When a task repeats, I build the tool that ends it. When a number looks wrong, I keep pulling the thread until I know why. <i>That is how a &#8377;50 lakh gap gets found.</i></p>
+</section>
+
+<section class="voyage" id="voyage" aria-labelledby="voy-h">
+  <svg class="route" aria-hidden="true"><path/></svg>
+  <header class="vhead wrap">
+    <p class="kicker">The voyage</p>
+    <h2 id="voy-h">Nine years. Six worlds. <i>One course.</i></h2>
+    <p class="sub">Scroll down and the ship flies on to the next world. Tap any planet to open its log, or tap the ship to fly back to the top.</p>
+  </header>
+  <ol class="wps wrap">
+    <li class="wp" style="--dx:-56px;--mdx:-26px">
+      <button class="planet p1" type="button" aria-expanded="false" aria-controls="m1"><span class="flash"></span><span class="sr">Open the Alpha Trading log</span></button>
+      <article class="log glass">
+        <p class="meta">Jun 2017 to Mar 2021 &middot; Kolkata</p>
+        <h3>Accounts Clerk</h3><p class="org">Alpha Trading</p>
+        <p>Where the books began: quarterly GST returns, e-way bills and monthly reports in Tally Prime.</p>
+        <div class="more" id="m1"><div><ul><li>Quarterly GST returns and e-way bills</li><li>Monthly and annual financial reports in Tally Prime</li><li>Vendor and customer invoice disputes resolved</li></ul></div></div>
+        <button class="logbtn" type="button" aria-controls="m1">Open log</button>
+      </article>
+    </li>
+    <li class="wp" style="--dx:50px;--mdx:24px">
+      <button class="planet p2 ring" type="button" aria-expanded="false" aria-controls="m2"><span class="flash"></span><span class="sr">Open the R Ahmed Distributors log</span></button>
+      <article class="log glass">
+        <p class="meta">Jun 2021 to May 2024 &middot; Kolkata</p>
+        <h3>Accounts Executive</h3><p class="org">R Ahmed Distributors</p>
+        <p>Built an Excel VBA payroll system from scratch for a 15-person workforce.</p>
+        <div class="more" id="m2"><div><ul><li>Recurring manual payroll errors removed</li><li>Attendance tracker and a searchable employee database</li><li>Daily transactions, collections and stock reports tied to the books</li></ul></div></div>
+        <button class="logbtn" type="button" aria-controls="m2">Open log</button>
+      </article>
+    </li>
+    <li class="wp" style="--dx:-44px;--mdx:-22px">
+      <button class="planet p3" type="button" aria-expanded="false" aria-controls="m3"><span class="flash"></span><span class="sr">Open the MK Leathers log</span></button>
+      <article class="log glass">
+        <p class="meta">May to Dec 2024 &middot; Kolkata</p>
+        <span class="badge">&#8377;50 lakh found</span>
+        <h3>Junior Accountant</h3><p class="org">MK Leathers</p>
+        <p>A routine audit turned up a &#8377;50 lakh irregularity: a full year of undocumented collections.</p>
+        <div class="more" id="m3"><div><ul><li>About USD 53,000, documented and presented to the owner</li><li>Monthly and annual financial statements and tax filings</li><li>Stock audits and inventory reconciliations</li></ul></div></div>
+        <button class="logbtn" type="button" aria-controls="m3">Open log</button>
+      </article>
+    </li>
+    <li class="wp" style="--dx:54px;--mdx:26px">
+      <button class="planet p4" type="button" aria-expanded="false" aria-controls="m4"><span class="flash"></span><span class="sr">Open the Nida Lifters log</span></button>
+      <article class="log glass">
+        <p class="meta">Jan to May 2025 &middot; Mumbai</p>
+        <h3>Junior Accountant</h3><p class="org">Nida Lifters</p>
+        <p>AP and AR across service contracts, reconciliations and MIS reports in Excel and Tally.</p>
+        <div class="more" id="m4"><div><ul><li>Payables and receivables across service contracts</li><li>Account reconciliations</li><li>Monthly MIS in Excel and Tally</li></ul></div></div>
+        <button class="logbtn" type="button" aria-controls="m4">Open log</button>
+      </article>
+    </li>
+    <li class="wp" style="--dx:-30px;--mdx:-20px">
+      <button class="planet p5 ring" type="button" aria-expanded="false" aria-controls="m5"><span class="flash"></span><span class="sr">Open the Nadeem and Umendra log</span></button>
+      <article class="log glass">
+        <p class="meta">May 2025 to now &middot; Dubai and Sharjah</p>
+        <h3>Audit &amp; Finance Oversight</h3><p class="org">Junior Accountant, Nadeem &amp; Umendra CA</p>
+        <p>On secondment to four UAE trading companies: accounts, VAT and the group's first Corporate Tax filing cycle.</p>
+        <div class="more" id="m5"><div><ul><li>First Corporate Tax cycle: computations, add-backs, provisions, connected persons</li><li>VAT201 tied back to the books each quarter, reverse charge included</li><li>Caught a full year of depreciation never booked, now in the audited accounts</li><li>Found unsupported share capital in a signed prior-year audit report</li><li>Consolidated three branches across 252 ledgers</li><li>Guides a 10 to 15 person accounts team across Sharjah and Morbi</li></ul></div></div>
+        <button class="logbtn" type="button" aria-controls="m5">Open log</button>
+      </article>
+    </li>
+    <li class="wp" style="--dx:42px;--mdx:22px">
+      <button class="planet p6" type="button" aria-expanded="false" aria-controls="m6"><span class="flash"></span><span class="sr">Open the data station log</span>
+        <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="none" stroke="rgba(236,211,145,.22)" stroke-width="4"/><circle cx="50" cy="50" r="44" fill="none" stroke="#ecd391" stroke-width="4" stroke-linecap="round" stroke-dasharray="19.4 277" transform="rotate(-90 50 50)"/><rect x="45" y="22" width="10" height="56" rx="3" fill="#c9d3e6"/><rect x="24" y="45" width="52" height="10" rx="3" fill="#9fb0cc"/><rect x="12" y="39" width="12" height="22" rx="2" fill="#3c5b8f"/><rect x="76" y="39" width="12" height="22" rx="2" fill="#3c5b8f"/><circle cx="50" cy="50" r="9" fill="#e6cc85"/></svg>
+      </button>
+      <article class="log glass">
+        <p class="meta">Now building</p>
+        <h3>The data station</h3><p class="org">Codebasics Data Analyst Bootcamp</p>
+        <p>Certified in Excel with Power Query, Power Pivot and DAX. Power BI is under way; SQL, Python and Tableau come next.</p>
+        <div class="more" id="m6"><div>
+          <div class="bars"><div class="bar"><span>Excel</span><b><i style="width:100%"></i></b><em>Certified</em></div><div class="bar"><span>Power BI</span><b><i style="width:7%"></i></b><em>7%</em></div><div class="bar"><span>SQL</span><b><i style="width:0"></i></b><em>Next</em></div><div class="bar"><span>Python</span><b><i style="width:0"></i></b><em>Next</em></div></div>
+          <ul><li>Project: a star-schema sales model over 799,962 rows, in Power Query and DAX</li></ul>
+        </div></div>
+        <button class="logbtn" type="button" aria-controls="m6">Open log</button>
+      </article>
+    </li>
+  </ol>
+</section>
+
+<section class="earthsec" id="earth" aria-labelledby="earth-h">
+  <div class="estage" id="estage">
+    <p class="ecap" id="ecap" aria-hidden="true">Final approach</p>
+    <span class="elab" aria-hidden="true"><b>Kolkata</b><span class="yr">2017 to 2024</span></span>
+    <span class="elab" aria-hidden="true"><b>Mumbai</b><span class="yr">2025</span></span>
+    <span class="elab uae" aria-hidden="true"><b><span class="lg">Dubai and Sharjah, </span>UAE</b>Now</span>
+    <button class="slab" type="button" data-tool="0"><span class="lg">Credit Control Manager</span><span class="sh">Credit Control</span></button>
+    <button class="slab" type="button" data-tool="1"><span class="lg">Attendance &amp; Salary</span><span class="sh">Salary Sheet</span></button>
+    <button class="slab" type="button" data-tool="2">Amount in words</button>
+    <div class="pod glass" id="pod">
+      <p class="kicker">Touchdown</p>
+      <h2 id="earth-h">Back on Earth. <i>The CV is here.</i></h2>
+      <p>Two PDFs, two pages each: one for finance roles, one for data analyst roles.</p>
+      <div class="ctas"><a class="btn gold" data-cv href="cv/Aden-Ansari-CV-Finance.pdf" download="Aden-Ansari-CV-Finance.pdf" target="_blank" rel="noopener">Finance CV</a><a class="btn ghost" data-cv href="cv/Aden-Ansari-CV-Data-Analyst.pdf" download="Aden-Ansari-CV-Data-Analyst.pdf" target="_blank" rel="noopener">Data analyst CV</a></div>
+      <div class="ground"><a class="btn ghost sm" data-email="Hello Aden" hidden href="#">Email</a><a class="btn ghost sm" href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/" target="_blank" rel="noopener">LinkedIn</a><a class="btn ghost sm" href="tel:+971505365447">+971 50 53 65 447</a></div>
+      <p class="cargo">Three free Excel tools are in orbit. Pick a satellite to drop one.</p>
+      <div class="chips"><button class="chip" type="button" data-tool="0">Credit Control Manager</button><button class="chip" type="button" data-tool="1">Attendance &amp; Salary Sheet</button><button class="chip" type="button" data-tool="2">Amount in words</button></div>
+      <p class="fine">30 days' notice &middot; UAE employment visa &middot; open to UAE, GCC and remote roles</p>
     </div>
-  </section>
+  </div>
+  <span class="cvanchor" id="cv" aria-hidden="true"></span>
+</section>
 
-  <!-- ================= PROJECTS ================= -->
-  <section id="projects">
-    <div class="eyebrow" data-rev>Selected work</div>
-    <hr class="rule">
-    <div class="grid g2">
-      <div class="glass card" data-rev>
-        <span class="tag">Payroll automation</span>
-        <h3>Excel VBA payroll system</h3>
-        <p>Built from scratch for a 15-person workforce, automating salary calculations end to end and eliminated the recurring manual errors that had been part of every month-end.</p>
-        <a class="linkline" href="#tools">Download the tool ↓</a>
-      </div>
-      <div class="glass card" data-rev>
-        <span class="tag">Credit risk</span>
-        <h3>Credit-control framework</h3>
-        <p>Designed and implemented for a UAE client group: collection procedures, credit-risk parameters and escalation processes, now the standard across their entities.</p>
-        <a class="linkline" href="#tools">Download the tool ↓</a>
-      </div>
-      <div class="glass card" data-rev>
-        <span class="tag">Automation</span>
-        <h3>Currency-to-text tool</h3>
-        <p>A custom Excel conversion tool built to specification and deployed across an entity's finance workflow, putting amounts into words correctly every time.</p>
-        <a class="linkline" href="#tools">Get the tool ↓</a>
-      </div>
-      <div class="glass card" data-rev>
-        <span class="tag">Writing</span>
-        <h3>Ghostwriting &amp; copywriting</h3>
-        <p>Professional writing for founders and finance folks who'd rather show up clearly online than not at all.</p>
-        <a class="linkline" href="https://typeshare.co/virtualansari" target="_blank" rel="noopener">Read on Typeshare →</a>
-      </div>
-    </div>
-  </section>
+<section class="samples wrap" id="samples" aria-labelledby="samples-h">
+  <p class="kicker">Websites I've designed</p>
+  <h2 id="samples-h">Three more worlds, <i>built by hand.</i></h2>
+  <p class="sub">Interactive websites I designed and coded from scratch, each telling the same career a different way. Open one to explore it.</p>
+  <div class="sgrid">
+    <a class="sample glass" href="samples/audit-trail/index.html"><img src="samples/thumbs/audit-trail.webp" width="640" height="400" alt="The Audit Trail: a floating island at night with a waterfall and lanterns" loading="lazy" decoding="async"><div><h3>The Audit Trail</h3><p>A 3D floating island you explore by scrolling, with clickable stops, tools that leap from a waterfall and a sky that turns from night to day.</p><span class="tags">Three.js &middot; WebGL &middot; scroll-driven camera</span><span class="go">Open the site</span></div></a>
+    <a class="sample glass" href="samples/collect-the-cards/index.html"><img src="samples/thumbs/collect-the-cards.webp" width="640" height="400" alt="Collect the Cards: a set of foil career cards on navy" loading="lazy" decoding="async"><div><h3>Collect the Cards</h3><p>A career as a 12-card set: a booster pack to tear open, banknote-style foil cards, a 3D close-up and a golden contact card to unlock.</p><span class="tags">CSS 3D &middot; motion design &middot; saved progress</span><span class="go">Open the site</span></div></a>
+    <a class="sample glass" href="samples/annual-report/index.html"><img src="samples/thumbs/annual-report.webp" width="640" height="400" alt="The Annual Report: a statement of position with red audit ticks and a stamp" loading="lazy" decoding="async"><div><h3>The Annual Report</h3><p>An editorial report that audits itself as you read: figures inked and ticked, a ledger that posts with a running balance, and a stamped opinion.</p><span class="tags">Editorial &middot; scroll storytelling &middot; print-grade type</span><span class="go">Open the site</span></div></a>
+  </div>
+  <p class="hire">Want a website like these for yourself or your business? <a class="btn ghost sm" data-email="Website enquiry" data-label="Email me" href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/" target="_blank" rel="noopener">Message me</a></p>
+</section>
+</main>
 
-  <!-- ================= TOOLS ================= -->
-  <section id="tools">
-    <div class="eyebrow" data-rev>Excel tools, free downloads</div>
-    <hr class="rule">
-    <p class="sub" data-rev>Working systems, not templates. Built in Excel, tested in real finance work. Download, open, use. No installation, no subscription.</p>
+<footer>
+  <div class="wrap">
+    <svg class="giant" viewBox="0 0 1000 132" role="img" aria-label="Aden Ansari"><defs><linearGradient id="gg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#e6cc85"/><stop offset="1" stop-color="#c9a84c" stop-opacity=".12"/></linearGradient></defs><text x="4" y="120" textLength="992" lengthAdjust="spacingAndGlyphs" fill="url(#gg)">ADEN ANSARI</text></svg>
+    <div class="frow"><b>Audit eyes. Analyst mind.</b><a data-email="" hidden href="#">Email</a><a href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/recent-activity/all/" target="_blank" rel="noopener">Audit case studies on LinkedIn</a><a href="#cv">CV</a><a href="#top">Back to top</a></div>
+  </div>
+</footer>
 
-    <!-- Tool 1 -->
-    <div class="glass tool" data-rev>
-      <h3>Credit Control Manager</h3>
-      <p class="hook">An Excel tool that tells you which customer will become your next bad debt.</p>
-      <p class="intro">Built by an accountant who chases real debtors every week. Not a template. A working system. One macro-enabled workbook. No installation. No subscription.</p>
-      <div class="cols">
-        <div>
-          <h4>What it does</h4>
-          <p>Drop in your Tally ledger exports. The tool reads them for you. For every customer, it works out four things: how fast they actually pay you, to the day. How much of their dues they have ever cleared. How old their unpaid balance really is. Whether their balance reconciles with your books.</p>
-          <p>Then it gives each customer a risk score out of 100. Safe customers get a recommended credit limit. Risky ones get a warning. Critical ones get flagged as projected bad debt, before the money is gone.</p>
-          <p>Paste your full debtors list and it builds a work queue: top 10 biggest balances flagged first. Tick them off, the next 10 appear. One click builds a management report in plain English. One click clears everything for the next cycle.</p>
-        </div>
-        <div>
-          <h4>How it will help</h4>
-          <p>Stop guessing who deserves credit. Know it. Your biggest exposures get chased first, not whoever called loudest. Bad debts get caught while they are still collectable.</p>
-          <p>The credit limit conversation with management becomes a printed report, not an argument. Hours of ledger analysis become minutes.</p>
-        </div>
-        <div>
-          <h4>Who is this for</h4>
-          <p>Accountants and credit controllers drowning in customer ledgers. Small business owners selling on credit without a credit policy. Trading businesses in building materials, FMCG and spare parts, where 20 customers hold 80% of your money. Finance managers who need to justify credit decisions on paper.</p>
-          <p>If you sell on credit and track it in Tally or Excel, this was built for you.</p>
-        </div>
-      </div>
-      <div class="foot">
-        <a class="btn primary" href="https://github.com/adanansarifullstack/adanansari/raw/main/tools/Credit-Control-Manager.xlsm">Download now</a>
-        <span>Download it. Open it. Use it today.</span>
-      </div>
-    </div>
+<button class="ship gone" id="ship" type="button" aria-label="Back to the top" tabindex="-1">
+  <span class="body"><span class="bob"><span class="flame"></span><svg viewBox="0 0 64 32" aria-hidden="true"><defs><linearGradient id="hull" x1="0" x2="1"><stop offset="0" stop-color="#8c97ad"/><stop offset=".55" stop-color="#eef1f7"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><path d="M16 16 4 5l6 11-6 11z" fill="#c9a84c"/><path d="M22 9.5 31 2l4 7.5zM22 22.5 31 30l4-7.5z" fill="#c9a84c"/><path d="M9 16c6-9.5 31-12 54 0-23 12-48 9.5-54 0z" fill="url(#hull)"/><path d="M33 16c3.5-4.6 12-5.6 20 0-8 5.6-16.5 4.6-20 0z" fill="#1d3b6a"/></svg></span></span>
+</button>
 
-    <!-- Tool 2 -->
-    <div class="glass tool" data-rev>
-      <h3>Attendance &amp; Salary Sheet</h3>
-      <p class="hook">A complete attendance and payroll system inside one Excel file.</p>
-      <p class="intro">Employee database, attendance register, and salary calculation, connected and automated. No HR software fees. No learning curve. Just Excel, working harder than you thought it could.</p>
-      <div class="cols">
-        <div>
-          <h4>What it does</h4>
-          <p>Keeps a proper employee database, with photographs. Add, update, or remove staff through simple forms, not messy cells. Tracks daily attendance in a clean register.</p>
-          <p>Then does the part everyone dreads: the payout calculation. Attendance flows into salary automatically. Days worked, days absent, payable amount: computed, not typed.</p>
-          <p>An admin lock hides the sensitive sheets from casual eyes. One click hides, one click reveals. A built-in help sheet means anyone on your team can run it.</p>
-        </div>
-        <div>
-          <h4>How it will help</h4>
-          <p>Salary day stops being a two-day exercise. Attendance disputes end, because the register is the record. Calculation errors disappear, and so do the overpayments they cause.</p>
-          <p>New staff onboard in minutes with a proper database entry, photo included. Your salary data stays private, even on a shared computer.</p>
-        </div>
-        <div>
-          <h4>Who is this for</h4>
-          <p>Small and medium businesses running payroll manually. Shops, workshops, contractors, and trading firms with 5 to 100 staff. Accountants handling payroll for multiple clients. Any owner who has ever paid a salary twice, or late, because of a spreadsheet mess.</p>
-          <p>If payroll eats your month-end, this gives it back.</p>
-        </div>
-      </div>
-      <div class="foot">
-        <a class="btn primary" href="https://github.com/adanansarifullstack/adanansari/raw/main/tools/Attendance-Salary-Sheet.xlsm">Download now</a>
-        <span>Download it. Open it. Use it today.</span>
-      </div>
-    </div>
-
-    <!-- Tool 3 -->
-    <div class="glass tool" data-rev>
-      <h3>Currency Converter: Amount in Words</h3>
-      <p class="hook">One Excel function that writes any amount in words, the way invoices and cheques demand it.</p>
-      <p class="intro">USD, AED and INR. Dollars and Cents, Dirhams and Fils, Rupees in Lakhs and Crores. Not a workbook to open. Just a single function you paste in once and keep forever.</p>
-      <div class="demo">
-        <div class="ex"><span class="cur">USD</span><code>=CurrencyInWords(1250.50, "USD")</code><div class="out">One Thousand Two Hundred Fifty Dollars and Fifty Cents Only</div></div>
-        <div class="ex"><span class="cur">AED</span><code>=CurrencyInWords(500.75, "AED")</code><div class="out">Five Hundred Dirhams and Seventy Five Fils Only</div></div>
-        <div class="ex"><span class="cur">INR</span><code>=CurrencyInWords(150000, "INR")</code><div class="out">One Lakh Fifty Thousand Rupees Only</div></div>
-      </div>
-      <div class="cols">
-        <div>
-          <h4>What it does</h4>
-          <p>Type one formula and it hands back the words. It knows each currency properly: Dollars and Cents, Dirhams and Fils, Rupees and Paise.</p>
-          <p>It uses the right number system for each: Millions and Billions for USD and AED, Lakhs and Crores for INR.</p>
-          <p>It reads the decimals as minor units and closes every amount with "Only", exactly how a cheque or invoice needs it. Leave the currency out and it defaults to USD.</p>
-        </div>
-        <div>
-          <h4>How it will help</h4>
-          <p>Invoices, cheques and payment vouchers get their amount-in-words line without a second thought. No more typing long amounts by hand, and no more mismatches between the figures and the words.</p>
-          <p>It works inside any workbook you already have. One function covers your UAE work and your India work both.</p>
-        </div>
-        <div>
-          <h4>Who is this for</h4>
-          <p>Accountants and cashiers who write cheques, invoices and payment vouchers. Anyone billing in Dollars, Dirhams or Rupees who needs the words spelled correctly. Businesses working across the UAE and India, switching between Western and Indian number systems.</p>
-          <p>If you have ever typed "Dirhams and Fils" by hand on an invoice, this ends that.</p>
-        </div>
-      </div>
-      <div class="steps">
-        <h4>Before you use it, about 60 seconds</h4>
-        <p class="note">One-time setup. You are adding a function to your own workbook.</p>
-        <ol>
-          <li>Open the code file and copy everything with Ctrl+A, then Ctrl+C.</li>
-          <li>In your workbook, press Alt+F11 to open the VBA editor.</li>
-          <li>Menu: Insert → Module. Click the blank window and paste with Ctrl+V.</li>
-          <li>Close the editor and save your file as macro-enabled (.xlsm). Now type =CurrencyInWords(...) in any cell.</li>
-        </ol>
-      </div>
-      <div class="steps">
-        <h4>Use it in every workbook, even .xlsx</h4>
-        <p class="note">Set it up once and the formula works in any file you open, because the code lives in a macro-enabled home, not inside your .xlsx. Two ways:</p>
-        <div class="opt">Option A: Personal Macro Workbook (this PC)</div>
-        <ol>
-          <li>No Personal Macro Workbook yet? Record any macro once with "Store macro in: Personal Macro Workbook", then stop. That creates it.</li>
-          <li>Press Alt+F11. In the left pane, open VBAProject (PERSONAL.XLSB) → Insert → Module.</li>
-          <li>Paste the code and press Ctrl+S (keep PERSONAL.XLSB when asked).</li>
-          <li>Done. =CurrencyInWords(...) now works in every workbook you open, .xlsx included.</li>
-        </ol>
-        <div class="opt">Option B: Excel Add-in (.xlam)</div>
-        <ol>
-          <li>Paste the code into a blank workbook's module (Alt+F11 → Insert → Module).</li>
-          <li>File → Save As → choose "Excel Add-in (*.xlam)".</li>
-          <li>File → Options → Add-ins → Manage: Excel Add-ins → Go → tick it → OK.</li>
-          <li>=CurrencyInWords(...) now works with no prefix in any workbook on that PC.</li>
-        </ol>
-        <p class="note" style="margin:14px 0 0">Sending a finished sheet to someone without the setup? Copy → Paste Special → Values first, so the words stay as plain text, no macro needed. (Otherwise their file shows #NAME? on recalculation.)</p>
-      </div>
-      <div class="foot">
-        <a class="btn primary" href="https://github.com/adanansarifullstack/adanansari/raw/main/tools/Currency-Converter.txt">Get the code</a>
-        <span>Copy it in. Use it in minutes.</span>
-      </div>
-    </div>
-
-    <!-- custom requests -->
-    <div class="custom" data-rev style="position:relative;overflow:hidden">
-      <span class="deco" style="right:-6px;bottom:-24px" aria-hidden="true">
-        <svg width="86" height="96" viewBox="0 0 86 96"><polygon points="43,5 76,34 58,86 28,86 10,34" fill="#8b6cf0" opacity=".3" stroke="#e7c15b" stroke-opacity=".55"/></svg>
-      </span>
-      <h3 style="font-size:clamp(21px,2.5vw,27px);text-transform:uppercase;margin-bottom:12px">Need it to work your way?</h3>
-      <p style="max-width:60ch;margin-bottom:8px">Every business runs differently. These tools can be rebuilt around yours. Different ledger format. Extra reports. Your company branding. New features entirely.</p>
-      <p style="max-width:60ch;margin-bottom:22px">You describe the problem. I build the Excel that solves it.</p>
-      <div class="foot">
-        <a class="btn primary" href="mailto:adanansari1234@gmail.com?subject=Custom%20Excel%20tool%20request">Mail me what you need</a>
-        <span>Finance brain. Writer's voice.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= SKILLS ================= -->
-  <section id="skills">
-    <div class="eyebrow" data-rev>Core skills</div>
-    <hr class="rule">
-    <div class="grid g2">
-      <div class="glass card" data-rev>
-        <h3 style="margin-bottom:12px">Audit &amp; Accounting</h3>
-        <span class="chip">Internal Audit</span><span class="chip">Internal Controls Testing</span><span class="chip">Financial Statements</span><span class="chip">AP / AR</span><span class="chip">Bank Reconciliation</span><span class="chip">Month-End Close</span><span class="chip">Inventory &amp; Stock Audit</span>
-      </div>
-      <div class="glass card" data-rev>
-        <h3 style="margin-bottom:14px">Tax &amp; Compliance</h3>
-        <span class="chip">UAE Corporate Tax (first-cycle filing)</span><span class="chip">VAT201 Preparation &amp; Reconciliation</span><span class="chip">Tax Provisions &amp; Add-Backs</span><span class="chip">Connected-Person &amp; Related-Party Rules</span><span class="chip">EOSB / Gratuity Provisioning</span><span class="chip">MoHRE Compliance</span><span class="chip">GST</span>
-      </div>
-      <div class="glass card" data-rev>
-        <h3 style="margin-bottom:14px">FP&amp;A &amp; Treasury</h3>
-        <span class="chip">MIS Reporting</span><span class="chip">Variance Analysis</span><span class="chip">Budgeting</span><span class="chip">Credit Control</span><span class="chip">Cash Flow Forecasting &amp; Collections</span><span class="chip">Working-Capital Management</span><span class="chip">Financial Insight to Senior Management</span>
-      </div>
-      <div class="glass card" data-rev>
-        <h3 style="margin-bottom:14px">Systems &amp; Tools</h3>
-        <span class="chip">Tally Prime</span><span class="chip">Tally ERP-9</span><span class="chip">Zoho Books</span><span class="chip">Advanced Excel</span><span class="chip">Excel VBA &amp; Automation</span><span class="chip">Power Query &amp; Power Pivot</span><span class="chip">Google Sheets</span><span class="chip">Power BI (learning)</span>
-      </div>
-    </div>
-    <div class="glass card" data-rev style="margin-top:20px;padding:28px">
-        <h3 style="margin-bottom:14px">Education &amp; certifications</h3>
-        <p style="font-size:14.5px;margin-bottom:9px"><b style="color:#fff">Higher Secondary</b>, West Bengal Council of Higher Secondary Education (2017)</p>
-        <p style="font-size:14.5px;margin-bottom:9px"><b style="color:#fff">Excel VBA Developer</b>, Udemy · <b style="color:#fff">GST Express</b>, Institute of Computerized Accountants (ICA)</p>
-        <p style="font-size:14.5px"><b style="color:#fff">Data Analytics</b>, Codebasics Data Analyst Bootcamp; currently completing the Excel and Power Pivot module, progressing to Power BI, SQL, Python and Tableau.</p>
-      </div>
-  </section>
-
-  <!-- ================= CERTIFICATIONS ================= -->
-  <section id="certs">
-    <div class="eyebrow" data-rev>Certifications</div>
-    <hr class="rule">
-    <p class="sub" data-rev>Every claim on this page has paper behind it. Credential IDs included, so verify any of them.</p>
-    <div class="grid g2">
-      <div class="glass card cert" data-rev>
-        <h3>Unlock Excel VBA and Excel Macros</h3>
-        <div class="certmeta">Udemy · Leila Gharani · Jan 2023 · 22.5 hours</div>
-        <p>The certification behind the automation I build: the payroll system, the credit-control workbook and the currency function all come out of this.</p>
-        <div class="cid">UC-8e87e605-9e5a-4865-82b2-b2a9f1095f82</div>
-<div class="certlinks"><a class="btn ghost" style="padding:9px 16px;font-size:12.5px" href="certificates/Excel-VBA-and-Macros-Udemy.pdf" target="_blank" rel="noopener">View certificate</a><a class="btn ghost" style="padding:9px 16px;font-size:12.5px" href="https://ude.my/UC-8e87e605-9e5a-4865-82b2-b2a9f1095f82" target="_blank" rel="noopener">Verify on Udemy</a></div>
-      </div>
-      <div class="glass card cert" data-rev>
-        <h3>GST Express</h3>
-        <div class="certmeta">ICA Edu Skills Pvt. Ltd. · in partnership with NSDC · Aug 2018 · 2 months · Grade B</div>
-        <p>Formal Indian indirect-tax grounding, the base I filed quarterly GST returns and e-way bills on before moving to UAE VAT and Corporate Tax.</p>
-        <div class="cid">Certificate No. 18081188</div>
-<div class="certlinks"><span class="verifynote">Original certificate available on request</span></div>
-      </div>
-      <div class="glass card cert" data-rev>
-        <h3>Google Sheets: The Comprehensive Masterclass</h3>
-        <div class="certmeta">Udemy · Leila Gharani · Apr 2026 · 14.5 hours</div>
-        <p>Shared, cloud-based reporting: the same modelling discipline as Excel, for finance work that has to be live and collaborative.</p>
-        <div class="cid">UC-2695601f-ae95-465a-bbc1-f22d14ce0607</div>
-<div class="certlinks"><a class="btn ghost" style="padding:9px 16px;font-size:12.5px" href="certificates/Google-Sheets-Masterclass-Udemy.pdf" target="_blank" rel="noopener">View certificate</a><a class="btn ghost" style="padding:9px 16px;font-size:12.5px" href="https://ude.my/UC-2695601f-ae95-465a-bbc1-f22d14ce0607" target="_blank" rel="noopener">Verify on Udemy</a></div>
-      </div>
-      <div class="glass card cert" data-rev>
-        <h3>Master Windows Command Line: Essential Commands and Scripts</h3>
-        <div class="certmeta">Udemy · Joshua Israel · Nov 2025 · 3.5 hours</div>
-        <p>Scripting beyond the spreadsheet, batching the repetitive file work that surrounds an audit cycle.</p>
-        <div class="cid">UC-8d13a3c1-5ea5-47e7-82b4-6309c06c09c2</div>
-<div class="certlinks"><a class="btn ghost" style="padding:9px 16px;font-size:12.5px" href="certificates/Windows-Command-Line-Udemy.pdf" target="_blank" rel="noopener">View certificate</a><a class="btn ghost" style="padding:9px 16px;font-size:12.5px" href="https://ude.my/UC-8d13a3c1-5ea5-47e7-82b4-6309c06c09c2" target="_blank" rel="noopener">Verify on Udemy</a></div>
-      </div>
-      <div class="glass card cert" data-rev>
-        <h3>File &amp; Folder Management Using PowerShell</h3>
-        <div class="certmeta">Udemy · Luxmi Narayan · Nov 2025 · 2 hours</div>
-        <p>Keeping audit documentation organised at volume, since nine entities generate a lot of files, and they have to be findable.</p>
-        <div class="cid">UC-2d712346-4803-41bf-9cd7-2981059d747b</div>
-<div class="certlinks"><a class="btn ghost" style="padding:9px 16px;font-size:12.5px" href="certificates/PowerShell-File-Folder-Management-Udemy.pdf" target="_blank" rel="noopener">View certificate</a><a class="btn ghost" style="padding:9px 16px;font-size:12.5px" href="https://ude.my/UC-2d712346-4803-41bf-9cd7-2981059d747b" target="_blank" rel="noopener">Verify on Udemy</a></div>
-      </div>
-      <div class="glass card cert" data-rev>
-        <h3>Data Analyst Bootcamp</h3>
-        <div class="certmeta">Codebasics · in progress · Excel and Power Pivot module</div>
-        <p>The track I am on now: Excel and Power Pivot first, then Power BI, SQL, Python and Tableau. Listed here as in progress, not as a finished credential.</p>
-        <div class="cid">In progress, 2026</div>
-        <div class="certlinks"><span class="verifynote">Certificate pending completion</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CONTACT ================= -->
-  <section id="contact">
-    <div class="eyebrow" data-rev>Contact</div>
-    <hr class="rule">
-    <div class="glass card" data-rev style="padding:34px;position:relative;overflow:hidden">
-      <span class="deco" style="left:-16px;bottom:-22px" aria-hidden="true">
-        <svg width="80" height="92" viewBox="0 0 80 92"><polygon points="40,5 70,32 54,82 26,82 10,32" fill="#33d0e6" opacity=".28" stroke="#e7c15b" stroke-opacity=".5"/></svg>
-      </span>
-      <h2 style="margin-bottom:10px">Let's put it in writing</h2>
-      <p style="max-width:60ch">Hiring, a finance question, an Excel workflow that needs automating, or writing that needs a ghost, my inbox is the fastest route.</p>
-      <div class="cgrid">
-        <div class="glass solid cbox"><div class="k">Email</div><a class="v" href="mailto:adanansari1234@gmail.com">adanansari1234@gmail.com</a></div>
-        <div class="glass solid cbox"><div class="k">Phone</div><a class="v" href="tel:+971505365447">+971 50 53 65 447</a></div>
-        <div class="glass solid cbox"><div class="k">Location</div><div class="v">Dubai / Sharjah, UAE</div></div>
-        <div class="glass solid cbox"><div class="k">LinkedIn</div><a class="v" href="https://www.linkedin.com/in/adan-ansari-excel-accounting-ghostwriting-copywriting/" target="_blank" rel="noopener">linkedin.com/in/adan-ansari</a></div>
-        <div class="glass solid cbox"><div class="k">Writing</div><a class="v" href="https://typeshare.co/virtualansari" target="_blank" rel="noopener">typeshare.co/virtualansari</a></div>
-        <div class="glass solid cbox"><div class="k">Notice</div><div class="v">30 days · UAE employment visa · open to remote</div></div>
-      </div>
-    </div>
-  </section>
-
-  <footer>Aden Ansari · Accountant &amp; Internal Auditor · Dubai, UAE</footer>
+<div class="toolcard" id="toolcard" role="dialog" aria-labelledby="tc-h" aria-hidden="true">
+  <button class="x" type="button" aria-label="Close">&times;</button>
+  <p class="kicker" style="margin-bottom:10px">Dropped from orbit</p>
+  <h3 id="tc-h"></h3><p id="tc-p"></p><code id="tc-c" hidden></code>
+  <a class="btn gold" id="tc-a" href="#" target="_blank" rel="noopener">Download</a>
 </div>
 
-<button type="button" id="backtop" aria-label="Back to top">↑</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="contact.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
 <script>
-var REDUCE = matchMedia('(prefers-reduced-motion:reduce)').matches;
-/* reveal */
-(function(){
-  var io=new IntersectionObserver(function(es){es.forEach(function(e,i){
-    if(!e.isIntersecting)return;
-    e.target.style.transitionDelay=(i%4)*90+'ms';
-    e.target.classList.add('in'); io.unobserve(e.target);
-  })},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('[data-rev]').forEach(function(el){io.observe(el)});
-})();
-/* count up */
-(function(){
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){
-    if(!e.isIntersecting)return; io.unobserve(e.target);
-    var el=e.target,end=+el.dataset.count,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
-    if(REDUCE){el.textContent=pre+end+suf;return;}
-    var t0=performance.now(),dur=1300;
-    (function tick(t){var p=Math.min(1,(t-t0)/dur),v=Math.round(end*(1-Math.pow(1-p,3)));
-      el.textContent=pre+v+suf; if(p<1)requestAnimationFrame(tick);})(t0);
-  })},{threshold:.5});
-  document.querySelectorAll('[data-count]').forEach(function(el){io.observe(el)});
-})();
-/* back to top */
-(function(){
-  var bt=document.getElementById('backtop');
-  bt.addEventListener('click',function(){scrollTo({top:0,behavior:REDUCE?'auto':'smooth'})});
-  addEventListener('scroll',function(){bt.classList.toggle('show',scrollY>400)},{passive:true});
-})();
-/* torch: cursor spotlight (brightens, never darkens, so text stays readable) */
-(function(){
-  if(REDUCE || matchMedia('(hover:none)').matches) return;
-  var t1=document.getElementById('torch'), t2=document.getElementById('torch2'), root=document.documentElement;
-  var x=innerWidth/2, y=innerHeight/2, cx=x, cy=y, on=false, raf=null;
-  function draw(){
-    cx += (x-cx)*0.18; cy += (y-cy)*0.18;
-    root.style.setProperty('--mx', cx.toFixed(1)+'px');
-    root.style.setProperty('--my', cy.toFixed(1)+'px');
-    if(Math.abs(x-cx)>0.4||Math.abs(y-cy)>0.4){raf=requestAnimationFrame(draw)} else {raf=null}
-  }
-  addEventListener('pointermove',function(e){
-    x=e.clientX; y=e.clientY;
-    if(!on){on=true; t1.classList.add('on'); t2.classList.add('on');}
-    if(!raf) raf=requestAnimationFrame(draw);
-  },{passive:true});
-  addEventListener('pointerleave',function(){on=false;t1.classList.remove('on');t2.classList.remove('on')});
-})();
-/* per-card spotlight + click ripple */
-(function(){
-  var sel='.card,.tool,.job,.now,.cbox', els=document.querySelectorAll(sel);
-  els.forEach(function(el){
-    if(!REDUCE){
-      el.addEventListener('pointermove',function(e){
-        var r=el.getBoundingClientRect();
-        el.style.setProperty('--cx',(e.clientX-r.left)+'px');
-        el.style.setProperty('--cy',(e.clientY-r.top)+'px');
-      },{passive:true});
-    }
-    el.addEventListener('pointerdown',function(e){
-      if(REDUCE) return;
-      var r=el.getBoundingClientRect(), d=Math.max(r.width,r.height)*1.6;
-      el.style.setProperty('--cx',(e.clientX-r.left)+'px');
-      el.style.setProperty('--cy',(e.clientY-r.top)+'px');
-      if(e.pointerType!=='mouse'){
-        el.classList.add('lit');
-        clearTimeout(el._litT); el._litT=setTimeout(function(){el.classList.remove('lit')},900);
-      }
-      var s=document.createElement('span');
-      s.className='ripple';
-      s.style.width=s.style.height=d+'px';
-      s.style.left=(e.clientX-r.left)+'px';
-      s.style.top=(e.clientY-r.top)+'px';
-      el.appendChild(s);
-      setTimeout(function(){s.remove()},640);
-    });
+{
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const narrowMQ = matchMedia('(max-width: 860px)'), touchMQ = matchMedia('(hover: none)');
+  let PHONE = narrowMQ.matches || touchMQ.matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const root = document.documentElement;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v)), lerp = (a, b, t) => a + (b - a) * t;
+  const sm = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+  const easeS = t => .5 - .5 * Math.cos(Math.PI * t);
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const GH = 'https://github.com/adanansarifullstack/adanansari/raw/main/tools/';
+  const TOOLS = [
+    ['Credit Control Manager', 'Reads Tally ledger exports, scores customer credit risk out of 100, recommends credit limits, flags projected bad debts and builds a prioritised collections queue.', GH + 'Credit-Control-Manager.xlsm', 'Download the workbook', ''],
+    ['Attendance and Salary Sheet', 'Employee database, attendance register, automated salary calculation and an admin lock in one macro-enabled workbook.', GH + 'Attendance-Salary-Sheet.xlsm', 'Download the workbook', ''],
+    ['Amount in words', 'One Excel function writes amounts in words in USD, AED and INR, including the Indian lakh and crore system.', GH + 'Currency-Converter.txt', 'Get the code', '=CurrencyInWords(500.75, "AED")']
+  ];
+
+  // Email buttons: the address lives in contact.js, filled in by the site owner. Without it they open LinkedIn.
+  const EMAIL = String(window.SITE_EMAIL || '').trim();
+  if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(EMAIL)) $$('[data-email]').forEach(a => {
+    const subj = a.getAttribute('data-email'), label = a.getAttribute('data-label');
+    a.href = 'mailto:' + EMAIL + (subj ? '?subject=' + encodeURIComponent(subj) : '');
+    a.removeAttribute('target'); a.removeAttribute('rel');
+    if (label) a.textContent = label === '@' ? EMAIL : label;
+    a.hidden = false;
   });
-})();
-/* three.js crystals: free-floating across the page, click one to shatter it.
-   Nothing is persisted, so a reload or a return visit restores every crystal. */
-(function(){
-  try{
-    if(!window.THREE) return;
-    var renderer=new THREE.WebGLRenderer({canvas:document.getElementById('crystal'),alpha:true,antialias:true});
-    var SMALL=innerWidth<760;
-    renderer.setPixelRatio(Math.min(devicePixelRatio,SMALL?1.5:2));
-    var scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,100);
-    camera.position.z=6;
 
-    var ec=document.createElement('canvas'); ec.width=ec.height=256; var ex=ec.getContext('2d');
-    var gr=ex.createLinearGradient(0,0,0,256);
-    gr.addColorStop(0,'#bfeffb');gr.addColorStop(.45,'#5c8bff');gr.addColorStop(.75,'#8b6cf0');gr.addColorStop(1,'#0a1230');
-    ex.fillStyle=gr; ex.fillRect(0,0,256,256);
-    ex.fillStyle='rgba(231,193,91,.9)'; ex.beginPath(); ex.arc(70,60,26,0,7); ex.fill();
-    var env=new THREE.CanvasTexture(ec); env.mapping=THREE.EquirectangularReflectionMapping;
+  // Smooth wheel scrolling on laptops only; phones keep their own native scroll
+  let lenis = null;
+  if (!calm && fine && window.Lenis) lenis = new Lenis({ lerp: .09 });
+  const goTo = (target, dur) => {
+    if (lenis) return lenis.scrollTo(target, { duration: dur || 1.6 });
+    if (typeof target === 'number') scrollTo({ top: target, behavior: calm ? 'auto' : 'smooth' });
+    else target.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' });
+  };
+  const toTop = () => goTo(0, 1.8);
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); if (id.length < 2) return;
+    const t = id === '#top' ? 0 : document.getElementById(id.slice(1));
+    if (t === 0 || t) { e.preventDefault(); goTo(t); }
+  }));
 
-    scene.add(new THREE.AmbientLight(0x99aaff,.9));
-    var d1=new THREE.DirectionalLight(0xffffff,1.1); d1.position.set(5,6,6); scene.add(d1);
-    var d2=new THREE.PointLight(0xe7c15b,1,50); d2.position.set(-6,-2,4); scene.add(d2);
+  const hero = $('.hero'), sharp = $('#sharp'), voy = $('#voyage'), vhead = $('.vhead', voy), wps = $$('.wp', voy);
+  const planets = wps.map(w => $('.planet', w)), flashes = wps.map(w => $('.flash', w)), routeSvg = $('.route', voy), routePath = $('path', routeSvg);
+  const earthsec = $('#earth'), estage = $('#estage'), pod = $('#pod'), ecap = $('#ecap'), labs = $$('.elab'), slabs = $$('.slab'), toolcard = $('#toolcard'), ship = $('#ship'), canvas = $('#space');
 
-    var B={x:4.4,y:2.5};
-    function bounds(){var hh=Math.tan(camera.fov*Math.PI/360)*camera.position.z; B.y=hh; B.x=hh*camera.aspect;}
-    function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();bounds();}
-    addEventListener('resize',resize); resize();
+  // Cached layout: nothing in the frame loop reads layout
+  const LW = [], LH = [], SW = [], SH = [];
+  let VW = innerWidth, VH = innerHeight, SA = 0, SB = 1, SC = 2, heroH = 0, sharpTop = 0, sharpH = 0, stageH = innerHeight, podL = 0, podT = 0, BOTTOM = false;
+  const cache = () => {
+    VW = innerWidth; VH = innerHeight; PHONE = narrowMQ.matches || touchMQ.matches;
+    const top = el => el.getBoundingClientRect().top + scrollY;
+    stageH = estage.offsetHeight || VH;
+    SB = top(earthsec); SA = SB - VH; SC = SB + earthsec.offsetHeight - stageH;
+    heroH = hero.offsetHeight; sharpTop = top(sharp); sharpH = sharp.offsetHeight;
+    podL = pod.offsetLeft; podT = pod.offsetTop; BOTTOM = podL < 40;
+    labs.forEach((l, k) => { LW[k] = l.offsetWidth; LH[k] = l.offsetHeight; });
+    slabs.forEach((l, k) => { SW[k] = l.offsetWidth; SH[k] = l.offsetHeight; });
+  };
 
-    var items=[], MAX=SMALL?70:165;
-    function build(geo,op,edge){
-      var m=new THREE.Mesh(geo,new THREE.MeshPhysicalMaterial({color:0xdfe9ff,metalness:0,roughness:.06,
-        envMap:env,envMapIntensity:1.25,clearcoat:1,clearcoatRoughness:0,transparent:true,opacity:op,flatShading:true}));
-      m.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo),
-        new THREE.LineBasicMaterial({color:edge,transparent:true,opacity:.38})));
-      return m;
+  // Mission statement: one CSS variable sharpens every word
+  const split = node => [...node.childNodes].forEach(n => {
+    if (n.nodeType === 1) return split(n);
+    if (n.nodeType !== 3) return;
+    const f = document.createDocumentFragment();
+    n.textContent.split(/(\s+)/).forEach(p => { if (!p) return; if (/^\s+$/.test(p)) return f.appendChild(document.createTextNode(p)); const s = document.createElement('span'); s.className = 'w'; s.textContent = p; f.appendChild(s); });
+    n.replaceWith(f);
+  });
+  split(sharp);
+  $$('.w', sharp).forEach((w, k) => w.style.setProperty('--i', k));
+  sharp.style.setProperty('--n', $$('.w', sharp).length);
+  sharp.style.setProperty('--p', calm ? 1 : 0);
+  let lastP = -1;
+  const sharpen = s => {
+    if (calm) return;
+    const top = sharpTop - s; if (top > VH || top + sharpH < 0) return;
+    const p = Math.round(clamp((VH * .85 - top) / (sharpH + VH * .35), 0, 1) * 400) / 400;
+    if (p !== lastP) { lastP = p; sharp.style.setProperty('--p', p); }
+  };
+
+  // Month-end panel ticks itself off
+  if (!calm) {
+    const items = $$('.checks li');
+    items.forEach(li => { const em = $('em', li); li.dataset.f = em.textContent; li.dataset.c = em.className; em.textContent = 'Pending'; em.className = 'pend'; });
+    items.forEach((li, k) => setTimeout(() => { const em = $('em', li); em.textContent = li.dataset.f; em.className = (li.dataset.c + ' pop').trim(); }, 1100 + k * 800));
+  }
+
+  // Sparkles: a small pool of elements animated on the compositor
+  const sparks = $('#sparks'), pool = Array.from({ length: 30 }, () => { const s = document.createElement('i'); s.className = 'spk'; sparks.appendChild(s); return s; });
+  let pk = 0;
+  const spark = (x, y, n, spread) => {
+    if (calm) return;
+    for (let k = 0; k < n; k++) {
+      const el = pool[pk++ % pool.length], a = Math.random() * 6.283, d = spread * (.35 + Math.random() * .65);
+      el.animate([{ transform: `translate(${x}px,${y}px) scale(1)`, opacity: 1 }, { transform: `translate(${x + Math.cos(a) * d}px,${y + Math.sin(a) * d + spread * .3}px) scale(.2)`, opacity: 0 }], { duration: 700 + Math.random() * 500, easing: 'cubic-bezier(.2,.8,.2,1)' });
     }
-    function add(r,x,y,z,op,vx,vy,shard){
-      if(items.length>=MAX) return null;
-      var geo=shard?new THREE.TetrahedronGeometry(r,0):new THREE.IcosahedronGeometry(r,0);
-      var m=build(geo,op,shard?0xffe08a:0xe7c15b);
-      m.position.set(x,y,z); m.rotation.set(Math.random()*3,Math.random()*3,Math.random()*3);
-      scene.add(m);
-      var it={m:m,r:r,vx:vx,vy:vy,shard:!!shard,
-        rx:(Math.random()-.5)*.014,ry:(Math.random()-.5)*.014,rz:(Math.random()-.5)*.010};
-      items.push(it); return it;
-    }
-    add(1.55, 2.6, .5, 0, .50, .0038, .0022, false);
-    add(.52, -3.6, 1.6, -1, .45,-.0044, .0030, false);
-    add(.40, 1.2, -1.9, -.6,.45, .0050,-.0026, false);
+  };
+  const cstar = $('.cstar');
+  let mx = 0, my = 0, cx = 0, cy = 0, lx = 0, ly = 0, seen = false, lastPointer = 0;
+  if (fine && !calm) {
+    addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mx = e.clientX; my = e.clientY; lastPointer = performance.now(); if (!seen) { cx = lx = mx; cy = ly = my; seen = true; } cstar.classList.add('on'); }, { passive: true });
+    document.addEventListener('mouseleave', () => cstar.classList.remove('on'));
+    addEventListener('pointerover', e => cstar.classList.toggle('big', !!e.target.closest('a,button')));
+  }
+  addEventListener('pointerdown', e => spark(e.clientX, e.clientY, e.pointerType === 'mouse' ? 8 : 12, 70), { passive: true });
 
-    /* click ANY crystal or shard, at any size, anywhere on the page */
-    function makeRoom(n){
-      for(var i=0;i<items.length && items.length+n>MAX;){
-        if(items[i].shard){ scene.remove(items[i].m); items.splice(i,1); } else { i++; }
+  // Voyage geometry: the start point and six worlds, joined by smooth curves
+  let WPT = [], LEG = [];
+  const layoutVoyage = () => {
+    const vr = voy.getBoundingClientRect(), ox = vr.left + scrollX, oy = vr.top + scrollY, hb = vhead.getBoundingClientRect().bottom + scrollY;
+    const mid = el => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2 + scrollX, r.top + r.height / 2 + scrollY]; };
+    WPT = [[ox + vr.width / 2, hb + 34], ...planets.map(mid)];
+    LEG = [];
+    for (let k = 0; k < WPT.length - 1; k++) {
+      const a = WPT[k - 1] || WPT[k], b = WPT[k], c = WPT[k + 1], d = WPT[k + 2] || c;
+      LEG.push({ p0: b, c1: [b[0] + (c[0] - a[0]) / 6, b[1] + (c[1] - a[1]) / 6], c2: [c[0] - (d[0] - b[0]) / 6, c[1] - (d[1] - b[1]) / 6], p1: c, len: Math.hypot(c[0] - b[0], c[1] - b[1]) * 1.08 });
+    }
+    let d = `M${(WPT[0][0] - ox).toFixed(1)} ${(WPT[0][1] - oy).toFixed(1)}`;
+    LEG.forEach(L => { d += ` C${(L.c1[0] - ox).toFixed(1)} ${(L.c1[1] - oy).toFixed(1)} ${(L.c2[0] - ox).toFixed(1)} ${(L.c2[1] - oy).toFixed(1)} ${(L.p1[0] - ox).toFixed(1)} ${(L.p1[1] - oy).toFixed(1)}`; });
+    routeSvg.setAttribute('width', vr.width.toFixed(0)); routeSvg.setAttribute('height', vr.height.toFixed(0)); routeSvg.setAttribute('viewBox', `0 0 ${vr.width.toFixed(0)} ${vr.height.toFixed(0)}`);
+    routePath.setAttribute('d', d);
+  };
+  const bez = (p0, c1, c2, p1, t) => { const u = 1 - t; return [u * u * u * p0[0] + 3 * u * u * t * c1[0] + 3 * u * t * t * c2[0] + t * t * t * p1[0], u * u * u * p0[1] + 3 * u * u * t * c1[1] + 3 * u * t * t * c2[1] + t * t * t * p1[1]]; };
+
+  // Logs open on click everywhere; on phones the ship opens them on contact
+  let busyUntil = 0;
+  const openLog = (w, open) => { w.classList.toggle('open', open); $('.planet', w).setAttribute('aria-expanded', String(open)); $('.logbtn', w).textContent = open ? 'Close log' : 'Open log'; busyUntil = performance.now() + 1000; };
+  voy.addEventListener('click', e => { const b = e.target.closest('.planet, .logbtn'); if (!b) return; const w = b.closest('.wp'); w.classList.add('on'); openLog(w, !w.classList.contains('open')); });
+
+  // The ship: parks under the heading, flies one world per downward scroll, vanishes on contact
+  let cur = 0, flight = null, shipState = 'hidden', downSince = 0, limb = [innerWidth / 2, innerHeight * .7], limbOK = false;
+  const flame = $('.flame', ship);
+  const setShip = st => { shipState = st; ship.classList.toggle('gone', st === 'gone' || st === 'hidden'); ship.classList.toggle('park', st === 'park'); ship.tabIndex = st === 'park' || st === 'fly' ? 0 : -1; };
+  const placeShip = (x, y, a) => { ship.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) rotate(${a.toFixed(3)}rad)`; };
+  let boost = () => {};
+  const arrive = (k, mode) => {
+    if (k >= 1 && k <= 6) {
+      const w = wps[k - 1]; w.classList.add('on');
+      if (mode !== 'quiet') {
+        flashes[k - 1].animate([{ opacity: .95, transform: 'scale(.7)' }, { opacity: 0, transform: 'scale(2.1)' }], { duration: 1300, easing: 'cubic-bezier(.2,.8,.2,1)' });
+        spark(WPT[k][0] - scrollX, WPT[k][1] - scrollY, 10, 60);
+        if (mode === 'land' && PHONE && !w.classList.contains('open')) openLog(w, true);
       }
     }
-    function burst(it){
-      var p=it.m.position, r=it.r;
-      if(r>.05){
-        var n = r>.9 ? 11 : (r>.30 ? 7 : 5);
-        makeRoom(n);
-        for(var k=0;k<n;k++){
-          var a=(k/n)*Math.PI*2+Math.random()*.7, sp=.05+Math.random()*.055;
-          add(r*(0.26+Math.random()*0.16), p.x+(Math.random()-.5)*r*.7, p.y+(Math.random()-.5)*r*.7,
-              p.z+(Math.random()-.5)*.6, .55, Math.cos(a)*sp, Math.sin(a)*sp, true);
-        }
+    if (k === 7 && mode !== 'quiet') { spark(limb[0], limb[1], 14, 80); boost(); }
+    cur = Math.max(cur, k);
+  };
+  const legLen = i => i < 6 ? LEG[i].len : Math.max(320, VH * .85);
+  const legPoint = (i, t, s) => {
+    if (i < 6) { const L = LEG[i], p = bez(L.p0, L.c1, L.c2, L.p1, t); return [p[0] - scrollX, p[1] - s]; }
+    const a = [WPT[6][0] - scrollX, WPT[6][1] - s], b = limb;
+    return bez(a, [a[0], a[1] + 200], [b[0], b[1] - 240], b, t);
+  };
+  const startFlight = to => {
+    let total = 0; for (let i = cur; i < to; i++) total += legLen(i);
+    flight = { from: cur, to, t0: performance.now(), dur: clamp(total / 300, 1.3, 3) * 1000, total };
+    setShip('fly');
+  };
+  const flyStep = (now, s) => {
+    const F = flight, u = clamp((now - F.t0) / F.dur, 0, 1);
+    let dist = easeS(u) * F.total, i = F.from;
+    while (i < F.to - 1 && dist > legLen(i)) { dist -= legLen(i); if (cur < i + 1) arrive(i + 1, 'pass'); i++; }
+    const lt = clamp(dist / legLen(i), 0, 1), p = legPoint(i, lt, s), q = legPoint(i, Math.min(1, lt + .02), s), o = legPoint(i, Math.max(0, lt - .02), s);
+    placeShip(p[0], p[1], Math.atan2(q[1] - o[1], q[0] - o[0]));
+    flame.style.transform = `scaleX(${(.4 + Math.sin(Math.PI * u) * 1.1).toFixed(2)})`;
+    if (u >= 1) { flight = null; setShip('gone'); arrive(F.to, 'land'); downSince = 0; }
+  };
+  const resetVoyage = () => {
+    cur = 0; flight = null; downSince = 0; setShip('hidden');
+    wps.forEach(w => { w.classList.remove('on'); if (PHONE && w.classList.contains('open')) openLog(w, false); });
+  };
+  ship.addEventListener('click', () => { flight = null; setShip('gone'); toTop(); });
+  if (calm) { wps.forEach(w => w.classList.add('on')); cur = 6; }
+
+  // Landing panel, tool card and satellites' cargo
+  const openTool = i => {
+    const t = TOOLS[i]; $('#tc-h').textContent = t[0]; $('#tc-p').textContent = t[1]; const c = $('#tc-c'); c.textContent = t[4]; c.hidden = !t[4];
+    const a = $('#tc-a'); a.href = t[2]; a.textContent = t[3];
+    toolcard.classList.add('on'); toolcard.setAttribute('aria-hidden', 'false'); a.focus({ preventScroll: true });
+  };
+  const closeTool = () => { if (!toolcard.classList.contains('on')) return; toolcard.classList.remove('on'); toolcard.setAttribute('aria-hidden', 'true'); };
+  $('.x', toolcard).addEventListener('click', closeTool);
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeTool(); });
+  let dropTool = i => openTool(i);
+  document.addEventListener('click', e => { const b = e.target.closest('[data-tool]'); if (b) dropTool(+b.dataset.tool); });
+  pod.addEventListener('focusin', () => { if (!pod.classList.contains('on') && !root.classList.contains('no3d')) goTo($('#cv')); });
+
+  // Space: one WebGL canvas for the whole page, two scenes (the sky, and the globe that docks beside the panel)
+  let R = null, render3d = null;
+  try { if (!window.THREE) throw 0; R = new THREE.WebGLRenderer({ canvas, antialias: !PHONE, powerPreference: PHONE ? 'default' : 'high-performance' }); } catch (e) { R = null; root.classList.add('no3d'); }
+  if (R) {
+    const T = THREE, V3 = T.Vector3, D2R = Math.PI / 180, RE = 10;
+    let pr = Math.min(window.devicePixelRatio || 1, PHONE ? 1.5 : 1.75), CW = 1, CH = 1;
+    R.setPixelRatio(pr); R.setClearColor(0x060d1a, 1); R.autoClear = false;
+    const sky = new T.Scene(), world = new T.Scene(); world.matrixWorldAutoUpdate = false;
+    const cam = new T.PerspectiveCamera(55, 1, .1, 5000), gcam = new T.PerspectiveCamera(55, 1, .1, 5000);
+    sky.add(cam);
+    const sunDir = new V3(-.55, .45, .7).normalize();
+    [sky, world].forEach(sc => { sc.add(new T.AmbientLight(0x6a7aa8, .55)); const l = new T.DirectionalLight(0xfff0d2, 1.15); l.position.copy(sunDir).multiplyScalar(100); sc.add(l); });
+    let seed = 7; const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+    const fix = o => { o.updateMatrix(); o.matrixAutoUpdate = false; return o; };
+    const mergeParts = parts => {
+      const pos = [], nor = [], col = [], v = new V3(), nm = new T.Matrix3();
+      parts.forEach(([g0, m, c]) => {
+        const g = g0.index ? g0.toNonIndexed() : g0, Pa = g.attributes.position, Na = g.attributes.normal; nm.getNormalMatrix(m);
+        for (let k = 0; k < Pa.count; k++) { v.fromBufferAttribute(Pa, k).applyMatrix4(m); pos.push(v.x, v.y, v.z); v.fromBufferAttribute(Na, k).applyMatrix3(nm).normalize(); nor.push(v.x, v.y, v.z); col.push(c[0], c[1], c[2]); }
+      });
+      const out = new T.BufferGeometry();
+      out.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); out.setAttribute('normal', new T.Float32BufferAttribute(nor, 3)); out.setAttribute('color', new T.Float32BufferAttribute(col, 3));
+      return out;
+    };
+    const GOLD3 = [1, .86, .55], NAVY3 = [.16, .27, .48];
+    const gauss = () => (rnd() + rnd() + rnd() - 1.5) / 1.5;
+    const canvasTex = (n, draw) => { const c = document.createElement('canvas'); c.width = c.height = n; draw(c.getContext('2d'), n); return new T.CanvasTexture(c); };
+    const glowTex = canvasTex(128, (g, n) => { const r = g.createRadialGradient(n / 2, n / 2, 0, n / 2, n / 2, n / 2); r.addColorStop(0, 'rgba(255,246,222,1)'); r.addColorStop(.22, 'rgba(236,211,145,.5)'); r.addColorStop(1, 'rgba(201,168,76,0)'); g.fillStyle = r; g.fillRect(0, 0, n, n); });
+
+    // Stars twinkle in the shader
+    const starMat = new T.ShaderMaterial({ transparent: true, depthWrite: false, uniforms: { uTime: { value: 0 }, uPR: { value: pr } },
+      vertexShader: 'attribute float size; attribute float phase; attribute vec3 tint; uniform float uTime; uniform float uPR; varying vec3 vC; varying float vA; void main(){ gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); gl_PointSize = size * uPR * 1.5; vC = tint; vA = .62 + .38 * sin(uTime * (.4 + phase * 1.2) + phase * 6.283); }',
+      fragmentShader: 'varying vec3 vC; varying float vA; void main(){ float d = length(gl_PointCoord - .5); gl_FragColor = vec4(vC, smoothstep(.5, .06, d) * vA); }' });
+    const starField = (n, place) => {
+      const P = new Float32Array(n * 3), C = new Float32Array(n * 3), S = new Float32Array(n), H = new Float32Array(n), v = new V3();
+      for (let k = 0; k < n; k++) {
+        place(v, k); P[k * 3] = v.x; P[k * 3 + 1] = v.y; P[k * 3 + 2] = v.z;
+        const g = rnd(); C.set(g > .78 ? [.98, .86, .6] : g > .5 ? [.78, .85, 1] : [.94, .95, 1], k * 3);
+        S[k] = rnd() > .975 ? 2.4 + rnd() * 1.8 : .7 + rnd() * 1.2; H[k] = rnd();
       }
-      scene.remove(it.m);
-      var ix=items.indexOf(it); if(ix>-1) items.splice(ix,1);
+      const geo = new T.BufferGeometry();
+      geo.setAttribute('position', new T.BufferAttribute(P, 3)); geo.setAttribute('tint', new T.BufferAttribute(C, 3)); geo.setAttribute('size', new T.BufferAttribute(S, 1)); geo.setAttribute('phase', new T.BufferAttribute(H, 1));
+      return new T.Points(geo, starMat);
+    };
+    const stars = new T.Group(); sky.add(stars);
+    stars.add(fix(starField(PHONE ? 4200 : 7000, v => { const u = rnd() * 2 - 1, th = rnd() * 6.283, q = Math.sqrt(1 - u * u), r = 900 + rnd() * 1400; v.set(Math.cos(th) * q * r, u * r, Math.sin(th) * q * r); })));
+
+    // Galaxies: four painted variants share one texture and all eight sit in one mesh (one draw call)
+    const GOLD = '236,214,170', BLUE = '160,188,255', ROSE = '255,190,160', PALE = '220,230,255';
+    const galAtlas = canvasTex(512, g => {
+      [[GOLD, BLUE], [BLUE, GOLD], [GOLD, ROSE], [PALE, ROSE]].forEach(([a, b], q) => {
+        g.save(); g.translate((q % 2) * 256 + 128, (q >> 1) * 256 + 128);
+        const core = g.createRadialGradient(0, 0, 0, 0, 0, 64); core.addColorStop(0, 'rgba(255,246,226,.95)'); core.addColorStop(.28, `rgba(${a},.35)`); core.addColorStop(1, 'rgba(0,0,0,0)');
+        g.fillStyle = core; g.fillRect(-128, -128, 256, 256);
+        for (let k = 0; k < 2400; k++) { const arm = k & 1, t = rnd() * 3.3, ang = t * 1.8 + arm * Math.PI + (rnd() - .5) * .55, rad = 6 + t * 34 + (rnd() - .5) * 12; g.fillStyle = `rgba(${rnd() > .5 ? a : b},${(.1 + rnd() * .4).toFixed(2)})`; g.fillRect(Math.cos(ang) * rad, Math.sin(ang) * rad * .48, 1.6, 1.6); }
+        g.restore();
+      });
+    });
+    const galaxyMesh = list => {
+      const n = list.length, pos = new Float32Array(n * 12), uv = new Float32Array(n * 8), idx = [], Y = new V3(0, 1, 0), nn = new V3(), u0 = new V3(), v0 = new V3(), ax = new V3(), ay = new V3();
+      list.forEach(([p, sz, r, q], k) => {
+        nn.copy(p).normalize().negate(); u0.crossVectors(Y, nn).normalize(); v0.crossVectors(nn, u0);
+        ax.copy(u0).multiplyScalar(Math.cos(r)).addScaledVector(v0, Math.sin(r)); ay.copy(v0).multiplyScalar(Math.cos(r)).addScaledVector(u0, -Math.sin(r));
+        [[-1, -1], [1, -1], [1, 1], [-1, 1]].forEach(([i, j], c) => {
+          const o = k * 4 + c;
+          pos[o * 3] = p.x + (ax.x * i + ay.x * j) * sz / 2; pos[o * 3 + 1] = p.y + (ax.y * i + ay.y * j) * sz / 2; pos[o * 3 + 2] = p.z + (ax.z * i + ay.z * j) * sz / 2;
+          uv[o * 2] = ((q % 2) + (i + 1) / 2) / 2; uv[o * 2 + 1] = 1 - ((q >> 1) + (1 - j) / 2) / 2;
+        });
+        idx.push(k * 4, k * 4 + 1, k * 4 + 2, k * 4, k * 4 + 2, k * 4 + 3);
+      });
+      const g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(pos, 3)); g.setAttribute('uv', new T.BufferAttribute(uv, 2)); g.setIndex(idx);
+      const m = new T.Mesh(g, new T.MeshBasicMaterial({ map: galAtlas, transparent: true, depthWrite: false, blending: T.AdditiveBlending, opacity: .87, side: T.DoubleSide }));
+      m.frustumCulled = false; return fix(m);
+    };
+    // The far group turns a little as the page scrolls and settles at FAR_END by the time the Earth section starts
+    const FAR_END = .3, far = new T.Group(); sky.add(far);
+    const X = new V3(1, 0, 0), toLocal = v => v.applyAxisAngle(X, -FAR_END);
+    // Behind the docked globe: a Milky Way band and two galaxies (placed in world terms, stored in the far group's frame)
+    const bd = new V3(0, -.22, -.97).normalize(), bR = new V3(1, 0, 0), bU = new V3().crossVectors(bR, bd).normalize();
+    const bp = (x, y, D) => toLocal(new V3().copy(bd).multiplyScalar(D).addScaledVector(bR, x).addScaledVector(bU, y));
+    const band = 22 * D2R, cb = Math.cos(band), sb = Math.sin(band);
+    far.add(fix(starField(PHONE ? 1500 : 2600, v => { const al = (rnd() * 2 - 1) * 1100, ac = gauss() * 120; v.copy(bp(al * cb - ac * sb, al * sb + ac * cb, 1100 + rnd() * 500)); })));
+    far.add(galaxyMesh([[new V3(-420, 170, -720), 190, .9, 0], [new V3(560, -90, -820), 160, 1.9, 1], [new V3(-200, -330, -640), 120, .4, 2], [new V3(330, 320, -900), 210, 2.6, 3], [new V3(-260, -620, -560), 150, 1.2, 0], [new V3(480, -760, -420), 170, 2.2, 2], [bp(-300, 170, 1000), 150, .6, 0], [bp(330, -190, 1050), 120, 2.1, 3]]));
+    // Nebulae: colours baked into the vertices of a sphere around the camera. One cheap opaque pass, no textures, and it turns with the sky.
+    const dirOf = (x, y, z) => new V3(x, y, z).normalize();
+    const BLOBS = [[dirOf(-330, 40, -620), .07, [.27, .31, .75], .3], [dirOf(380, -220, -680), .06, [.12, .55, .59], .26], [dirOf(40, 280, -760), .075, [.59, .43, .16], .24], [dirOf(-200, -420, -560), .09, [.3, .25, .65], .2],
+      [bp(-260, -90, 1300).normalize(), .03, [.16, .51, .59], .3], [bp(280, 140, 1300).normalize(), .03, [.59, .43, .2], .24]];
+    const bdL = toLocal(bd.clone()), alL = toLocal(new V3().copy(bR).multiplyScalar(cb).addScaledVector(bU, sb)).normalize(), nL = new V3().crossVectors(bdL, alL).normalize();
+    const domeGeo = new T.SphereGeometry(1, 72, 36), dp = domeGeo.attributes.position, dc = new Float32Array(dp.count * 3);
+    for (let k = 0; k < dp.count; k++) {
+      const x = dp.getX(k), y = dp.getY(k), z = dp.getZ(k), L = Math.hypot(x, y, z), dx = x / L, dy = y / L, dz = z / L;
+      const n = .62 + .2 * Math.sin(dx * 9.1 + dy * 4.7) * Math.sin(dy * 7.3 - dz * 5.9) + .18 * Math.sin(dz * 11.3 + dx * 3.1 + dy * 1.7);
+      let r = .0235, g = .051, b = .102;
+      for (const B of BLOBS) { const c = dx * B[0].x + dy * B[0].y + dz * B[0].z; if (c < .5) continue; const a = Math.exp((c - 1) / B[1]) * B[3] * n; r += B[2][0] * a; g += B[2][1] * a; b += B[2][2] * a; }
+      const f = dx * bdL.x + dy * bdL.y + dz * bdL.z;
+      if (f > -.2) { const ac = dx * nL.x + dy * nL.y + dz * nL.z, al = Math.atan2(dx * alL.x + dy * alL.y + dz * alL.z, f), a = Math.exp(-(ac * ac) / .012 - (al * al) / .7) * .17 * (.75 + .25 * n), w = Math.exp(-(ac * ac) / .004 - (al * al) / .12); r += (.43 + .35 * w) * a; g += (.47 + .2 * w) * a; b += (.82 - .35 * w) * a; }
+      dc[k * 3] = r; dc[k * 3 + 1] = g; dc[k * 3 + 2] = b;
     }
-    /* forgiving hit test: exact ray first, then nearest crystal in screen space,
-       so even a tiny drifting shard can be clicked */
-    var ray=new THREE.Raycaster(), pt=new THREE.Vector2(), pv=new THREE.Vector3();
-    function nearest(cx,cy){
-      var best=null, bd=1e9, pxPerUnit=(innerHeight*.5)/B.y;
-      for(var i=0;i<items.length;i++){
-        pv.copy(items[i].m.position).project(camera);
-        var sx=(pv.x*.5+.5)*innerWidth, sy=(-pv.y*.5+.5)*innerHeight;
-        var dx=sx-cx, dy=sy-cy, d=Math.sqrt(dx*dx+dy*dy);
-        var rad=items[i].r*pxPerUnit+20;
-        if(d<rad && d<bd){ bd=d; best=items[i]; }
-      }
-      return best;
-    }
-    addEventListener('pointerdown',function(e){
-      if(!items.length) return;
-      pt.x=(e.clientX/innerWidth)*2-1; pt.y=-(e.clientY/innerHeight)*2+1;
-      ray.setFromCamera(pt,camera);
-      var meshes=items.map(function(it){return it.m;});
-      var hit=ray.intersectObjects(meshes,false)[0], target=null;
-      if(hit){ for(var q=0;q<items.length;q++){ if(items[q].m===hit.object){ target=items[q]; break; } } }
-      if(!target) target=nearest(e.clientX,e.clientY);
-      if(target) burst(target);
+    domeGeo.setAttribute('color', new T.BufferAttribute(dc, 3));
+    const dome = new T.Mesh(domeGeo, new T.ShaderMaterial({ side: T.BackSide, depthTest: false, depthWrite: false,
+      vertexShader: 'attribute vec3 color; varying vec3 vC; void main(){ vC = color; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }',
+      fragmentShader: 'varying vec3 vC; void main(){ float h = fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(.06711056, .00583715)))); gl_FragColor = vec4(vC + (h - .5) / 255., 1.); }' }));
+    dome.frustumCulled = false; dome.renderOrder = -10; sky.add(dome);
+
+
+    // Asteroids: one instanced mesh, tumbling, drifting, and rising with the scroll
+    const rockGeo = (() => { const g = new T.IcosahedronGeometry(1, 1), p = g.attributes.position; for (let k = 0; k < p.count; k++) { const x = p.getX(k), y = p.getY(k), z = p.getZ(k), h = n => { const q = Math.sin(x * 12.99 + y * 78.23 + z * 37.72 + n) * 43758.55; return q - Math.floor(q) - .5; }; p.setXYZ(k, x * (1 + h(1) * .45), y * (1 + h(2) * .45), z * (1 + h(3) * .45)); } g.computeVertexNormals(); return g; })();
+    const NA = PHONE ? 36 : 60, rocks = new T.InstancedMesh(rockGeo, new T.MeshStandardMaterial({ color: 0x4d566c, roughness: 1, flatShading: true }), NA), dummy = new T.Object3D();
+    const A = Array.from({ length: NA }, () => ({ z: -70 - Math.pow(rnd(), .8) * 260, u: rnd(), v: rnd(), s: .7 + Math.pow(rnd(), 3) * 6.5, rx: rnd() * 6, ry: rnd() * 6, vu: (rnd() - .5) * .016, vr: (rnd() - .5) * .5 }));
+    rocks.frustumCulled = false; sky.add(rocks);
+    let tanV = .52, aspect = 1;
+
+    // Shooting stars ride with the sky camera
+    const mg = new T.PlaneGeometry(1, 1); mg.translate(-.5, 0, 0);
+    const mets = Array.from({ length: 6 }, () => { const m = new T.Mesh(mg, new T.ShaderMaterial({ transparent: true, depthWrite: false, blending: T.AdditiveBlending, uniforms: { uA: { value: 0 } }, vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }', fragmentShader: 'uniform float uA; varying vec2 vUv; void main(){ float a = pow(vUv.x, 2.4) * (1. - pow(abs(vUv.y - .5) * 2., 2.)) * uA; gl_FragColor = vec4(1., .95, .82, a); }' })); m.visible = false; m.position.z = -200; cam.add(m); return { m, t: 0, life: 0, vx: 0, vy: 0, on: false }; });
+    const meteor = () => {
+      const M = mets.find(q => !q.on); if (!M) return;
+      const hh = 200 * Math.tan(cam.fov * D2R / 2), hw = hh * cam.aspect, a = .35 + Math.random() * .3, v = (260 + Math.random() * 160) * hh / 104;
+      M.on = true; M.t = 0; M.life = 1 + Math.random() * .6; M.vx = -Math.cos(a) * v; M.vy = -Math.sin(a) * v;
+      M.m.position.set(-hw * .3 + Math.random() * hw * 1.4, hh * (.2 + Math.random() * .9), -200); M.m.rotation.z = Math.atan2(M.vy, M.vx); M.m.scale.set((50 + Math.random() * 40) * hh / 104, 1.1 * hh / 104, 1); M.m.visible = true;
+    };
+
+    // The globe: Natural Earth land as dots, an ocean shell and a thin atmosphere
+    const ll = (lat, lon, r) => { const ph = (90 - lat) * D2R, th = (lon + 180) * D2R; return new V3(-r * Math.sin(ph) * Math.cos(th), r * Math.cos(ph), r * Math.sin(ph) * Math.sin(th)); };
+    const earthRoot = new T.Group(), tilt = new T.Group(), spin = new T.Group(); earthRoot.add(tilt); tilt.add(spin); world.add(earthRoot); earthRoot.visible = false;
+    const oceanMat = new T.ShaderMaterial({ uniforms: { uSun: { value: new V3() } },
+      vertexShader: 'varying vec3 vN; varying vec3 vV; void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.); vN = normalize(normalMatrix * normal); vV = -mv.xyz; gl_Position = projectionMatrix * mv; }',
+      fragmentShader: 'uniform vec3 uSun; varying vec3 vN; varying vec3 vV; void main(){ vec3 n = normalize(vN), v = normalize(vV); float l = max(dot(n, uSun), 0.); float f = pow(1. - max(dot(n, v), 0.), 3.); float g = pow(max(dot(reflect(-uSun, n), v), 0.), 36.); vec3 c = mix(vec3(.02, .055, .12), vec3(.07, .19, .36), l) + vec3(.2, .45, .9) * f * .6 + vec3(1., .9, .7) * g * .28; gl_FragColor = vec4(c, 1.); }' });
+    spin.add(fix(new T.Mesh(new T.SphereGeometry(RE, 64, 48), oceanMat)));
+    const land = (b64 => { const bin = atob(b64), u8 = new Uint8Array(bin.length); for (let k = 0; k < bin.length; k++) u8[k] = bin.charCodeAt(k); return new Int16Array(u8.buffer); })('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');
+    const lp = new Float32Array(land.length / 2 * 3);
+    for (let k = 0; k < land.length / 2; k++) { const v = ll(land[k * 2 + 1] / 100, land[k * 2] / 100, RE * 1.004); lp[k * 3] = v.x; lp[k * 3 + 1] = v.y; lp[k * 3 + 2] = v.z; }
+    const lg = new T.BufferGeometry(); lg.setAttribute('position', new T.BufferAttribute(lp, 3));
+    const dotMat = new T.ShaderMaterial({ transparent: true, uniforms: { uSun: { value: new V3() }, uScale: { value: 400 } },
+      vertexShader: 'uniform vec3 uSun; uniform float uScale; varying float vL; void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.); vL = max(dot(normalize(normalMatrix * position), uSun), 0.); gl_Position = projectionMatrix * mv; gl_PointSize = clamp(.17 * uScale / -mv.z, 1.2, 13.); }',
+      fragmentShader: 'varying float vL; void main(){ float d = length(gl_PointCoord - .5); vec3 c = mix(vec3(.4, .5, .7), vec3(.88, .91, .98), vL); gl_FragColor = vec4(c, smoothstep(.5, .15, d) * (.5 + .5 * vL)); }' });
+    spin.add(fix(new T.Points(lg, dotMat)));
+    const atmo = new T.Mesh(new T.SphereGeometry(RE * 1.13, 64, 48), new T.ShaderMaterial({ side: T.BackSide, transparent: true, depthWrite: false, blending: T.AdditiveBlending, uniforms: { uBoost: { value: 1 } },
+      vertexShader: 'varying vec3 vN; varying vec3 vP; void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.); vN = normalize(normalMatrix * normal); vP = mv.xyz; gl_Position = projectionMatrix * mv; }',
+      fragmentShader: 'uniform float uBoost; varying vec3 vN; varying vec3 vP; void main(){ float c = -dot(normalize(vN), normalize(-vP)); float i = smoothstep(0., .46, c); i = i * i * .85 * uBoost; gl_FragColor = vec4(vec3(.36, .6, 1.), i); }' }));
+    earthRoot.add(fix(atmo));
+
+    // Places: Kolkata, Mumbai and the UAE pin with a pulse, joined by the route
+    const gold = new T.MeshStandardMaterial({ color: 0xe6cc85, emissive: 0x6b4e12, metalness: .5, roughness: .35 });
+    const KOL = ll(22.57, 88.36, RE), MUM = ll(19.08, 72.88, RE), UAE = ll(25.27, 55.33, RE), PLACES = [KOL, MUM, UAE];
+    spin.add(fix(new T.Mesh(mergeParts([KOL, MUM].map(v => [new T.SphereGeometry(.17, 12, 10), new T.Matrix4().makeTranslation(v.x, v.y, v.z), GOLD3])), gold)));
+    const pin = new T.Group(); pin.position.copy(UAE); pin.lookAt(UAE.clone().multiplyScalar(2)); spin.add(pin);
+    pin.add(fix(new T.Mesh(mergeParts([[new T.ConeGeometry(.2, 1.1, 14), new T.Matrix4().makeRotationX(-Math.PI / 2).setPosition(0, 0, .55), GOLD3], [new T.SphereGeometry(.3, 16, 12), new T.Matrix4().makeTranslation(0, 0, 1.15), GOLD3]]), gold)));
+    const pulse = new T.Mesh(new T.RingGeometry(.3, .4, 40), new T.MeshBasicMaterial({ color: 0xe6cc85, transparent: true, depthWrite: false, side: T.DoubleSide })); pulse.position.z = .03; pin.add(pulse);
+    const arc = (a, b, h) => { const pts = []; for (let k = 0; k <= 48; k++) { const t = k / 48, v = a.clone().normalize().lerp(b.clone().normalize(), t).normalize(); pts.push(v.multiplyScalar(RE * (1.01 + h * Math.sin(Math.PI * t)))); } return new T.CatmullRomCurve3(pts); };
+    const arcMat = new T.MeshBasicMaterial({ color: 0xe6cc85 });
+    // both legs of the route in one mesh, drawn progressively with a draw range
+    const arcCurves = [arc(KOL, MUM, .12), arc(MUM, UAE, .16)], tubes = arcCurves.map(c => new T.TubeGeometry(c, 96, .06, 6, false));
+    const arcPos = [], arcIdx = []; let arcBase = 0;
+    tubes.forEach(g => { arcPos.push(...g.attributes.position.array); g.index.array.forEach(ix => arcIdx.push(ix + arcBase)); arcBase += g.attributes.position.count; });
+    const arcGeo = new T.BufferGeometry(); arcGeo.setAttribute('position', new T.Float32BufferAttribute(arcPos, 3)); arcGeo.setIndex(arcIdx); arcGeo.setDrawRange(0, 0);
+    const nA1 = tubes[0].index.count, nA2 = tubes[1].index.count;
+    spin.add(fix(new T.Mesh(arcGeo, arcMat)));
+    const comet = new T.Sprite(new T.SpriteMaterial({ map: glowTex, transparent: true, depthWrite: false, blending: T.AdditiveBlending })); comet.scale.set(1.6, 1.6, 1); comet.visible = false; spin.add(comet);
+    const targetSpin = Math.atan2(-UAE.x, UAE.z);
+    const EC = new V3(0, -11.5, -14), L0 = new V3(0, 0, -20), d0 = EC.length();
+    const dirA = EC.clone().negate().normalize(), dirB = new V3(0, .22, .97).normalize();
+    const tiltT = (25.3 - Math.asin(dirB.y) / D2R - 6) * D2R;
+
+    // Satellites carry the three tools: one merged model drawn three times (one draw call); empty anchors hold their orbits
+    const satGeo = mergeParts([[new T.BoxGeometry(.9, .62, .62), new T.Matrix4(), GOLD3], [new T.BoxGeometry(1.5, .05, .62), new T.Matrix4().makeTranslation(-1.25, 0, 0), NAVY3], [new T.BoxGeometry(1.5, .05, .62), new T.Matrix4().makeTranslation(1.25, 0, 0), NAVY3], [new T.ConeGeometry(.26, .22, 14, 1, true), new T.Matrix4().makeTranslation(0, .45, 0), GOLD3]]);
+    const satMesh = new T.InstancedMesh(satGeo, new T.MeshStandardMaterial({ vertexColors: true, metalness: .45, roughness: .4, emissive: 0x1a1406, side: T.DoubleSide }), 3);
+    satMesh.frustumCulled = false; satMesh.visible = false; world.add(satMesh);
+    const sats = [[1.34, 14, .16, 0], [1.48, -22, -.12, 2.1], [1.62, 30, .1, 4.2]].map(([rr, inc, spd, ph]) => {
+      const pivot = new T.Group(); pivot.rotation.set(inc * D2R, ph, 0); earthRoot.add(pivot);
+      const g = new T.Group(); g.position.set(RE * rr, 0, 0); g.scale.setScalar(.001); pivot.add(g);
+      return { pivot, g, spd, yaw: ph, kick: 0 };
+    });
+    const capsule = new T.Group(), capGlow = new T.Sprite(new T.SpriteMaterial({ map: glowTex, transparent: true, depthWrite: false, blending: T.AdditiveBlending }));
+    capsule.add(new T.Mesh(new T.CapsuleGeometry(.28, .55, 4, 10), gold)); capGlow.scale.set(2.6, 2.6, 1); capsule.add(capGlow); capsule.visible = false; world.add(capsule);
+    let drop = null;
+    const scr = new V3(), gC = new V3(), P = new V3(), Q = new V3(), wv = new V3(), upv = new V3(), look = new V3(), camDir = new V3(), pj = new V3();
+    const proj = (v, out) => { pj.copy(v).project(gcam); out[0] = (pj.x + 1) / 2 * CW; out[1] = (1 - pj.y) / 2 * CH; return pj.z < 1; };
+    dropTool = i => {
+      if (calm || !earthRoot.visible || sats[i].g.scale.x < .5 || drop) return openTool(i);
+      P.setFromMatrixPosition(sats[i].g.matrixWorld); gC.setFromMatrixPosition(earthRoot.matrixWorld);
+      drop = { i, t0: performance.now(), from: P.clone(), out: P.clone().sub(gC).normalize() };
+      capsule.position.copy(P); capsule.visible = true; sats[i].kick = 1;
+    };
+
+    // Camera choreography: cruise, approach, dolly zoom, reveal, then dock beside the landing panel
+    let f0 = 55, f1 = 30, d1 = 30, dHero = 50, dDock = 60, offH = [0, 0], offD = [0, 0];
+    let ap = 0, apS = 0, tT = 0, tS = 0, spin0 = 0, spinD = null;
+    const pose = (s, dt, time) => {
+      ap = clamp((s - SA) / Math.max(1, SB - SA), 0, 1); tT = clamp((s - SB) / Math.max(1, SC - SB), 0, 1);
+      if (calm) { apS = ap > 0 ? 1 : 0; tS = s > SB - VH * .5 ? 1 : 0; }
+      else { const k = 1 - Math.exp(-dt * 5); apS += (ap - apS) * k; tS += (tT - tS) * k; if (Math.abs(ap - apS) < 2e-4) apS = ap; if (Math.abs(tT - tS) < 2e-4) tS = tT; }
+      const t = tS, after = Math.max(0, s - SC);
+      earthRoot.visible = s > SA - 4 && after < stageH * 1.3;
+      earthRoot.position.set(0, lerp(-46, EC.y, easeOut(apS)), EC.z);
+      const pv = sm(.06, .42, t), ph = sm(.42, .6, t), pd = sm(.8, .94, t);
+      const dist = lerp(d0, d1, pv) + (dHero - d1) * ph + (dDock - dHero) * pd;
+      const fov = pv < 1 ? 2 * Math.atan(Math.tan(f0 * D2R / 2) * d0 / dist) / D2R : f1;
+      scr.copy(dirA).lerp(dirB, sm(.06, .6, t)).normalize();
+      cam.position.copy(EC).addScaledVector(scr, dist);
+      look.lerpVectors(L0, EC, sm(.04, .5, t));
+      cam.fov = fov; cam.lookAt(look); cam.updateProjectionMatrix();
+      gcam.position.copy(cam.position); gcam.quaternion.copy(cam.quaternion); gcam.fov = fov;
+      gcam.setViewOffset(CW, CH, lerp(offH[0], offD[0], pd), lerp(offH[1], offD[1], pd) + after, CW, CH);
+      gcam.updateProjectionMatrix(); gcam.updateMatrixWorld();
+      // the globe turns to the UAE and holds there with a gentle sway
+      const w = sm(.2, .58, t);
+      if (w <= 0) { if (!calm) spin0 += dt * .06; spinD = null; spin.rotation.y = spin0; }
+      else { if (spinD === null) { const dd = targetSpin - spin0; spinD = Math.atan2(Math.sin(dd), Math.cos(dd)); } spin.rotation.y = spin0 + spinD * w + (calm ? 0 : Math.sin(time * .22) * .05 * sm(.6, .75, t)); }
+      tilt.rotation.x = lerp(.32, tiltT, w);
+      const pinS = sm(.55, .64, t); pin.scale.setScalar(Math.max(.001, pinS < 1 ? pinS * (1 + .35 * Math.sin(pinS * Math.PI)) : 1));
+      const k1 = sm(.62, .72, t), k2 = sm(.72, .82, t);
+      arcGeo.setDrawRange(0, k1 < 1 ? Math.floor(nA1 * k1 / 6) * 6 : nA1 + Math.floor(nA2 * k2 / 6) * 6);
+      comet.visible = (k1 > 0 && k1 < 1) || (k2 > 0 && k2 < 1);
+      if (comet.visible) (k1 < 1 ? arcCurves[0] : arcCurves[1]).getPoint(k1 < 1 ? k1 : k2, comet.position);
+      return { t, k1, k2, pinS, satS: sm(.82, .92, t), after };
+    };
+
+    const ray = new T.Raycaster(), ndc = new T.Vector2(), hitC = new V3();
+    estage.addEventListener('click', e => {
+      if (e.target.closest('.pod, .slab') || !earthRoot.visible) return;
+      ndc.set(e.clientX / CW * 2 - 1, -(e.clientY / CH) * 2 + 1); ray.setFromCamera(ndc, gcam);
+      let best = -1, bestD = 1e9;
+      sats.forEach((q, i) => { const k = q.g.scale.x; if (k < .5) return; hitC.setFromMatrixPosition(q.g.matrixWorld); const r = 2.6 * k; if (ray.ray.distanceSqToPoint(hitC) < r * r) { const d = hitC.distanceTo(ray.ray.origin); if (d < bestD) { bestD = d; best = i; } } });
+      if (best >= 0) dropTool(best);
     });
 
-    /* scrolling nudges them, it never parks them off screen */
-    var last=scrollY;
-    addEventListener('scroll',function(){
-      var d=(scrollY-last)/innerHeight; last=scrollY;
-      if(d> .5) d= .5; if(d< -.5) d=-.5;
-      for(var i=0;i<items.length;i++){
-        items[i].vy+=d*.05;
-        if(items[i].vy> .09) items[i].vy= .09;
-        if(items[i].vy< -.09) items[i].vy=-.09;
-      }
-    },{passive:true});
+    const size = () => {
+      CW = canvas.clientWidth || innerWidth; CH = canvas.clientHeight || innerHeight;
+      R.setSize(CW, CH, false); cam.aspect = gcam.aspect = aspect = CW / CH;
+      const port = aspect < .8; f0 = port ? 62 : 55; f1 = port ? 44 : 30; tanV = Math.tan(f0 * D2R / 2);
+      d1 = d0 * Math.tan(f0 * D2R / 2) / Math.tan(f1 * D2R / 2);
+      const F = (CH / 2) / Math.tan(f1 * D2R / 2), distFor = r => RE * Math.sqrt(1 + (F / r) * (F / r));
+      dHero = Math.max(d1 * 1.08, distFor(Math.min(CW * .42, stageH * .36)));
+      let gx, gy, rD;
+      if (BOTTOM) { gx = CW / 2; gy = (70 + podT) / 2; rD = Math.min((CW / 2 - 8) / 1.75, (podT - 70) / 2 / 1.25); }
+      else { gx = podL / 2; gy = stageH / 2; rD = Math.min((gx - 10) / 1.75, (stageH / 2 - 60) / 1.2); }
+      dDock = distFor(Math.max(40, rD));
+      offH = [0, (CH - stageH) / 2]; offD = [CW / 2 - gx, CH / 2 - gy];
+    };
 
-    var mx=0,my=0;
-    addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+    // Overlay helpers
+    // label anchors: [share of width, px, share of height, px] from the projected point; Kolkata right, Mumbai below, UAE above-left
+    const ANCH = [[0, 14, -.5, 0], [-.5, 0, .6, 0], [-.78, 0, -1.5, 0]];
+    const sp = [0, 0], sc = [0, 0];
+    let overlay = false, capText = '', podOn = false, gR = 0, boostAt = -9, lastBusy = 0, warmAt = performance.now() + 2500, slowAcc = 0, slowN = 0;
+    boost = () => { boostAt = performance.now() / 1000; };
+    const setOverlay = on => { if (overlay === on) return; overlay = on; if (!on) { labs.forEach(l => l.classList.remove('on')); slabs.forEach(l => l.classList.remove('on')); ecap.classList.remove('on'); } };
 
-    (function loop(){
-      camera.position.x+=((mx*.55)-camera.position.x)*.04;
-      camera.position.y+=((-my*.40)-camera.position.y)*.04;
-      camera.lookAt(0,0,0);
-      for(var i=0;i<items.length;i++){
-        var it=items[i], m=it.m;
-        m.rotation.x+=it.rx; m.rotation.y+=it.ry; m.rotation.z+=it.rz;
-        var sp=Math.sqrt(it.vx*it.vx+it.vy*it.vy), min=it.shard?.0065:.0022;
-        if(sp>min){ it.vx*=.986; it.vy*=.986; }
-        m.position.x+=it.vx; m.position.y+=it.vy;
-        var lx=B.x+it.r+.7, ly=B.y+it.r+.7;
-        if(m.position.x> lx) m.position.x=-lx;
-        if(m.position.x<-lx) m.position.x= lx;
-        if(m.position.y> ly) m.position.y=-ly;
-        if(m.position.y<-ly) m.position.y= ly;
+    render3d = (now, dt, s, fdt) => {
+      const time = now / 1000;
+      starMat.uniforms.uTime.value = time;
+      const prog = clamp(s / Math.max(1, SB), 0, 1);
+      stars.rotation.x = prog * .45; stars.rotation.y = time * .0015;
+      far.rotation.x = prog * FAR_END;
+      dome.position.copy(cam.position); dome.rotation.copy(far.rotation);
+      // asteroids span the cruise view at every depth and fade at the wrap edges
+      for (let k = 0; k < NA; k++) {
+        const a = A[k], dz = -a.z, wy = dz * tanV * 1.25 + a.s, wx = dz * tanV * aspect * 1.2 + a.s;
+        if (!calm) { a.u = (a.u + a.vu * dt + 1) % 1; a.rx += a.vr * dt; a.ry += a.vr * .7 * dt; }
+        const y = ((a.v * 2 * wy + s * .016) % (2 * wy) + 2 * wy) % (2 * wy) - wy, x = a.u * 2 * wx - wx;
+        const edge = Math.min(1, (wy - Math.abs(y)) / (wy * .15), (wx - Math.abs(x)) / (wx * .1));
+        dummy.position.set(x, y, a.z); dummy.rotation.set(a.rx, a.ry, 0); dummy.scale.setScalar(Math.max(.001, a.s * edge)); dummy.updateMatrix(); rocks.setMatrixAt(k, dummy.matrix);
       }
-      renderer.render(scene,camera);
-      if(!REDUCE) requestAnimationFrame(loop);
-    })();
-  }catch(e){}
+      rocks.instanceMatrix.needsUpdate = true;
+      const st = pose(s, dt, time);
+      mets.forEach(M => { if (!M.on) return; M.t += dt; M.m.position.x += M.vx * dt; M.m.position.y += M.vy * dt; M.m.material.uniforms.uA.value = Math.min(1, M.t / .12) * Math.min(1, (M.life - M.t) / .35); if (M.t >= M.life) { M.on = false; M.m.visible = false; } });
+      const earthOn = earthRoot.visible; satMesh.visible = earthOn;
+      if (earthOn) {
+        sats.forEach(q => { if (!calm) { q.yaw += q.spd * dt; q.pivot.rotation.y = q.yaw; q.g.rotation.y += dt * .5; } q.kick *= Math.exp(-dt * 5); q.g.scale.setScalar(Math.max(.001, st.satS * .8 * (1 + .3 * q.kick))); });
+        const ph = time * .8 % 1; pulse.scale.setScalar(1 + ph * 2.4); pulse.material.opacity = (1 - ph) * .8 * (st.pinS > .95 ? 1 : 0);
+        atmo.material.uniforms.uBoost.value = 1 + Math.max(0, 1 - (time - boostAt) / 1.4) * 1.4;
+      }
+      if (drop) {
+        const u = clamp((now - drop.t0) / 1100, 0, 1), e = u * u * (3 - 2 * u);
+        Q.set(0, -1 + 300 / CH, .5).unproject(gcam).sub(gcam.position).normalize();
+        P.copy(gcam.position).addScaledVector(Q, 9);
+        capsule.position.copy(drop.from).lerp(P, e).addScaledVector(drop.out, Math.sin(Math.PI * e) * 3);
+        capsule.rotation.set(e * 7, e * 4, 0); capsule.scale.setScalar(.8 + e * .5);
+        if (u >= 1) { capsule.visible = false; const i = drop.i; drop = null; openTool(i); spark(VW / 2, VH - 150, 12, 70); }
+      }
+      if (earthOn || capsule.visible) { world.updateMatrixWorld(); for (let i = 0; i < 3; i++) satMesh.setMatrixAt(i, sats[i].g.matrixWorld); satMesh.instanceMatrix.needsUpdate = true; }
+      if (earthOn) {
+        scr.copy(sunDir).transformDirection(gcam.matrixWorldInverse); oceanMat.uniforms.uSun.value.copy(scr); dotMat.uniforms.uSun.value.copy(scr);
+        dotMat.uniforms.uScale.value = CH * pr / (2 * Math.tan(gcam.fov * D2R / 2));
+        // the top of the globe's outline is where the ship lands
+        gC.setFromMatrixPosition(earthRoot.matrixWorld); const dc = gcam.position.distanceTo(gC);
+        if (dc > RE * 1.02) {
+          wv.copy(gcam.position).sub(gC).normalize(); upv.set(0, 1, 0).applyQuaternion(gcam.quaternion); upv.addScaledVector(wv, -upv.dot(wv)).normalize();
+          const ct = RE / dc, stt = Math.sqrt(1 - ct * ct); P.copy(gC).addScaledVector(wv, RE * ct).addScaledVector(upv, RE * stt);
+          limbOK = proj(P, limb) && limb[1] > 0 && limb[1] < VH; proj(gC, sc); gR = Math.hypot(limb[0] - sc[0], limb[1] - sc[1]);
+        }
+        const top = s < SB ? SB - s : s > SC ? SC - s : 0;
+        setOverlay(true);
+        camDir.copy(gcam.position).sub(gC).normalize();
+        // place labels first, kept on screen; satellite labels step aside rather than overlap them
+        const placed = [];
+        PLACES.forEach((v, k) => {
+          const on = k === 0 ? st.k1 > .02 : k === 1 ? st.k1 > .98 : st.pinS > .6;
+          P.copy(v).multiplyScalar(k === 2 ? 1.13 : 1.02); spin.localToWorld(P);
+          const vis = on && Q.copy(P).sub(gC).normalize().dot(camDir) > .2;
+          if (vis !== labs[k].classList.contains('on')) labs[k].classList.toggle('on', vis);
+          if (vis) {
+            proj(P, sp); const a = ANCH[k], w = LW[k], h = LH[k];
+            const lx = clamp(sp[0] + a[0] * w + a[1], 8, VW - w - 8), ly = sp[1] - top + a[2] * h + a[3];
+            labs[k].style.transform = `translate3d(${lx.toFixed(1)}px,${ly.toFixed(1)}px,0)`; placed.push([lx, ly, w, h]);
+          }
+        });
+        sats.forEach((q, k) => {
+          P.setFromMatrixPosition(q.g.matrixWorld); proj(P, sp);
+          const behind = P.distanceTo(gcam.position) > gC.distanceTo(gcam.position) && Math.hypot(sp[0] - sc[0], sp[1] - sc[1]) < gR * 1.05;
+          let vis = st.satS > .9 && !behind;
+          if (vis) {
+            const w = SW[k], h = SH[k], lx = clamp(sp[0] - w / 2, 8, VW - w - 8), ly = sp[1] - top - h * 1.65;
+            if (placed.some(r => lx < r[0] + r[2] + 6 && lx + w + 6 > r[0] && ly < r[1] + r[3] + 4 && ly + h + 4 > r[1])) vis = false;
+            else { placed.push([lx, ly, w, h]); slabs[k].style.transform = `translate3d(${lx.toFixed(1)}px,${ly.toFixed(1)}px,0)`; }
+          }
+          if (vis !== slabs[k].classList.contains('on')) slabs[k].classList.toggle('on', vis);
+        });
+        const cap = st.t > .08 && st.t < .56 ? (st.t < .36 ? 'Final approach' : 'Locating home base') : '';
+        if (cap !== capText) { capText = cap; if (cap) ecap.textContent = cap; ecap.classList.toggle('on', !!cap); }
+        const pon = st.t > .86; if (pon !== podOn) { podOn = pon; pod.classList.toggle('on', pon); }
+      } else { setOverlay(false); if (podOn) { podOn = false; pod.classList.remove('on'); } }
+      if (toolcard.classList.contains('on') && (s < SA || s > SC + VH * .8)) closeTool();
+      R.clearDepth(); R.render(sky, cam);
+      if (earthRoot.visible || capsule.visible) { R.clearDepth(); R.render(world, gcam); }
+      // adaptive quality: lower the resolution if frames keep running long
+      if (now > warmAt && fdt) { slowAcc += fdt; slowN++; if (slowN >= 90) { if (slowAcc / slowN > .026) { if (pr > .75) { pr = Math.max(.75, pr - .25); PR_MAX = pr; R.setPixelRatio(pr); starMat.uniforms.uPR.value = pr; size(); } else render3d.low = true; } slowAcc = 0; slowN = 0; } }
+    };
+    // Measure this device's graphics speed and pick a render resolution that keeps the sky cheap to draw.
+    // Phones with a graphics chip stay sharp; slow or software renderers lower the resolution instead of dropping frames.
+    let PR_MAX = pr;
+    const calibrate = up => {
+      // a one-pixel read waits for the drawing to finish (gl.finish returns at once in Chrome), so this times real work
+      const gl = R.getContext(), px = new Uint8Array(4); let best = 1e9;
+      try {
+        R.clearDepth(); R.render(sky, cam); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+        for (let k = 0; k < 3; k++) { const t0 = performance.now(); R.clearDepth(); R.render(sky, cam); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); best = Math.min(best, performance.now() - t0); }
+      } catch (e) { return; }
+      const next = clamp(Math.floor(pr * Math.sqrt(6 / Math.max(best, .05)) * 4) / 4, .75, PR_MAX);
+      if (next < pr || (up && next > pr)) { pr = next; R.setPixelRatio(pr); starMat.uniforms.uPR.value = pr; size(); }
+    };
+    render3d.size = size; render3d.meteor = meteor; render3d.calibrate = calibrate;
+    render3d.busy = () => !!drop || mets.some(M => M.on) || Math.abs(tT - tS) > 1e-3 || Math.abs(ap - apS) > 1e-3;
+    render3d.limb = () => limbOK;
+    setTimeout(() => { try { size(); R.compile(sky, cam); R.compile(world, gcam); } catch (e) {} calibrate(false); }, 700);
+  }
+
+  // One loop drives scroll, cursor, ship and sky
+  let lastScroll = 0, lastDownAt = 0, nextCalib = performance.now() + 5000, calibs = 0;
+  let last = performance.now(), lastS = scrollY, activeUntil = 0, burst = false, burstOK = 0, nextAmb = performance.now() + 1500, speedAt = 0, acc = 0, odd = false;
+  const frame = now => {
+    requestAnimationFrame(frame);
+    if (lenis) lenis.raf(now);
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    const s = scrollY, dy = s - lastS; lastS = s;
+    if (dy) { activeUntil = now + 900; lastScroll = now; sharpen(s); }
+    if (seen) {
+      const k = 1 - Math.exp(-dt * 14); cx += (mx - cx) * k; cy += (my - cy) * k;
+      cstar.style.transform = `translate3d(${cx.toFixed(1)}px,${cy.toFixed(1)}px,0) rotate(${((cx + cy) * .4).toFixed(1)}deg)`;
+      if (Math.hypot(cx - lx, cy - ly) > 16) { spark(cx, cy, 1, 26); lx = cx; ly = cy; }
+      if (now - lastPointer < 600) activeUntil = Math.max(activeUntil, now + 300);
+    }
+    if (!calm && WPT.length) {
+      if (dy < -2) { downSince = 0; lastDownAt = 0; flight = null; if (shipState === 'park' || shipState === 'fly') setShip('gone'); }
+      else if (dy > 0) { downSince += dy; lastDownAt = now; }
+      if (s < 4 && cur > 0 && !flight) resetVoyage();
+      if (!flight) for (let k = cur + 1; k <= 6; k++) if (WPT[k][1] - s < -VH * .25) arrive(k, 'quiet');
+      if (!flight && cur === 0) {
+        const y0 = WPT[0][1] - s;
+        if (shipState !== 'park' && dy >= 0 && y0 < VH * .92 && y0 > VH * .06) setShip('park');
+        if (shipState === 'park') { placeShip(WPT[0][0] - scrollX, y0, Math.PI / 2); if (y0 < -40 || y0 > VH + 40) setShip('gone'); }
+      }
+      if (!flight && (downSince > 24 || (cur > 0 && now - lastDownAt < 2500)) && cur < 7 && now > busyUntil) {
+        let to = cur;
+        for (let k = cur + 1; k <= 6; k++) if (WPT[k][1] - s < VH * .78) to = k;
+        if (to === cur && cur === 6 && render3d && render3d.limb() && limb[1] < VH * .94 && s < SC) to = 7;
+        if (to > cur) { for (let k = cur + 1; k < to - 1; k++) arrive(k, 'quiet'); startFlight(to); }
+      }
+      if (flight) flyStep(now, s);
+    }
+    if (render3d && !calm) {
+      const inHero = s < heroH * 1.2;
+      if (inHero && s > 40 && !burst && now > burstOK) { burst = true; [0, 240, 560, 900].forEach(d => setTimeout(render3d.meteor, d)); }
+      if (s < 8 && burst) { burst = false; burstOK = now + 8000; }
+      if (now > nextAmb && !document.hidden) { render3d.meteor(); nextAmb = now + (inHero ? 2600 + Math.random() * 3200 : 6000 + Math.random() * 6000); }
+      if (inHero && Math.abs(dy) > 40 && now - speedAt > 700) { render3d.meteor(); speedAt = now; }
+    }
+    if (render3d && !document.hidden && calibs < 2 && now > nextCalib && now - lastScroll > 2500 && !flight) { calibs++; nextCalib = now + 9000; render3d.calibrate(true); }
+    if (render3d && !document.hidden) {
+      acc += dt; odd = !odd;
+      const full = (now < activeUntil || flight || render3d.busy()) && !(render3d.low && odd && !flight);
+      if (full || !odd) { render3d(now, acc, s, full ? dt : 0); acc = 0; }
+    }
+  };
+
+  // Layout and resize
+  let rT = 0, roT = 0, lastW = innerWidth;
+  const relayout = () => { cache(); layoutVoyage(); if (render3d) render3d.size(); lastP = -1; sharpen(scrollY); };
+  addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { if (innerWidth !== lastW || Math.abs(innerHeight - VH) > 160) { lastW = innerWidth; relayout(); } else cache(); }, 150); });
+  narrowMQ.addEventListener && narrowMQ.addEventListener('change', relayout);
+  new ResizeObserver(() => { clearTimeout(roT); roT = setTimeout(() => { cache(); layoutVoyage(); }, 120); }).observe($('.wps', voy));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+  relayout();
+  voy.classList.add('live');
+  requestAnimationFrame(frame);
+}
+</script>
+<div class="cvtoast" role="status" aria-live="polite"></div>
+<script>
+// CV downloads: inside Claude's artifact viewer the file goes through the downloads capability; on a normal website the plain link works
+(() => {
+  const host = window.claude && typeof window.claude.use === 'function';
+  const ready = host ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null);
+  const toast = document.querySelector('.cvtoast');
+  const say = m => { if (!toast) return; toast.textContent = m; toast.classList.add('on'); clearTimeout(say.t); say.t = setTimeout(() => toast.classList.remove('on'), 4200); };
+  document.addEventListener('click', async e => {
+    const a = e.target.closest('a[data-cv]');
+    if (!a || !host) return;
+    e.preventDefault();
+    const d = await ready;
+    if (!d) { say('Downloads are off in this preview. Email me and I will send the CV.'); return; }
+    try {
+      const blob = await (await fetch(a.getAttribute('href'))).blob();
+      await d.save({ filename: a.getAttribute('download'), data: blob });
+      say('Saved: ' + a.getAttribute('download'));
+    } catch (err) {
+      if (err && err.code === 'declined') return;
+      say(err && err.code === 'rate_limited' ? 'One moment, a save is already open.' : 'That download did not go through. Email me and I will send the CV.');
+    }
+  });
 })();
 </script>
 </body>
