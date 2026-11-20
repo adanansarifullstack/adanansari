@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collect the Cards | A website by Aden Ansari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE playful but credible: a recruiter can skim it in ten seconds or play for a minute
+   IDEA a career as a collectible card set: a sealed pack to tear open, twelve proof cards, a golden contact card as the prize
+   PICTURE foil cards with banknote-style guilloche plates that catch the light as you move or scroll, lifted into a close-up when tapped
+   COLOUR navy ground; gold holo, bronze, teal and silver foils as the rarity code; off-white text
+   TYPE Unbounded for the name and card titles, Inter for everything you read
+   LAYOUT laptop: pitch left, pack right, then a four-wide set; phone: pack under the pitch, two-wide set, close-up fills the screen */
+:root{color-scheme:dark;--bg:#0a1430;--ink:#eef2f8;--mute:#a9b4c9;--gold:#c9a84c;--gold2:#ecd391;--line:rgba(255,255,255,.12)}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:radial-gradient(70% 45% at 50% 0%,#18295c,transparent 70%),var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:var(--gold2);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:max(4vw,16px)}
+.r-holo{--tone:#ecd391;--foil:linear-gradient(125deg,#c9a84c,#f6e7b4 22%,#a6e6d9 38%,#e6bdf2 50%,#f6e7b4 64%,#c9a84c 80%,#f6e7b4);--holo:.55}
+.r-epic{--tone:#e3b07a;--foil:linear-gradient(135deg,#5b3a18,#c48a4f 35%,#f0c995 50%,#a86a33 65%,#5b3a18);--holo:.32}
+.r-rare{--tone:#62d6c7;--foil:linear-gradient(135deg,#0d4a4a,#2fb3a3 40%,#9de8dd 52%,#1d8379 64%,#0d4a4a);--holo:.26}
+.r-common{--tone:#d3dae5;--foil:linear-gradient(135deg,#7f8ba0,#dfe5ee 42%,#fff 50%,#aab4c4 60%,#7f8ba0);--holo:.16}
+.r-wip{--tone:#d3dae5;--foil:repeating-linear-gradient(135deg,#4a5873 0 8px,#5f6e8c 8px 16px);--holo:.1}
+.bar{position:sticky;top:0;z-index:20;background:rgba(10,20,48,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap;min-height:64px;padding-block:8px}
+.brand{font:700 16px/1 Unbounded,sans-serif;color:var(--ink);text-decoration:none;white-space:nowrap}
+.count{display:flex;align-items:center;gap:10px;margin-left:auto;font-size:14px;color:var(--mute)}
+.pips{display:flex;gap:5px}
+.pips span{width:9px;height:9px;rotate:45deg;border:1px solid rgba(201,168,76,.65);border-radius:2px;transition:background .3s}
+.pips span.on{background:var(--gold);border-color:var(--gold)}
+.meter{position:absolute;left:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:12px;border:0;font:700 15px/1 Inter,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn.gold{background:linear-gradient(135deg,#efd68f,#c9a84c 55%,#a8862c);color:#0a1430}
+.btn.line{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--ink)}
+.btn.line:hover{border-color:var(--gold)}
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(30px,5vw,80px);align-items:center;padding-block:clamp(44px,7vw,96px) clamp(30px,5vw,60px)}
+.eyebrow{color:var(--gold2);font-size:15px;margin:0 0 12px}
+h1{font:800 clamp(38px,8.4vw,100px)/.98 Unbounded,sans-serif;letter-spacing:-.045em;margin:0 0 18px}
+.pitch{font-size:clamp(17px,1.6vw,20px);color:var(--mute);max-width:36em;margin:0 0 24px}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;margin:26px 0 0;padding:0;font-size:14px;color:var(--mute)}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:14px;height:20px;border-radius:3px;background:var(--foil)}
+.packwrap{display:grid;justify-items:center;gap:14px;perspective:1200px}
+.pack{position:relative;width:min(300px,68vw);aspect-ratio:5/7.4;border:0;padding:0;background:none;cursor:pointer;transform:rotateY(var(--ry,-8deg)) rotateX(var(--rx,4deg));transition:transform .4s;animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{translate:0 -8px}}
+.crimp{position:absolute;left:0;right:0;height:22px;background:linear-gradient(90deg,rgba(255,255,255,.3),rgba(0,0,0,.25)),var(--foil);transition:transform .7s cubic-bezier(.3,.6,.2,1),opacity .7s}
+.crimp.t{top:0;-webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/12px 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/12px 100%}
+.crimp.b{bottom:0;-webkit-mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) 50%/12px 100%;mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) 50%/12px 100%}
+.pbody{position:absolute;inset:16px 0;border-radius:6px;padding:12px;background:var(--foil);box-shadow:0 30px 60px rgba(0,0,0,.45);transition:transform .8s cubic-bezier(.3,.6,.2,1) .2s,opacity .6s .25s}
+.pplate{display:flex;flex-direction:column;justify-content:space-between;height:100%;border-radius:8px;padding:18px 16px;text-align:left;color:var(--ink);background:repeating-radial-gradient(circle at 50% 46%,rgba(236,211,145,.08) 0 1px,transparent 1px 7px),linear-gradient(180deg,#15275a,#0b1634)}
+.ped{font:700 11px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.pname{font:800 clamp(34px,4.4vw,48px)/.92 Unbounded,sans-serif;letter-spacing:-.04em}
+.pmeta{font-size:13px;color:var(--mute)}
+.pseal{position:absolute;right:26px;bottom:44px;width:66px;height:66px;border-radius:50%;display:grid;place-content:center;text-align:center;font:800 20px/1 Unbounded,sans-serif;color:#0a1430;background:radial-gradient(circle at 35% 30%,#fff3c9,#e0b85a 45%,#9c7420);box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.pseal small{font:700 9px/1 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.pack .holo{display:none}
+.pbody::after{content:"";position:absolute;inset:0;border-radius:6px;pointer-events:none;mix-blend-mode:soft-light;background:radial-gradient(circle at var(--mx,30%) var(--my,25%),rgba(255,255,255,.55),transparent 55%)}
+.pack.open{animation:none}
+.pack.open .crimp.t{transform:translate(40px,-90px) rotate(18deg);opacity:0}
+.pack.open .pbody,.pack.open .crimp.b,.pack.open .holo,.pack.open .pseal{transform:translateY(40px) scale(.92);opacity:0}
+.pseal{transition:transform .7s .2s,opacity .6s .25s}
+.phint{margin:0;font-size:14px;color:var(--mute)}
+.holo{position:absolute;inset:0;z-index:0;border-radius:16px;pointer-events:none;mix-blend-mode:color-dodge;opacity:calc(var(--holo,.3) * 1.4);background:repeating-linear-gradient(110deg,#ff9a9a 0,#ffd88a 5%,#9cffb0 10%,#8ad8ff 15%,#c79cff 20%,#ff9a9a 25%);background-size:400% 400%;background-position:var(--mx,40%) var(--my,40%)}
+.glare{position:absolute;inset:0;z-index:2;border-radius:16px;pointer-events:none;mix-blend-mode:soft-light;background:radial-gradient(circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.4),transparent 50%);opacity:.7;transition:opacity .3s}
+.sethead{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin:clamp(20px,4vw,40px) 0 22px}
+.sethead h2{font:800 clamp(28px,4vw,46px)/1.05 Unbounded,sans-serif;letter-spacing:-.03em;margin:0}
+.sethead p{margin:6px 0 0;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--ink);font:600 14px/1 Inter,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#0a1430}
+.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,24px)}
+.grid.wait .slot{opacity:0}
+.card{position:relative;display:block;width:100%;aspect-ratio:5/7;padding:7px;border:0;margin:0;border-radius:16px;background:var(--foil);color:var(--ink);font:inherit;text-align:left;cursor:pointer;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,box-shadow .3s;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.card:hover{box-shadow:0 24px 48px rgba(0,0,0,.45),0 0 0 1px var(--tone)}
+.plate{position:relative;z-index:1;display:flex;flex-direction:column;height:100%;border-radius:11px;padding:12px 14px 14px;overflow:hidden;background:repeating-radial-gradient(circle at 50% 36%,rgba(236,211,145,.06) 0 1px,transparent 1px 6px),linear-gradient(180deg,#15275a,#0b1634)}
+.top{display:flex;justify-content:space-between;gap:8px;font:700 12px/1 Inter,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--mute)}
+.top span+span{color:var(--tone)}
+.medal{flex:1;display:grid;place-items:center}
+.medal i{width:56%;max-width:112px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;color:var(--tone);background:radial-gradient(circle,rgba(255,255,255,.07),transparent 70%);box-shadow:inset 0 0 0 1.5px var(--tone),0 0 30px -8px var(--tone)}
+.medal svg{width:54%;height:54%}
+.ttl{font:700 clamp(14px,1.45vw,18px)/1.15 Unbounded,sans-serif;letter-spacing:-.01em;margin-bottom:6px}
+.stat{font-size:13px;color:var(--mute);line-height:1.35}
+.cat{display:inline-block;align-self:flex-start;margin-top:8px;font:700 11px/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--tone);border:1px solid var(--tone);border-radius:999px;padding:4px 8px}
+.prog{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.14);margin-top:8px;overflow:hidden}
+.prog span{display:block;height:100%;background:var(--gold)}
+.got{position:absolute;z-index:3;right:12px;top:36px;display:none;font:700 11px/1 Inter,sans-serif;color:#0a1430;background:var(--tone);padding:4px 8px;border-radius:999px}
+.have .got{display:block}
+.below{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:18px;font-size:14px;color:var(--mute)}
+.inspect{position:fixed;inset:0;z-index:40;display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.inspect.on{opacity:1;pointer-events:auto}
+.scrim{position:absolute;inset:0;background:rgba(5,10,24,.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.ibox{position:relative;display:grid;justify-items:center;gap:16px;perspective:1300px}
+.icard{position:relative;width:min(360px,80vw,calc((100svh - 150px) * 5 / 7));aspect-ratio:5/7;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(calc(var(--ry,0deg) + var(--flip,0deg)));transition:transform .7s cubic-bezier(.2,.7,.2,1);cursor:grab;touch-action:none}
+.icard.back{--flip:180deg}
+.icard.drag{transition:none}
+.iface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px}
+.iface .card{height:100%;aspect-ratio:auto;border-radius:20px;padding:9px;transform:none;cursor:inherit}
+.iface .ttl{font-size:clamp(18px,5.4vw,24px)}.iface .stat{font-size:15px}.iface .top{font-size:13px}
+.iback{transform:rotateY(180deg);padding:9px;background:var(--foil);border-radius:20px}
+.iback .plate{padding:22px 20px;gap:10px}
+.iback h3{font:700 clamp(20px,5.6vw,26px)/1.15 Unbounded,sans-serif;margin:0}
+.iback p{margin:0;color:#d7dfec;font-size:clamp(15px,4.2vw,17px)}
+.iback .foot{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font-size:13px;color:var(--mute)}
+.ibar{display:flex;gap:10px}
+.toast{position:fixed;left:50%;top:78px;z-index:50;transform:translate(-50%,-14px);opacity:0;pointer-events:none;padding:12px 18px;border-radius:12px;background:#0b1638;border:1px solid var(--gold);color:var(--ink);font:600 14px/1.4 Inter,sans-serif;box-shadow:0 14px 40px rgba(0,0,0,.4);transition:opacity .35s,transform .35s;max-width:min(92vw,460px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+#spark{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:45}
+.contact{padding-block:clamp(56px,8vw,112px);scroll-margin-top:72px}
+.contact h2{font:800 clamp(28px,4vw,48px)/1.05 Unbounded,sans-serif;letter-spacing:-.03em;margin:0 0 8px;text-align:center}
+.contact .sub{color:var(--mute);text-align:center;margin:0 0 28px}
+.gc-wrap{perspective:1600px;max-width:780px;margin:0 auto}
+.gc{display:grid;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.gc.open{transform:rotateY(180deg)}
+.gc>.face{grid-area:1/1;position:relative;border-radius:24px;padding:9px;background:var(--foil);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.gc>.info{transform:rotateY(180deg)}
+.gplate{position:relative;height:100%;border-radius:16px;padding:clamp(22px,3.6vw,40px);background:repeating-radial-gradient(circle at 80% 20%,rgba(236,211,145,.07) 0 1px,transparent 1px 7px),linear-gradient(160deg,#15275a,#0a1430)}
+.lockp{display:grid;place-items:center;align-content:center;text-align:center;gap:12px;min-height:100%}
+.lockp svg{width:46px;height:46px;color:var(--gold2)}
+.gname{font:800 clamp(26px,4vw,44px)/1.02 Unbounded,sans-serif;letter-spacing:-.03em;margin:0}
+.glock,.grole{margin:0;color:var(--mute)}
+.ginfo{display:grid;gap:18px}
+.gtop{display:flex;justify-content:space-between;font:700 12px/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gold2)}
+.gdl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;margin:0}
+.gdl dt{font:700 12px/1 Inter,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--gold2);margin-bottom:4px}
+.gdl dd{margin:0;overflow-wrap:anywhere}
+.gdl a{color:var(--ink)}
+.gtag{margin:0;font:700 16px/1.3 Unbounded,sans-serif;color:var(--gold2)}
+footer{border-top:1px solid var(--line);padding-block:22px 34px;font-size:14px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between;align-items:center}
+footer a{color:var(--ink);text-decoration:none;padding-block:10px;display:inline-block}
+@media(max-width:980px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.hero{grid-template-columns:minmax(0,1fr)}.packwrap{order:2}}
+@media(max-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.plate{padding:10px}.count{margin-left:0;width:100%;order:3}.bar .btn{margin-left:auto}.gdl{grid-template-columns:minmax(0,1fr)}.medal i{width:62%}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.cvtoast{position:fixed;left:50%;bottom:22px;z-index:99;transform:translate(-50%,20px);opacity:0;pointer-events:none;max-width:min(92vw,460px);padding:12px 18px;border-radius:12px;background:var(--toast-bg,#0b1628);color:var(--toast-ink,#eef1f7);border:1px solid var(--toast-edge,rgba(236,211,145,.45));font:500 14px/1.45 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:opacity .3s,transform .3s}
+.cvtoast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="brand" href="#top">Aden Ansari</a>
+  <div class="count"><span id="status" aria-live="polite">0 of 12 collected</span><span class="pips" id="pips" aria-hidden="true"></span></div>
+  <button class="btn gold" id="getcard" type="button">Get my contact card</button>
+</div><span class="meter" id="meter"></span></header>
+
+<main id="top">
+<section class="hero wrap" aria-labelledby="name">
+  <div>
+    <p class="eyebrow">Accountant &amp; internal auditor &middot; UAE</p>
+    <h1 id="name">Aden Ansari</h1>
+    <p class="pitch">Nine years of audit, tax and data as a 12-card set. Tear open the pack, tap each card for the proof on its back, and collect all twelve to unlock my contact card. In a hurry? The gold button at the top skips the game.</p>
+    <div class="ctas"><button class="btn gold" id="openpack" type="button">Open the pack</button><a class="btn line" href="#set">See the set</a></div>
+    <ul class="legend" aria-label="Rarity key">
+      <li class="r-holo"><i></i>Legendary</li><li class="r-epic"><i></i>Epic</li><li class="r-rare"><i></i>Rare</li><li class="r-common"><i></i>Common</li><li class="r-wip"><i></i>Still unlocking</li>
+    </ul>
+  </div>
+  <div class="packwrap">
+    <button class="pack r-holo" id="pack" type="button" aria-label="Tear open the card pack">
+      <span class="crimp t"></span>
+      <span class="pbody"><span class="pplate"><span class="ped">Career edition &middot; 2026</span><span class="pname">ADEN<br>ANSARI</span><span class="pmeta">12 cards &middot; 2 legendary &middot; 1 bonus</span></span></span>
+      <span class="pseal" aria-hidden="true">9+<small>years</small></span>
+      <span class="crimp b"></span>
+      <span class="holo"></span>
+    </button>
+    <p class="phint" id="phint">Tap the pack to tear it open</p>
+  </div>
+</section>
+
+<section class="wrap" id="set" aria-labelledby="set-h" style="scroll-margin-top:80px">
+  <div class="sethead">
+    <div><h2 id="set-h">The set</h2><p>Tap a card to lift it out and read its back.</p></div>
+    <div class="chips" id="chips" role="group" aria-label="Filter the set">
+      <button class="chip" type="button" aria-pressed="true" data-k="all">All</button>
+      <button class="chip" type="button" aria-pressed="false" data-k="audit">Audit</button>
+      <button class="chip" type="button" aria-pressed="false" data-k="tax">Tax</button>
+      <button class="chip" type="button" aria-pressed="false" data-k="tools">Tools</button>
+      <button class="chip" type="button" aria-pressed="false" data-k="growth">Growth</button>
+    </div>
+  </div>
+  <ul class="grid" id="grid"></ul>
+  <div class="below"><span>Your set is saved in this browser.</span><button class="btn line" id="reset" type="button">Start over</button></div>
+</section>
+
+<section class="contact wrap" id="contact" aria-labelledby="contact-h">
+  <h2 id="contact-h" tabindex="-1">The golden contact card</h2>
+  <p class="sub">Card 13 of 12. Every set has a bonus.</p>
+  <div class="gc-wrap">
+    <div class="gc r-holo" id="gc">
+      <div class="face lockface">
+        <div class="gplate lockp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+          <p class="gname">Locked</p>
+          <p class="glock" id="glock">Collect all 12 cards to unlock it.</p>
+          <button class="btn gold" id="unlock" type="button">Unlock it now</button>
+        </div>
+      </div>
+      <div class="face info" inert>
+        <div class="gplate ginfo">
+          <div class="gtop"><span>13 / 12</span><span>Golden</span></div>
+          <div><p class="gname">Aden Ansari</p><p class="grole">Accountant and internal auditor in the UAE. Audit, Corporate Tax, controls and FP&amp;A, now adding Power BI and SQL.</p></div>
+          <div class="ctas"><a class="btn gold" data-cv href="../../cv/Aden-Ansari-CV-Finance.pdf" download="Aden-Ansari-CV-Finance.pdf" target="_blank" rel="noopener">Finance CV (PDF)</a><a class="btn line" data-cv href="../../cv/Aden-Ansari-CV-Data-Analyst.pdf" download="Aden-Ansari-CV-Data-Analyst.pdf" target="_blank" rel="noopener">Data analyst CV (PDF)</a></div>
+          <dl class="gdl">
+            <div data-email-row hidden><dt>Email</dt><dd><a data-email="" data-label="@" hidden href="#">Email</a></dd></div>
+            <div><dt>Phone</dt><dd><a href="tel:+971505365447">+971 50 53 65 447</a></dd></div>
+            <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/">Aden Ansari on LinkedIn</a></dd></div>
+            <div><dt>Notice</dt><dd>30 days &middot; Dubai and Sharjah</dd></div>
+          </dl>
+          <p class="gtag">Audit eyes. Analyst mind.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="inspect" id="inspect" aria-hidden="true">
+  <div class="scrim" data-close></div>
+  <div class="ibox" id="ibox" role="dialog" aria-modal="true" aria-label="Card close-up">
+    <div class="icard" id="icard"><div class="iface ifront" id="ifront"></div><div class="iface iback" id="iback"></div></div>
+    <div class="ibar"><button class="btn line" id="iflip" type="button">Flip</button><button class="btn gold" type="button" data-close>Back to the set</button></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<canvas id="spark" aria-hidden="true"></canvas>
+
+<footer><div class="wrap">
+  <span style="font:700 15px/1.3 Unbounded,sans-serif;color:var(--gold2)">Audit eyes. Analyst mind.</span>
+  <a data-email="" data-label="@" hidden href="#">Email</a><a href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/recent-activity/all/">Audit case studies on LinkedIn</a><span style="padding-block:10px">A design sample. <a href="../../index.html">See the main site</a></span>
+</div></footer>
+
+<script>
+{
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches, fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const GH = 'https://github.com/adanansarifullstack/adanansari/raw/main/tools/';
+  const I = {
+    find: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M8 10.5h5M10.5 8v5"/>',
+    ct: '<path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-5h4v5"/>',
+    year: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M9.5 13l5 5M14.5 13l-5 5"/>',
+    vat: '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="m9 11 2 2 4-4"/>',
+    a51: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M9 15h6"/>',
+    branch: '<circle cx="5" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="18.5" cy="12" r="2.5"/><path d="M7 5c5 0 5 7 9 7M7 12h9M7 19c5 0 5-7 9-7"/>',
+    ccm: '<path d="M4 16a8 8 0 0 1 16 0"/><path d="m12 16 4-5"/><circle cx="12" cy="16" r="1.4"/>',
+    att: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="m9 15 2 2 4-4"/>',
+    words: '<path d="M5 18 9 6l4 12M6.5 14h5M15.5 11h4M15.5 15h4"/>',
+    vba: '<path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12"/>',
+    team: '<circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.4"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M14 19a4 4 0 0 1 7 0"/>',
+    pbi: '<path d="M5 20v-8M10 20V8M15 20v-5M20 20V5"/>'
+  };
+  const C = [
+    { id: 'find', r: 'holo', rl: 'Legendary', k: 'audit', kl: 'Audit', t: 'The &#8377;50 Lakh Find', s: '&#8377;50 lakh traced', b: 'MK Leathers, 2024. A routine audit traced a full year of undocumented collections, documented and taken to the owner.' },
+    { id: 'ct', r: 'holo', rl: 'Legendary', k: 'tax', kl: 'Tax', t: 'First CT Cycle', s: 'UAE Corporate Tax, cycle one', b: "Delivered the group's first UAE Corporate Tax filing cycle: computations, add-backs, provisions and connected persons." },
+    { id: 'year', r: 'epic', rl: 'Epic', k: 'audit', kl: 'Audit', t: 'The Missing Year', s: 'Depreciation, found', b: 'Caught a full year of depreciation that was never booked. It is now in the audited FY2025 accounts.' },
+    { id: 'vat', r: 'rare', rl: 'Rare', k: 'tax', kl: 'Tax', t: 'VAT201 Tie-Out', s: '24 checks, every quarter', b: 'Filed VAT201 returns rebuilt from raw Tally exports with a 24-check Excel model, reverse charge included.' },
+    { id: 'a51', r: 'rare', rl: 'Rare', k: 'tax', kl: 'Payroll', t: 'Article 51', s: 'Gratuity, done to the letter', b: 'End-of-service gratuity recomputed under UAE Labour Law, with payroll tested against WPS and MOHRE records.' },
+    { id: 'branch', r: 'rare', rl: 'Rare', k: 'audit', kl: 'Audit', t: 'Three Branches, One Book', s: '252 ledgers consolidated', b: 'Three branch trial balances merged into one set of accounts, every source balance used exactly once.' },
+    { id: 'ccm', r: 'epic', rl: 'Epic', k: 'tools', kl: 'Tool', t: 'Credit Control Manager', s: 'Every customer scored out of 100', b: 'Reads Tally exports, scores credit risk, suggests limits and flags projected bad debts before the money is gone.', a: ['Download free', GH + 'Credit-Control-Manager.xlsm'] },
+    { id: 'att', r: 'rare', rl: 'Rare', k: 'tools', kl: 'Tool', t: 'Attendance &amp; Salary Sheet', s: 'Register to payslip in one file', b: 'Employee database, attendance register and salary calculation in one workbook, with an admin lock.', a: ['Download free', GH + 'Attendance-Salary-Sheet.xlsm'] },
+    { id: 'words', r: 'rare', rl: 'Rare', k: 'tools', kl: 'Tool', t: 'Amount in Words', s: 'USD, AED and INR', b: 'One Excel function for invoices and cheques, with lakhs and crores where they belong.', a: ['Get the code', GH + 'Currency-Converter.txt'] },
+    { id: 'vba', r: 'epic', rl: 'Epic', k: 'tools', kl: 'Automation', t: 'VBA Payroll Build', s: 'Built from a blank workbook', b: 'R Ahmed Distributors: an Excel VBA payroll for a 15-person workforce that ended recurring manual errors.' },
+    { id: 'team', r: 'common', rl: 'Common', k: 'growth', kl: 'People', t: 'The Trainer', s: '10 to 15 people guided', b: 'Guides a 10 to 15 person accounts team across Sharjah and Morbi, India.' },
+    { id: 'pbi', r: 'wip', rl: 'Unlocking', k: 'growth', kl: 'Data', t: 'Power BI', s: '7% and climbing', w: 7, b: 'Certified in Excel with Power Query, Power Pivot and DAX. Power BI is under way; SQL and Python come next.' }
+  ];
+  const svg = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const front = (c, n) => `<span class="plate"><span class="top"><span>${String(n + 1).padStart(2, '0')} / 12</span><span>${c.rl}</span></span><span class="medal"><i>${svg(I[c.id])}</i></span><span class="ttl">${c.t}</span><span class="stat">${c.s}</span>${c.w ? `<span class="prog"><span style="width:${c.w}%"></span></span>` : ''}<span class="cat">${c.kl}</span></span><span class="holo"></span><span class="glare"></span><span class="got">Collected</span>`;
+  const grid = $('#grid');
+  grid.innerHTML = C.map((c, n) => `<li class="slot r-${c.r}" id="s-${c.id}" data-k="${c.k}"><button class="card" type="button" data-n="${n}" aria-label="Card ${n + 1} of 12: ${c.t.replace(/&#8377;/g, '\u20b9').replace('&amp;', 'and')}. Lift it out.">${front(c, n)}</button></li>`).join('');
+  const slots = $$('.slot', grid);
+
+  // Saved progress
+  const KEY = 'aden-cards-v2', GOLD = 'aden-cards-v2-gold', OPEN = 'aden-cards-v2-open';
+  const get = k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, put = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
+  let have = new Set(); try { have = new Set(JSON.parse(get(KEY) || '[]')); } catch (e) {}
+  const pips = $('#pips'); pips.innerHTML = C.map(() => '<span></span>').join('');
+  const gc = $('#gc'), toastEl = $('#toast');
+  const toast = m => { toastEl.textContent = m; toastEl.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => toastEl.classList.remove('on'), 2600); };
+  const openGold = (scroll) => {
+    gc.classList.add('open'); $('.lockface', gc).inert = true; $('.info', gc).inert = false; put(GOLD, '1');
+    if (scroll) { $('#contact').scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' }); $('#contact-h').focus({ preventScroll: true }); }
+  };
+  const refresh = () => {
+    C.forEach((c, n) => { const on = have.has(c.id); slots[n].classList.toggle('have', on); pips.children[n].classList.toggle('on', on); });
+    const k = have.size; $('#meter').style.width = (k / 12 * 100) + '%';
+    $('#status').textContent = k === 12 ? '12 of 12. Golden card unlocked' : `${k} of 12 collected`;
+    $('#glock').textContent = `Collect all 12 cards to unlock it. You have ${k}.`;
+  };
+
+  // Sparkle bursts for rare pulls
+  const sp = $('#spark'), sx = sp.getContext('2d'), parts = []; let sparkOn = false;
+  const burst = (x, y, n, col) => {
+    const D = Math.min(window.devicePixelRatio || 1, 2); sp.width = innerWidth * D; sp.height = innerHeight * D; sx.setTransform(D, 0, 0, D, 0, 0);
+    for (let k = 0; k < n; k++) { const a = Math.random() * 6.283, v = 140 + Math.random() * 360; parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 120, t: 0, l: .7 + Math.random() * .7, s: 1.5 + Math.random() * 2.5, c: col }); }
+    if (!sparkOn) { sparkOn = true; let last = performance.now(); const tick = now => { const dt = Math.min(.05, (now - last) / 1000); last = now; sx.clearRect(0, 0, innerWidth, innerHeight);
+      for (let k = parts.length - 1; k >= 0; k--) { const p = parts[k]; p.t += dt; if (p.t > p.l) { parts.splice(k, 1); continue; } p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 420 * dt; p.vx *= .985;
+        const f = 1 - p.t / p.l; sx.globalAlpha = f; sx.fillStyle = p.c; sx.fillRect(p.x - p.s * 1.8, p.y - .6, p.s * 3.6, 1.2); sx.fillRect(p.x - .6, p.y - p.s * 1.8, 1.2, p.s * 3.6); sx.beginPath(); sx.arc(p.x, p.y, p.s * .6, 0, 6.283); sx.fill(); }
+      if (parts.length) requestAnimationFrame(tick); else { sparkOn = false; sx.clearRect(0, 0, innerWidth, innerHeight); } }; requestAnimationFrame(tick); }
+  };
+
+  // Close-up: lift a card out of the set, flip it, tilt it with a finger or the mouse
+  const insp = $('#inspect'), ibox = $('#ibox'), icard = $('#icard');
+  let curN = -1, fromEl = null;
+  const flipTo = b => { icard.classList.toggle('back', b); $('#ifront').inert = b; $('#iback').inert = !b; };
+  const collect = n => {
+    const c = C[n]; if (have.has(c.id)) return;
+    have.add(c.id); put(KEY, JSON.stringify([...have])); refresh();
+    const r = icard.getBoundingClientRect();
+    if (!calm && (c.r === 'holo' || c.r === 'epic')) burst(r.left + r.width / 2, r.top + r.height / 2, c.r === 'holo' ? 90 : 50, c.r === 'holo' ? '#f3d27a' : '#e3b07a');
+    toast(have.size === 12 ? 'Set complete. The golden contact card is unlocked.' : c.r === 'holo' ? 'Legendary pulled: ' + c.t.replace(/&#8377;/g, '₹') : `Collected: ${have.size} of 12`);
+    if (have.size === 12) openGold(false);
+  };
+  const lift = n => {
+    const c = C[n]; curN = n; fromEl = slots[n].querySelector('.card');
+    $('#ifront').innerHTML = `<div class="card r-${c.r}">${front(c, n)}</div>`; $('#ifront').className = 'iface ifront r-' + c.r;
+    $('#iback').className = 'iface iback r-' + c.r;
+    $('#iback').innerHTML = `<div class="plate"><p class="top"><span>${c.kl}</span><span>${c.rl}</span></p><h3>${c.t}</h3><p>${c.b}</p>${c.w ? `<span class="prog"><span style="width:${c.w}%"></span></span>` : ''}<div class="foot">${c.a ? `<a class="btn gold" href="${c.a[1]}">${c.a[0]}</a>` : '<span></span>'}<span>Card ${String(n + 1).padStart(2, '0')} of 12</span></div></div>`;
+    flipTo(false); icard.style.removeProperty('--rx'); icard.style.removeProperty('--ry');
+    insp.classList.add('on'); insp.setAttribute('aria-hidden', 'false');
+    const a = fromEl.getBoundingClientRect(), b = icard.getBoundingClientRect();
+    if (!calm) ibox.animate([{ transform: `translate(${a.left + a.width / 2 - (b.left + b.width / 2)}px,${a.top + a.height / 2 - (b.top + b.height / 2)}px) scale(${a.width / b.width})` }, { transform: 'none' }], { duration: 520, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    setTimeout(() => { flipTo(true); collect(n); }, calm ? 0 : 420);
+    $('#iflip').focus({ preventScroll: true });
+  };
+  const drop = () => {
+    if (curN < 0) return;
+    const done = () => { insp.classList.remove('on'); insp.setAttribute('aria-hidden', 'true'); flipTo(false); fromEl && fromEl.focus({ preventScroll: true }); curN = -1; };
+    if (calm || !fromEl) return done();
+    const a = fromEl.getBoundingClientRect(), b = icard.getBoundingClientRect();
+    flipTo(false);
+    ibox.animate([{ transform: 'none' }, { transform: `translate(${a.left + a.width / 2 - (b.left + b.width / 2)}px,${a.top + a.height / 2 - (b.top + b.height / 2)}px) scale(${a.width / b.width})` }], { duration: 420, easing: 'cubic-bezier(.5,0,.2,1)' }).onfinish = done;
+  };
+  grid.addEventListener('click', e => { const b = e.target.closest('.card'); if (b) lift(+b.dataset.n); });
+  insp.addEventListener('click', e => { if (e.target.closest('[data-close]')) drop(); });
+  $('#iflip').addEventListener('click', () => flipTo(!icard.classList.contains('back')));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && curN >= 0) drop(); });
+  let dragStart = null;
+  icard.addEventListener('pointerdown', e => { if (e.target.closest('a')) return; dragStart = [e.clientX, e.clientY, false]; icard.setPointerCapture(e.pointerId); });
+  icard.addEventListener('pointermove', e => {
+    const r = icard.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    icard.style.setProperty('--mx', (x * 100).toFixed(1) + '%'); icard.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    $$('.iface .card, .iback', icard).forEach(el => { el.style.setProperty('--mx', (x * 100).toFixed(1) + '%'); el.style.setProperty('--my', (y * 100).toFixed(1) + '%'); });
+    if (calm) return;
+    if (dragStart || e.pointerType === 'mouse') {
+      if (dragStart && Math.hypot(e.clientX - dragStart[0], e.clientY - dragStart[1]) > 6) { dragStart[2] = true; icard.classList.add('drag'); }
+      icard.style.setProperty('--rx', ((.5 - y) * 22).toFixed(1) + 'deg'); icard.style.setProperty('--ry', ((x - .5) * 26).toFixed(1) + 'deg');
+    }
+  });
+  const endDrag = e => { if (!dragStart) return; const moved = dragStart[2]; dragStart = null; icard.classList.remove('drag'); icard.style.removeProperty('--rx'); icard.style.removeProperty('--ry'); if (!moved && e.type === 'pointerup') flipTo(!icard.classList.contains('back')); };
+  icard.addEventListener('pointerup', endDrag); icard.addEventListener('pointercancel', endDrag);
+  icard.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !dragStart) { icard.style.removeProperty('--rx'); icard.style.removeProperty('--ry'); } });
+
+  // Foil follows the pointer on a laptop and the scroll on a phone
+  if (fine && !calm) {
+    grid.addEventListener('pointermove', e => {
+      const card = e.target.closest('.card'); if (!card) return;
+      const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--mx', (x * 100).toFixed(1) + '%'); card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      card.style.setProperty('--rx', ((.5 - y) * 10).toFixed(1) + 'deg'); card.style.setProperty('--ry', ((x - .5) * 12).toFixed(1) + 'deg');
+    });
+    grid.addEventListener('pointerout', e => { const card = e.target.closest('.card'); if (card && !card.contains(e.relatedTarget)) { card.style.removeProperty('--rx'); card.style.removeProperty('--ry'); } });
+  }
+  let sheenQ = false;
+  const sheen = () => { sheenQ = false; slots.forEach(s => { const r = s.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; const p = r.top / innerHeight; s.firstElementChild.style.setProperty('--mx', (100 - p * 100).toFixed(1) + '%'); s.firstElementChild.style.setProperty('--my', (20 + p * 60).toFixed(1) + '%'); }); };
+  if (!fine && !calm) addEventListener('scroll', () => { if (!sheenQ) { sheenQ = true; requestAnimationFrame(sheen); } }, { passive: true });
+
+  // The pack: tear it open and the set deals itself into place
+  const pack = $('#pack');
+  let dealt = false, fromPack = false;
+  const deal = () => {
+    if (dealt) return; dealt = true; grid.classList.remove('wait');
+    if (calm) return;
+    slots.filter(s => !s.hidden).forEach((s, i) => {
+      const r = s.getBoundingClientRect(), dx = fromPack ? innerWidth / 2 - (r.left + r.width / 2) : 0, dy = fromPack ? -r.top - r.height * .6 : 90, rot = (i % 2 ? 1 : -1) * (8 + (i % 3) * 4);
+      s.animate([{ transform: `translate(${dx}px,${dy}px) rotate(${rot}deg) scale(${fromPack ? .5 : .9})`, opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 760, delay: i * 70, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' });
+    });
+  };
+  const tear = () => {
+    if (pack.classList.contains('open')) return $('#set').scrollIntoView({ behavior: calm ? 'auto' : 'smooth' });
+    pack.classList.add('open'); put(OPEN, '1'); $('#phint').textContent = 'Opened. Your 12 cards are in the set below.';
+    if (!calm) { const r = pack.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .2, 70, '#f3d27a'); }
+    fromPack = true;
+    setTimeout(() => $('#set').scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' }), calm ? 0 : 650);
+  };
+  pack.addEventListener('click', tear); $('#openpack').addEventListener('click', tear);
+  if (fine && !calm) {
+    pack.addEventListener('pointermove', e => { const r = pack.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height; pack.style.setProperty('--ry', ((x - .5) * 24).toFixed(1) + 'deg'); pack.style.setProperty('--rx', ((.5 - y) * 16).toFixed(1) + 'deg'); pack.style.setProperty('--mx', (x * 100) + '%'); pack.style.setProperty('--my', (y * 100) + '%'); });
+    pack.addEventListener('pointerleave', () => { pack.style.removeProperty('--rx'); pack.style.removeProperty('--ry'); });
+  }
+  if (get(OPEN) === '1') { pack.classList.add('open'); $('#phint').textContent = 'Opened. Your 12 cards are in the set below.'; }
+  if (!calm) { grid.classList.add('wait'); new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { deal(); o.disconnect(); } }, { threshold: .12 }).observe(grid); }
+
+  // Filters rearrange the set with a short glide
+  $('#chips').addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    $$('.chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+    const k = b.dataset.k, before = new Map(slots.map(s => [s, s.getBoundingClientRect()]));
+    slots.forEach(s => { s.hidden = k !== 'all' && s.dataset.k !== k; });
+    if (calm) return;
+    slots.forEach(s => { if (s.hidden) return; const a = before.get(s), r = s.getBoundingClientRect(); if (!a.width) return s.animate([{ opacity: 0, transform: 'scale(.9)' }, { opacity: 1, transform: 'none' }], { duration: 400 }); s.animate([{ transform: `translate(${a.left - r.left}px,${a.top - r.top}px)` }, { transform: 'none' }], { duration: 420, easing: 'cubic-bezier(.2,.8,.2,1)' }); });
+  });
+
+  $('#getcard').addEventListener('click', () => openGold(true));
+  $('#unlock').addEventListener('click', () => { openGold(false); $('.info a', gc).focus({ preventScroll: true }); });
+  $('#reset').addEventListener('click', () => {
+    have.clear(); put(KEY, null); put(GOLD, null); put(OPEN, null);
+    pack.classList.remove('open'); $('#phint').textContent = 'Tap the pack to tear it open';
+    gc.classList.remove('open'); $('.lockface', gc).inert = false; $('.info', gc).inert = true; refresh();
+  });
+  refresh();
+  if (get(GOLD) === '1' || have.size === 12) openGold(false);
+}
+</script>
+<div class="cvtoast" role="status" aria-live="polite"></div>
+<script>
+// CV downloads: inside Claude's artifact viewer the file goes through the downloads capability; on a normal website the plain link works
+(() => {
+  const host = window.claude && typeof window.claude.use === 'function';
+  const ready = host ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null);
+  const toast = document.querySelector('.cvtoast');
+  const say = m => { if (!toast) return; toast.textContent = m; toast.classList.add('on'); clearTimeout(say.t); say.t = setTimeout(() => toast.classList.remove('on'), 4200); };
+  document.addEventListener('click', async e => {
+    const a = e.target.closest('a[data-cv]');
+    if (!a || !host) return;
+    e.preventDefault();
+    const d = await ready;
+    if (!d) { say('Downloads are off in this preview. Email me and I will send the CV.'); return; }
+    try {
+      const blob = await (await fetch(a.getAttribute('href'))).blob();
+      await d.save({ filename: a.getAttribute('download'), data: blob });
+      say('Saved: ' + a.getAttribute('download'));
+    } catch (err) {
+      if (err && err.code === 'declined') return;
+      say(err && err.code === 'rate_limited' ? 'One moment, a save is already open.' : 'That download did not go through. Email me and I will send the CV.');
+    }
+  });
+})();
+</script>
+<script src="../../contact.js"></script>
+<script>
+// Email buttons read the address from contact.js (filled in by the site owner); without it they stay on LinkedIn or hidden
+(() => { const e = String(window.SITE_EMAIL || '').trim(); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)) return;
+  document.querySelectorAll('[data-email-row]').forEach(r => { r.hidden = false; });
+  document.querySelectorAll('a[data-email]').forEach(a => { const s = a.getAttribute('data-email'), l = a.getAttribute('data-label'); a.href = 'mailto:' + e + (s ? '?subject=' + encodeURIComponent(s) : ''); a.removeAttribute('target'); a.removeAttribute('rel'); if (l) a.textContent = l === '@' ? e : l; a.hidden = false; }); })();
+</script>
+</body>
+</html>
