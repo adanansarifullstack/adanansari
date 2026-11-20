@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Audit Trail | A website by Aden Ansari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE adventurous but exact: a game-like walk where every stop is real and checkable
+   IDEA the audit trail as a gold path across a floating island; the free tools leap like fish from a waterfall
+   PICTURE a low-poly island under a phased moon at night or a high sun by day, the camera flying stop to stop as you scroll
+   COLOUR night: navy sky, moonlight, gold lanterns; day: soft blue sky, warm sun, white cloud; gold path in both
+   TYPE Bricolage Grotesque for headings, Manrope for reading
+   LAYOUT laptop: cards on the left, island framed right, pins over each stop; phone: island above, card along the bottom */
+:root{color-scheme:dark;--bg:#070f22;--ink:#eef2f8;--mute:#b3bdd0;--gold:#c9a84c;--gold2:#ecd391;--card:rgba(7,14,32,.78);--edge:rgba(255,255,255,.15);--shade:rgba(0,0,0,.35)}
+:root[data-mode=day]{color-scheme:light;--bg:#cfe3f2;--ink:#0d1b3d;--mute:#46526b;--gold:#b8952f;--gold2:#7d5f12;--card:rgba(255,255,255,.84);--edge:rgba(13,27,61,.14);--shade:rgba(30,50,90,.18)}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif;overflow-x:clip;transition:background .8s,color .8s}
+a{color:var(--gold2);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;gap:10px;padding:10px max(4vw,14px);pointer-events:none}
+.top>*{pointer-events:auto}
+.brand{font:800 18px/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none;padding:12px 0;margin-right:auto;text-shadow:0 1px 14px var(--shade)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;font:700 15px/1 Manrope,sans-serif;text-decoration:none;white-space:nowrap;border:0;cursor:pointer}
+.btn.gold{background:var(--gold);color:#0a1430}
+.btn.gold:hover{filter:brightness(1.08)}
+.btn.ghost{color:var(--ink);background:var(--card);border:1px solid var(--edge);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn.ghost:hover{border-color:var(--gold)}
+.mode{position:relative;width:76px;height:46px;border:0;background:none;padding:0;cursor:pointer;flex:none}
+.mode::before{content:"";position:absolute;inset:6px 2px;border-radius:999px;background:var(--card);border:1px solid var(--edge);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.mode svg{position:absolute;top:50%;width:16px;height:16px;margin-top:-8px;color:var(--mute)}
+.mode .i-moon{left:13px}.mode .i-sun{right:13px}
+.knob{position:absolute;top:10px;left:6px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff7da,#ecd391 45%,#b8952f);box-shadow:0 2px 8px rgba(0,0,0,.3);transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
+[data-mode=day] .knob{transform:translateX(38px)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:linear-gradient(#040a1a,#142a55)}
+[data-mode=day] .stage{background:linear-gradient(#4f9be0,#f3e3c3)}
+@media (hover:none),(max-width:860px){.btn.ghost,.mode::before,.pin,.ftag,.card,.catch{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}:root{--card:rgba(7,14,32,.9)}:root[data-mode=day]{--card:rgba(255,255,255,.94)}}
+#world{display:block;width:100%;height:100%;touch-action:pan-y}
+.no3d #world,.no3d .pins{display:none}
+.pins{position:absolute;inset:0;pointer-events:none;z-index:2}
+.pin,.ftag{position:absolute;left:0;top:0;display:flex;align-items:center;gap:7px;border-radius:999px;border:1px solid var(--edge);background:var(--card);color:var(--ink);font:700 13px/1 Manrope,sans-serif;cursor:pointer;pointer-events:auto;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:opacity .3s,box-shadow .3s;white-space:nowrap}
+.pin{min-height:38px;padding:4px 12px 4px 4px}
+.pin b{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#0a1430}
+.pin::after,.ftag::after{content:"";position:absolute;inset:-6px;border-radius:999px}
+.pin.hot{box-shadow:0 0 0 2px var(--gold),0 8px 24px var(--shade)}
+.pin.off,.ftag.off{opacity:0;pointer-events:none}
+.ftag{min-height:32px;padding:0 12px;border-color:var(--gold);font-size:12px}
+.steps{position:relative;margin-top:-100vh;margin-top:-100svh;pointer-events:none}
+.step{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:96px max(4vw,16px) 40px}
+.card{pointer-events:auto;width:100%;max-width:480px;background:var(--card);border:1px solid var(--edge);border-radius:18px;padding:clamp(20px,2.4vw,30px);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 20px 50px var(--shade);transition:background .8s,border-color .8s}
+.intro .card{max-width:640px}
+.kick{font:700 13px/1.2 Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);margin:0 0 12px}
+h1{font:800 clamp(52px,8vw,112px)/.92 "Bricolage Grotesque",sans-serif;letter-spacing:-.045em;margin:0 0 16px}
+.card h2{font:700 clamp(28px,3vw,40px)/1.05 "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;margin:0 0 12px}
+.card p{margin:0 0 12px}
+.lead{font-size:clamp(17px,1.5vw,20px)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+details{border-top:1px solid var(--edge);margin-top:6px}
+summary{list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:46px;cursor:pointer;font-weight:700;color:var(--gold2)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .3s}
+details[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+details ul{margin:0 0 6px;padding-left:18px;color:var(--mute);font-size:15px}
+details li{margin:5px 0}
+details li::marker{color:var(--gold)}
+.tools{list-style:none;margin:12px 0 0;padding:0}
+.tools a{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--edge);font-weight:700;text-decoration:none;transition:background .4s}
+.tools a span{color:var(--mute);font-weight:500}
+.tools a.flash{background:linear-gradient(90deg,transparent,rgba(201,168,76,.25),transparent)}
+.meter{display:grid;grid-template-columns:7em minmax(0,1fr) 4.4em;gap:10px;align-items:center;font-size:15px;margin-top:10px}
+.meter b{height:10px;border-radius:5px;background:var(--edge);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--gold)}
+.meter em{font-style:normal;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.fine{font-size:14px;color:var(--mute)}
+.tag{font:400 22px/1.2 "Bricolage Grotesque",sans-serif;font-weight:700;color:var(--gold2);margin:18px 0 4px}
+.catch{position:fixed;z-index:30;right:max(4vw,14px);bottom:24px;width:min(360px,calc(100vw - 28px));background:var(--card);border:1px solid var(--gold);border-radius:18px;padding:20px 20px 18px;box-shadow:0 24px 60px var(--shade);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transform:translateY(16px);opacity:0;pointer-events:none;transition:opacity .35s,transform .35s}
+.catch.on{transform:none;opacity:1;pointer-events:auto}
+.catch h3{font:700 22px/1.15 "Bricolage Grotesque",sans-serif;margin:0 0 8px;padding-right:36px}
+.catch p{margin:0 0 14px;color:var(--mute);font-size:15px}
+.catch .x{position:absolute;top:6px;right:6px;width:44px;height:44px;border:0;background:none;color:var(--mute);font-size:24px;line-height:1;cursor:pointer;border-radius:10px}
+footer{border-top:1px solid var(--edge);padding:22px max(4vw,16px) 30px;display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between;font-size:14px;color:var(--mute)}
+footer a{color:var(--ink);text-decoration:none;padding-block:10px}
+@media(max-width:899px){.step{align-items:flex-end;padding:84px 12px 16px}.card{max-width:none}.intro{align-items:center}.pin{padding:4px}.pin em{display:none}.catch{top:70px;bottom:auto}}
+@media(max-width:420px){.top .ghost{padding:0 14px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.cvtoast{position:fixed;left:50%;bottom:22px;z-index:99;transform:translate(-50%,20px);opacity:0;pointer-events:none;max-width:min(92vw,460px);padding:12px 18px;border-radius:12px;background:var(--toast-bg,#0b1628);color:var(--toast-ink,#eef1f7);border:1px solid var(--toast-edge,rgba(236,211,145,.45));font:500 14px/1.45 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:opacity .3s,transform .3s}
+.cvtoast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#start">Aden Ansari</a>
+  <button class="mode" id="mode" type="button" aria-pressed="false" aria-label="Switch to day mode">
+    <svg class="i-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4a8.5 8.5 0 1 0 11.5 11.5z"/></svg>
+    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <span class="knob"></span>
+  </button>
+  <a class="btn ghost" href="#contact">Contact</a>
+</header>
+
+<main>
+<section class="trail" id="trail" aria-label="The audit trail">
+  <div class="stage" id="stage">
+    <canvas id="world" aria-hidden="true"></canvas>
+    <div class="pins" id="pins">
+      <button class="pin off" type="button" data-go="1"><b>1</b><em>Ledger</em></button>
+      <button class="pin off" type="button" data-go="2"><b>2</b><em>Audit</em></button>
+      <button class="pin off" type="button" data-go="3"><b>3</b><em>Tax</em></button>
+      <button class="pin off" type="button" data-go="4"><b>4</b><em>Tools</em></button>
+      <button class="pin off" type="button" data-go="5"><b>5</b><em>Data</em></button>
+      <button class="ftag off" type="button" data-fish="0">Credit Control Manager</button>
+      <button class="ftag off" type="button" data-fish="1">Attendance &amp; Salary Sheet</button>
+      <button class="ftag off" type="button" data-fish="2">Amount in words</button>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step intro" id="start"><div class="card">
+      <p class="kick">Accountant &amp; internal auditor &middot; UAE</p>
+      <h1>Aden Ansari</h1>
+      <p class="lead">Follow the audit trail: five stops across nine years of audit, tax and data. Scroll to walk it, or tap any numbered pin on the island.</p>
+      <div class="ctas"><a class="btn gold" href="#stop1">Start the trail</a><a class="btn ghost" href="#contact">Skip to contact</a></div>
+    </div></div>
+
+    <div class="step" id="stop1"><article class="card">
+      <p class="kick">Stop 1 of 5 &middot; The ledger</p>
+      <h2>Nine years of books, closed.</h2>
+      <p>From GST returns in Kolkata to finalising accounts for four UAE trading companies: AP and AR, bank reconciliations and month-end close in Tally Prime and Zoho Books.</p>
+      <details><summary>More from this stop</summary><ul><li>Alpha Trading, 2017 to 2021: GST returns, e-way bills, reports in Tally Prime</li><li>R Ahmed Distributors, 2021 to 2024: daily transactions, collections and stock reports</li><li>Nida Lifters, 2025: AP and AR across service contracts, MIS</li><li>Now: trial balance to draft IFRS statements for four companies</li></ul></details>
+    </article></div>
+
+    <div class="step" id="stop2"><article class="card">
+      <p class="kick">Stop 2 of 5 &middot; The audit</p>
+      <h2>The &#8377;50 lakh find.</h2>
+      <p>At MK Leathers a routine audit turned up a full year of undocumented collections. I documented the evidence and took it to the owner. The habit stuck.</p>
+      <details><summary>More from this stop</summary><ul><li>A full year of depreciation never booked, now in the audited accounts</li><li>Unsupported share capital in a signed prior-year audit report, now being restated</li><li>Prepaid rent rebuilt from Ejari contracts; charges in the wrong year found</li><li>Payroll tested against WPS and MOHRE records</li></ul></details>
+    </article></div>
+
+    <div class="step" id="stop3"><article class="card">
+      <p class="kick">Stop 3 of 5 &middot; The stamp</p>
+      <h2>First Corporate Tax cycle, filed.</h2>
+      <p>I delivered the group's first UAE Corporate Tax filing cycle: computations, add-backs, provisions and connected-person rules.</p>
+      <details><summary>More from this stop</summary><ul><li>VAT201 reconciled to the books on EmaraTax every quarter</li><li>Import VAT under reverse charge matched to customs data</li><li>A 24-check Excel VAT model that rebuilds the filed return</li><li>End-of-service gratuity recomputed under Article 51</li></ul></details>
+    </article></div>
+
+    <div class="step" id="stop4"><article class="card">
+      <p class="kick">Stop 4 of 5 &middot; The waterfall</p>
+      <h2>When a task repeats, I build the tool.</h2>
+      <p>A VBA payroll for a 15-person workforce, a 24-check VAT model, and three tools anyone can download. They leap from the waterfall: tap a fish to catch one.</p>
+      <ul class="tools">
+        <li><a id="tool0" href="https://github.com/adanansarifullstack/adanansari/raw/main/tools/Credit-Control-Manager.xlsm">Credit Control Manager <span>.xlsm</span></a></li>
+        <li><a id="tool1" href="https://github.com/adanansarifullstack/adanansari/raw/main/tools/Attendance-Salary-Sheet.xlsm">Attendance and Salary Sheet <span>.xlsm</span></a></li>
+        <li><a id="tool2" href="https://github.com/adanansarifullstack/adanansari/raw/main/tools/Currency-Converter.txt">Amount in words, USD AED INR <span>code</span></a></li>
+      </ul>
+    </article></div>
+
+    <div class="step" id="stop5"><article class="card">
+      <p class="kick">Stop 5 of 5 &middot; The dashboard</p>
+      <h2>Next on the trail: Power BI.</h2>
+      <p>Certified in Excel with Power Query, Power Pivot and DAX. Power BI is under way; SQL, Python and Tableau come next.</p>
+      <div class="meter"><span>Excel</span><b><i style="width:100%"></i></b><em>Certified</em></div>
+      <div class="meter"><span>Power BI</span><b><i style="width:7%"></i></b><em>7%</em></div>
+      <div class="meter"><span>Bootcamp</span><b><i style="width:18%"></i></b><em>18%</em></div>
+      <details><summary>Projects so far</summary><ul><li>AtliQ Hardware: a star-schema sales model over 799,962 rows, with DAX for growth, targets and margin</li><li>AtliQ Grands: hotel revenue, bookings and ratings by property, city and platform</li></ul></details>
+    </article></div>
+
+    <div class="step" id="contact"><article class="card">
+      <p class="kick">End of the trail</p>
+      <h2>Hiring for finance or data?</h2>
+      <p>Take a CV, or email me. 30 days' notice, based in Dubai and Sharjah, open to remote work.</p>
+      <div class="ctas"><a class="btn gold" data-cv href="../../cv/Aden-Ansari-CV-Finance.pdf" download="Aden-Ansari-CV-Finance.pdf" target="_blank" rel="noopener">Finance CV (PDF)</a><a class="btn ghost" data-cv href="../../cv/Aden-Ansari-CV-Data-Analyst.pdf" download="Aden-Ansari-CV-Data-Analyst.pdf" target="_blank" rel="noopener">Data analyst CV (PDF)</a></div>
+      <div class="ctas"><a class="btn ghost" data-email="Hello Aden" data-label="@" hidden href="#">Email</a><a class="btn ghost" href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/">LinkedIn</a><a class="btn ghost" href="tel:+971505365447">+971 50 53 65 447</a></div>
+      <p class="tag">Audit eyes. Analyst mind.</p>
+      <p class="fine">Read my <a href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/recent-activity/all/">audit case studies on LinkedIn</a>.</p>
+    </article></div>
+  </div>
+</section>
+</main>
+
+<div class="catch" id="catch" role="dialog" aria-labelledby="catch-h" aria-hidden="true">
+  <button class="x" type="button" aria-label="Close">&times;</button>
+  <p class="kick">You caught a tool</p>
+  <h3 id="catch-h"></h3>
+  <p id="catch-p"></p>
+  <a class="btn gold" id="catch-a" href="#">Download</a>
+</div>
+
+<footer><span>Aden Ansari &middot; Accountant &amp; internal auditor, UAE</span><a data-email="" hidden href="#">Email</a><a href="https://www.linkedin.com/in/adan-ansari-accounting-excel-financial-data-analyst/">LinkedIn</a><span style="padding-block:10px">A design sample. <a href="../../index.html">See the main site</a></span></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>
+{
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const root = document.documentElement, stage = $('#stage'), canvas = $('#world'), trail = $('#trail');
+  const STEPS = ['start', 'stop1', 'stop2', 'stop3', 'stop4', 'stop5', 'contact'];
+  const go = i => $('#' + STEPS[i]).scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' });
+  const TOOLS = [
+    ['Credit Control Manager', 'Reads Tally ledger exports, scores credit risk out of 100, recommends limits, flags projected bad debts and builds a collections queue.', 'https://github.com/adanansarifullstack/adanansari/raw/main/tools/Credit-Control-Manager.xlsm', 'Download the workbook'],
+    ['Attendance and Salary Sheet', 'Employee database, attendance register, automated salary calculation and an admin lock in one workbook.', 'https://github.com/adanansarifullstack/adanansari/raw/main/tools/Attendance-Salary-Sheet.xlsm', 'Download the workbook'],
+    ['Amount in words', 'One Excel function writes amounts in words in USD, AED and INR, with lakhs and crores where they belong.', 'https://github.com/adanansarifullstack/adanansari/raw/main/tools/Currency-Converter.txt', 'Get the code']
+  ];
+
+  // Day and night: follows the system setting until the switch is used
+  const sw = $('#mode'), prefLight = matchMedia('(prefers-color-scheme: light)');
+  let chosen = null; try { chosen = localStorage.getItem('aden-trail-mode'); } catch (e) {}
+  let mode = chosen || (prefLight.matches ? 'day' : 'night'), mixTarget = 0, kick = () => {};
+  const setMode = (m, save) => {
+    mode = m; root.dataset.mode = m; mixTarget = m === 'day' ? 1 : 0;
+    sw.setAttribute('aria-pressed', String(m === 'day')); sw.setAttribute('aria-label', m === 'day' ? 'Switch to night mode' : 'Switch to day mode');
+    if (save) { chosen = m; try { localStorage.setItem('aden-trail-mode', m); } catch (e) {} }
+    kick();
+  };
+  sw.addEventListener('click', () => setMode(mode === 'day' ? 'night' : 'day', true));
+  prefLight.addEventListener('change', e => { if (!chosen) setMode(e.matches ? 'day' : 'night'); });
+  setMode(mode);
+
+  // Catch card for the tool fish
+  const cat = $('#catch');
+  const openCatch = i => {
+    const t = TOOLS[i]; $('#catch-h').textContent = t[0]; $('#catch-p').textContent = t[1];
+    const a = $('#catch-a'); a.href = t[2]; a.textContent = t[3];
+    cat.classList.add('on'); cat.setAttribute('aria-hidden', 'false'); a.focus({ preventScroll: true });
+    const row = $('#tool' + i); row.classList.add('flash'); setTimeout(() => row.classList.remove('flash'), 1600);
+  };
+  const closeCatch = () => { cat.classList.remove('on'); cat.setAttribute('aria-hidden', 'true'); };
+  $('.x', cat).addEventListener('click', closeCatch);
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeCatch(); });
+  $('#pins').addEventListener('click', e => {
+    const p = e.target.closest('[data-go]'); if (p) return go(+p.dataset.go);
+    const f = e.target.closest('[data-fish]'); if (f) openCatch(+f.dataset.fish);
+  });
+
+  let renderer = null;
+  try {
+    if (!window.THREE) throw new Error('no three');
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  } catch (e) { root.classList.add('no3d'); }
+
+  if (renderer) {
+    const T = THREE, small = Math.min(innerWidth, innerHeight) < 700;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.25 : 1.5));
+    renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap;
+    const scene = new T.Scene(), camera = new T.PerspectiveCamera(42, 1, .1, 420);
+    scene.fog = new T.Fog(0x0b1733, 34, 90);
+
+    // Sky dome, stars, clouds, moon and sun
+    const skyMat = new T.ShaderMaterial({ side: T.BackSide, depthWrite: false, uniforms: { top: { value: new T.Color() }, bot: { value: new T.Color() } },
+      vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+      fragmentShader: 'uniform vec3 top; uniform vec3 bot; varying vec3 vP; void main(){ float h = clamp(vP.y * .5 + .5, 0., 1.); gl_FragColor = vec4(mix(bot, top, pow(h, 1.3)), 1.); }' });
+    scene.add(new T.Mesh(new T.SphereGeometry(200, 32, 16), skyMat));
+    let seed = 5; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const sp = [], scol = [];
+    for (let k = 0; k < 900; k++) { const u = rnd() * 2 - 1, th = rnd() * 6.283, q = Math.sqrt(1 - u * u), gl = rnd() > .55; sp.push(Math.cos(th) * q * 120, Math.abs(u) * 110 - 14, Math.sin(th) * q * 120); scol.push(gl ? .93 : .86, gl ? .8 : .9, gl ? .52 : 1); }
+    const sg = new T.BufferGeometry(); sg.setAttribute('position', new T.Float32BufferAttribute(sp, 3)); sg.setAttribute('color', new T.Float32BufferAttribute(scol, 3));
+    const starMat = new T.PointsMaterial({ size: .7, vertexColors: true, fog: false, transparent: true, depthWrite: false });
+    scene.add(new T.Points(sg, starMat));
+    const halo = (c1, c2) => { const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d'), r = g.createRadialGradient(64, 64, 0, 64, 64, 64); r.addColorStop(0, c1); r.addColorStop(1, c2); g.fillStyle = r; g.fillRect(0, 0, 128, 128); return new T.CanvasTexture(c); };
+    const moonMat = new T.ShaderMaterial({ transparent: true, uniforms: { light: { value: new T.Vector3(1, .3, -.35).normalize() }, alpha: { value: 1 } },
+      vertexShader: 'varying vec3 vN; varying vec3 vP; void main(){ vN = normalize(normalMatrix * normal); vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+      fragmentShader: `uniform vec3 light; uniform float alpha; varying vec3 vN; varying vec3 vP;
+        float cr(vec3 p, vec3 c, float r){ return smoothstep(r, r * .55, distance(normalize(p), normalize(c))); }
+        void main(){
+          float d = cr(vP, vec3(.3,.5,.8), .22) * .22 + cr(vP, vec3(-.5,.2,.8), .16) * .28 + cr(vP, vec3(.1,-.5,.85), .26) * .2 + cr(vP, vec3(-.2,.7,.6), .1) * .3 + cr(vP, vec3(.6,-.1,.75), .12) * .25 + cr(vP, vec3(-.6,-.45,.6), .2) * .18;
+          float l = smoothstep(-.05, .3, dot(normalize(vN), light));
+          vec3 base = vec3(.88, .89, .92) * (1. - d);
+          gl_FragColor = vec4(base * (.05 + 1.05 * l) + vec3(.015, .02, .045), alpha);
+        }` });
+    const moon = new T.Mesh(new T.SphereGeometry(5, 48, 32), moonMat); scene.add(moon);
+    const moonGlow = new T.Sprite(new T.SpriteMaterial({ map: halo('rgba(190,210,255,.55)', 'rgba(190,210,255,0)'), transparent: true, depthWrite: false, fog: false })); moonGlow.scale.set(30, 30, 1); scene.add(moonGlow);
+    const sunMat = new T.MeshBasicMaterial({ color: 0xfff3c8, transparent: true, fog: false }), sun = new T.Mesh(new T.SphereGeometry(4.2, 32, 16), sunMat); scene.add(sun);
+    const sunGlow = new T.Sprite(new T.SpriteMaterial({ map: halo('rgba(255,236,170,.9)', 'rgba(255,236,170,0)'), transparent: true, depthWrite: false, fog: false, blending: T.AdditiveBlending })); sunGlow.scale.set(46, 46, 1); scene.add(sunGlow);
+    const cloudMat = new T.MeshStandardMaterial({ color: 0xffffff, flatShading: true, roughness: 1, transparent: true }), clouds = new T.Group(); scene.add(clouds);
+    for (let k = 0; k < 8; k++) {
+      const c = new T.Group(), a = k / 8 * 6.283 + rnd(), r = 17 + rnd() * 9;
+      for (let j = 0; j < 5; j++) { const m = new T.Mesh(new T.IcosahedronGeometry(1, 0), cloudMat); m.position.set((j - 2) * .9, rnd() * .5, rnd() * .6); m.scale.setScalar(.9 + rnd() * .9); c.add(m); }
+      c.position.set(Math.cos(a) * r, 5 + rnd() * 5, Math.sin(a) * r); c.scale.setScalar(1 + rnd()); c.rotation.y = -a; clouds.add(c);
+    }
+
+    // Lights: one key light that is the moon by night and the sun by day, with soft shadows
+    const hemi = new T.HemisphereLight(0x6f86c8, 0x0b1428, .55); scene.add(hemi);
+    const key = new T.DirectionalLight(0xffffff, 1); key.castShadow = true;
+    key.shadow.mapSize.set(small ? 512 : 1024, small ? 512 : 1024);
+    Object.assign(key.shadow.camera, { left: -13, right: 13, top: 13, bottom: -13, near: 1, far: 100 });
+    key.shadow.bias = -.0006; key.shadow.normalBias = .03; scene.add(key, key.target);
+    const glowL = new T.PointLight(0xf3d27a, 0, 7, 2); scene.add(glowL);
+
+    const M = (c, o) => new T.MeshStandardMaterial(Object.assign({ color: c, flatShading: true, roughness: .85, metalness: .05 }, o || {}));
+    const gold = M(0xc9a84c, { metalness: .6, roughness: .35 }), shine = M(0xe6cc85, { metalness: .5, roughness: .3, emissive: 0x3a2a08 });
+    const slate = M(0x2f4e72), rock = M(0x1a2a44), leaf = M(0x1f6158), bark = M(0x4a3524), paper = M(0xebe5d3), navy = M(0x15294f), cover = M(0x7a2f2a), sky = M(0x6f8fc8);
+    const jitter = (g, a) => {
+      const p = g.attributes.position;
+      for (let k = 0; k < p.count; k++) {
+        const x = p.getX(k), y = p.getY(k), z = p.getZ(k), h = n => { const s = Math.sin(x * 12.99 + y * 78.23 + z * 37.72 + n) * 43758.55; return s - Math.floor(s) - .5; };
+        p.setXYZ(k, x + h(1) * a, y + h(2) * a * .5, z + h(3) * a);
+      }
+      g.computeVertexNormals(); return g;
+    };
+    const isl = new T.Group(); scene.add(isl);
+    const add = (geo, mat, x = 0, y = 0, z = 0, parent = isl) => { const m = new T.Mesh(geo, mat); m.position.set(x, y, z); parent.add(m); return m; };
+
+    add(jitter(new T.CylinderGeometry(9, 8.4, 1.4, 14, 1), .4), slate).receiveShadow = true;
+    add(jitter(new T.ConeGeometry(8.5, 9, 14, 3), .7), rock, 0, -5, 0).rotation.x = Math.PI;
+    for (let k = 0; k < 6; k++) { const a = rnd() * 6.28, r = 12 + rnd() * 5; add(jitter(new T.DodecahedronGeometry(.5 + rnd() * .9, 0), .2), rock, Math.cos(a) * r, -3 + rnd() * 6, Math.sin(a) * r); }
+
+    // Five stations, each with a halo ring and a lantern
+    const ANG = [2.47, 1.37, .25, -.95, -2.2], R = 5.2, TOP = .7;
+    const lampMat = new T.MeshBasicMaterial({ color: 0xffd98a, transparent: true }), lampHalo = halo('rgba(255,214,140,.85)', 'rgba(255,214,140,0)'), lamps = [];
+    const S = ANG.map((a, i) => {
+      const g = new T.Group(); g.position.set(Math.cos(a) * R, TOP, Math.sin(a) * R); g.rotation.y = Math.PI / 2 - a; g.userData = { kind: 'station', i }; isl.add(g);
+      add(new T.CylinderGeometry(1.15, 1.3, .35, 8), navy, 0, .17, 0, g);
+      const ring = add(new T.RingGeometry(1.45, 1.62, 40), new T.MeshBasicMaterial({ color: 0xecd391, transparent: true, opacity: 0, side: T.DoubleSide, depthWrite: false }), 0, .03, 0, g); ring.rotation.x = -Math.PI / 2;
+      add(new T.CylinderGeometry(.04, .05, 1.3, 5), bark, 1.05, .65, -.55, g);
+      add(new T.SphereGeometry(.11, 10, 8), lampMat, 1.05, 1.36, -.55, g);
+      const h = new T.Sprite(new T.SpriteMaterial({ map: lampHalo, transparent: true, depthWrite: false })); h.position.set(1.05, 1.36, -.55); h.scale.set(1.3, 1.3, 1); g.add(h); lamps.push(h);
+      return { a, g, ring, p: g.position.clone() };
+    });
+    { const g = S[0].g; add(new T.BoxGeometry(2, .08, 1.4), cover, 0, .4, 0, g);
+      [-1, 1].forEach(sd => { const pg = new T.Group(); pg.position.set(sd * .47, .5, 0); pg.rotation.z = -sd * .1; g.add(pg); add(new T.BoxGeometry(.9, .1, 1.26), paper, 0, 0, 0, pg); for (let k = 0; k < 4; k++) add(new T.BoxGeometry(.6, .02, .05), gold, 0, .06, -.42 + k * .27, pg); }); }
+    { const g = S[1].g, h = new T.Group(); h.position.set(.15, 1.95, 0); h.rotation.set(-.15, .35, .4); g.add(h);
+      add(new T.TorusGeometry(.62, .1, 8, 20), shine, 0, 0, 0, h);
+      add(new T.CircleGeometry(.58, 20), new T.MeshStandardMaterial({ color: 0xa9d4ff, transparent: true, opacity: .28, roughness: .1, side: T.DoubleSide }), 0, 0, 0, h);
+      add(new T.CylinderGeometry(.09, .12, 1.05, 6), bark, 0, -1.15, 0, h);
+      for (let k = 0; k < 4; k++) add(new T.CylinderGeometry(.3, .3, .08, 10), gold, -.6, .4 + k * .09, .4, g); }
+    { const g = S[2].g; add(new T.BoxGeometry(1.5, .06, 1.1), paper, .2, .38, .1, g);
+      add(new T.CylinderGeometry(.36, .36, .02, 18), M(0xb3473f), .45, .42, .2, g);
+      add(new T.CylinderGeometry(.42, .5, .26, 8), gold, -.4, .5, -.25, g);
+      add(new T.CylinderGeometry(.12, .16, .7, 6), bark, -.4, .98, -.25, g);
+      add(new T.IcosahedronGeometry(.3, 0), shine, -.4, 1.45, -.25, g); }
+    { const g = S[3].g, b = new T.Group(); b.position.set(0, 1.35, 0); b.rotation.x = -.12; g.add(b);
+      add(new T.BoxGeometry(2.15, 1.55, .1), navy, 0, 0, 0, b);
+      for (let r = 0; r < 4; r++) for (let c = 0; c < 5; c++) add(new T.BoxGeometry(.34, .27, .06), (r === 1 && c === 3) || (r === 3 && c === 1) ? shine : paper, -.8 + c * .4, .5 - r * .33, .08, b);
+      add(new T.BoxGeometry(.18, .7, .18), gold, 0, .6, -.1, g); }
+    { const g = S[4].g; [.5, .8, .65, 1.15, 1.6].forEach((h, k) => add(new T.BoxGeometry(.3, h, .3), k === 4 ? shine : sky, -.72 + k * .36, .35 + h / 2, 0, g)); }
+
+    // Pond, stream and waterfall by stop 4
+    const AW = -.5, dir = new T.Vector3(Math.cos(AW), 0, Math.sin(AW)), tan = new T.Vector3(-Math.sin(AW), 0, Math.cos(AW));
+    const flow = new T.ShaderMaterial({ transparent: true, depthWrite: false, side: T.DoubleSide, uniforms: { time: { value: 0 }, hi: { value: new T.Color() }, lo: { value: new T.Color() }, fade: { value: 1 } },
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+      fragmentShader: `uniform float time; uniform vec3 hi; uniform vec3 lo; uniform float fade; varying vec2 vUv;
+        void main(){
+          float s1 = fract(vUv.y * 5. + time * 1.3 + sin(vUv.x * 18.) * .06), s2 = fract(vUv.y * 9. + time * 2.1 + vUv.x * 3.);
+          float streak = smoothstep(.55, .95, s1) * .6 + smoothstep(.7, 1., s2) * .4;
+          float edge = smoothstep(0., .16, vUv.x) * smoothstep(1., .84, vUv.x), tail = mix(1., smoothstep(0., .6, vUv.y), fade);
+          gl_FragColor = vec4(mix(lo, hi, streak), (.62 + streak * .38) * edge * tail);
+        }` });
+    const flowFlat = flow.clone(); flowFlat.uniforms.fade.value = 0;
+    const pondC = dir.clone().multiplyScalar(6.4);
+    const waterMat = new T.MeshStandardMaterial({ color: 0x1b4b73, metalness: .25, roughness: .12, transparent: true, opacity: .93 });
+    const pond = add(new T.CircleGeometry(1.3, 28), waterMat, pondC.x, TOP + .03, pondC.z); pond.rotation.x = -Math.PI / 2; pond.receiveShadow = true;
+    for (let k = 0; k < 9; k++) { const a = k / 9 * 6.283; if (Math.abs(Math.atan2(Math.sin(a - AW), Math.cos(a - AW))) < .5) continue; add(jitter(new T.DodecahedronGeometry(.18 + rnd() * .12, 0), .05), rock, pondC.x + Math.cos(a) * 1.4, TOP + .06, pondC.z + Math.sin(a) * 1.4); }
+    const sG = new T.Group(); sG.position.copy(dir).multiplyScalar(8.25); sG.position.y = TOP + .045; sG.rotation.y = Math.PI / 2 - AW; isl.add(sG);
+    add(new T.PlaneGeometry(.95, 1.9), flowFlat, 0, 0, 0, sG).rotation.x = -Math.PI / 2;
+    const wG = new T.Group(); wG.position.copy(dir).multiplyScalar(9.25); wG.position.y = TOP + .05 - 5.5; wG.rotation.y = Math.PI / 2 - AW; isl.add(wG);
+    add(new T.PlaneGeometry(1.05, 11, 1, 1), flow, 0, 0, 0, wG);
+
+    // The tool fish: they leap across the lip of the waterfall
+    const fishCols = [0xe0b85a, 0x5fc7b8, 0xa9bfe0], hitMat = new T.MeshBasicMaterial({ visible: false });
+    const fish = fishCols.map((c, i) => {
+      const mat = M(c, { metalness: .45, roughness: .32, emissive: c, emissiveIntensity: .25 }), g = new T.Group();
+      const body = new T.Mesh(new T.IcosahedronGeometry(.3, 1), mat); body.scale.set(.55, .75, 1.35); g.add(body);
+      const tail = new T.Mesh(new T.ConeGeometry(.26, .42, 4), mat); tail.rotation.x = Math.PI / 2; tail.scale.x = .25; tail.position.z = -.55; g.add(tail);
+      const fin = new T.Mesh(new T.ConeGeometry(.09, .22, 3), mat); fin.position.set(0, .22, -.05); fin.rotation.x = -.6; g.add(fin);
+      const hit = new T.Mesh(new T.SphereGeometry(.75, 8, 6), hitMat); g.add(hit);
+      g.traverse(o => { if (o.isMesh) o.castShadow = true; });
+      g.userData = { kind: 'fish', i }; g.visible = false; isl.add(g);
+      return { g, mat, air: false, wait: 1 + i * 1.4, t: 0, dur: 1.35, s: new T.Vector3(), e: new T.Vector3(), h: 1.5 };
+    });
+    const rings = Array.from({ length: 6 }, () => { const m = add(new T.RingGeometry(.12, .2, 28), new T.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false, side: T.DoubleSide })); m.rotation.x = -Math.PI / 2; m.userData.t = 9; return m; });
+    let ringK = 0; const splash = p => { const r = rings[ringK++ % rings.length]; r.position.set(p.x, TOP + .06, p.z); r.userData.t = 0; };
+    const lip = (r, j) => dir.clone().multiplyScalar(r).addScaledVector(tan, j);
+
+    // Trees, kept out of each station's line of sight and off the water
+    for (let k = 0, n = 0; k < 160 && n < 16; k++) {
+      const a = rnd() * 6.28, r = 1.5 + rnd() * 6.8, x = Math.cos(a) * r, z = Math.sin(a) * r;
+      if (S.some(s => Math.hypot(s.p.x - x, s.p.z - z) < 1.9 || (Math.abs(Math.atan2(Math.sin(a - s.a), Math.cos(a - s.a))) < .5 && r > 3.8))) continue;
+      if (Math.hypot(pondC.x - x, pondC.z - z) < 2.4 || Math.abs(Math.atan2(Math.sin(a - AW), Math.cos(a - AW))) < .45) continue;
+      const s = .7 + rnd() * .6, t = new T.Group(); t.position.set(x, TOP, z); isl.add(t); n++;
+      add(new T.CylinderGeometry(.08, .1, .4, 5), bark, 0, .2, 0, t);
+      add(new T.ConeGeometry(.55 * s, 1.3 * s, 6), leaf, 0, .4 + .65 * s, 0, t);
+      add(new T.ConeGeometry(.42 * s, 1 * s, 6), leaf, 0, .4 + 1.15 * s, 0, t);
+    }
+    const pathC = new T.CatmullRomCurve3([new T.Vector3(Math.cos(3.1) * 8.4, TOP, Math.sin(3.1) * 8.4), ...S.map(s => s.p.clone())], false, 'centripetal');
+    const dots = new T.InstancedMesh(new T.CylinderGeometry(.11, .11, .06, 6), shine, 70), d = new T.Object3D();
+    for (let k = 0; k < 70; k++) { pathC.getPoint(k / 69, d.position); d.position.y = TOP + .04; d.updateMatrix(); dots.setMatrixAt(k, d.matrix); }
+    isl.add(dots);
+    isl.traverse(o => { if (o.isMesh && o.material !== flow && o.material !== flowFlat && o.material !== waterMat && o.geometry.type !== 'RingGeometry') { o.castShadow = true; o.receiveShadow = true; } });
+
+    // Rocks circling under the island and a few big ones crossing beside it
+    const astMat = M(0x2b3650, { roughness: .95, metalness: .04 });
+    const belt = new T.InstancedMesh(jitter(new T.DodecahedronGeometry(1, 1), .2), astMat, small ? 18 : 30), bD = new T.Object3D();
+    const BELT = Array.from({ length: belt.count }, () => { return { r: 12.5 + rnd() * 9.5, a: rnd() * 6.283, y: -8 + rnd() * 6.2, w: (.022 + rnd() * .035) * (rnd() > .25 ? 1 : -1), s: .2 + Math.pow(rnd(), 2.4) * .95, rx: rnd() * 6, ry: rnd() * 6, vr: (rnd() - .5) * .6, ph: rnd() * 6 }; });
+    belt.frustumCulled = false; scene.add(belt);
+    const crossers = Array.from({ length: small ? 2 : 3 }, (_, i) => { const m = new T.Mesh(jitter(new T.DodecahedronGeometry(1, 1), .3), astMat); m.frustumCulled = false; scene.add(m); return { m, t: 0, dur: 30, s: .9 + rnd() * .8, a: new T.Vector3(), b: new T.Vector3(), seed: i * 2.1 }; });
+    const launch = c => {
+      const th = rnd() * 6.283, d = new T.Vector3(Math.cos(th), 0, Math.sin(th)), pp = new T.Vector3(-Math.sin(th), 0, Math.cos(th)), off = (rnd() > .5 ? 1 : -1) * (26 + rnd() * 10), h = -6 + rnd() * 8;
+      c.a.copy(d).multiplyScalar(-48).addScaledVector(pp, off).setY(h); c.b.copy(d).multiplyScalar(48).addScaledVector(pp, off + (rnd() - .5) * 8).setY(h + (rnd() - .5) * 4);
+      c.t = 0; c.dur = 26 + rnd() * 20;
+    };
+    crossers.forEach(c => { launch(c); c.t = rnd() * .85; });
+
+    // Far off: an asteroid field on the horizon, islets drifting in the haze, and streaks across the sky
+    const farMat = M(0x1a2440, { roughness: 1, fog: false });
+    const farRocks = new T.InstancedMesh(new T.DodecahedronGeometry(1, 0), farMat, small ? 24 : 40), fD = new T.Object3D();
+    const FAR = Array.from({ length: farRocks.count }, () => ({ a: rnd() * 6.283, r: 118 + rnd() * 42, y: 6 + rnd() * 36, s: .5 + Math.pow(rnd(), 2) * 2.4, w: (rnd() - .5) * .006, rx: rnd() * 6 }));
+    farRocks.frustumCulled = false; scene.add(farRocks);
+    const ISLETS = Array.from({ length: small ? 3 : 4 }, () => ({ a: rnd() * 6.283, r: 56 + rnd() * 26, y: -3 + rnd() * 13, s: .9 + rnd() * 1.1, w: (rnd() - .5) * .012, ph: rnd() * 6 }));
+    const isletParts = [[jitter(new T.ConeGeometry(1.6, 2.6, 7, 2), .2), rock, [0, -1.3, 0], Math.PI], [jitter(new T.CylinderGeometry(1.7, 1.6, .4, 7), .12), slate, [0, 0, 0], 0], [new T.ConeGeometry(.45, 1.2, 6), leaf, [.6, .8, .2], 0]]
+      .map(([g, m, o, rx]) => { const im = new T.InstancedMesh(g, m, ISLETS.length); im.frustumCulled = false; scene.add(im); return { im, o, rx }; });
+    const iBase = new T.Object3D(), iPart = new T.Object3D(); iBase.add(iPart);
+    scene.add(camera);
+    const stG = new T.PlaneGeometry(1, 1); stG.translate(-.5, 0, 0);
+    const streaks = Array.from({ length: 4 }, () => {
+      const m = new T.Mesh(stG, new T.ShaderMaterial({ transparent: true, depthWrite: false, fog: false, uniforms: { uA: { value: 0 }, uC: { value: new T.Color() }, uW: { value: 0 } },
+        vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }',
+        fragmentShader: 'uniform float uA; uniform vec3 uC; uniform float uW; varying vec2 vUv; void main(){ float head = pow(vUv.x, mix(2.4, 1.15, uW)); float a = head * (1. - pow(abs(vUv.y - .5) * 2., 2.)) * uA; gl_FragColor = vec4(uC, a); }' }));
+      m.visible = false; m.position.z = -150; m.frustumCulled = false; camera.add(m); return { m, on: false, t: 0, life: 1, vx: 0, vy: 0, day: false };
+    });
+    let nextStreak = 2.5;
+    const streak = () => {
+      const q = streaks.find(o => !o.on); if (!q) return;
+      const day = mix > .5, hh = 150 * Math.tan(camera.fov * Math.PI / 360), hw = hh * camera.aspect, a = .18 + Math.random() * .35, sx = Math.random() > .5 ? -1 : 1, v = (day ? 20 : 95 + Math.random() * 60) * hh / 60;
+      q.on = true; q.day = day; q.t = 0; q.life = day ? 3.4 + Math.random() * 1.6 : .9 + Math.random() * .6; q.vx = sx * Math.cos(a) * v; q.vy = -Math.sin(a) * v;
+      q.m.position.set((Math.random() - .5) * hw * 1.3, hh * (.3 + Math.random() * .55), -150); q.m.rotation.z = Math.atan2(q.vy, q.vx);
+      q.m.scale.set((day ? 24 : 34 + Math.random() * 30) * hh / 60, (day ? 1.5 : .8) * hh / 60, 1);
+      q.m.material.uniforms.uW.value = day ? 1 : 0; q.m.material.uniforms.uC.value.set(day ? 0xfffaf0 : 0xfff2d6);
+    };
+    const skyLife = dt => {
+      BELT.forEach((b, k) => { if (!calm) { b.a += b.w * dt; b.rx += b.vr * dt; b.ry += b.vr * .8 * dt; } bD.position.set(Math.cos(b.a) * b.r, b.y + Math.sin(time * .3 + b.ph) * .35, Math.sin(b.a) * b.r); bD.rotation.set(b.rx, b.ry, 0); bD.scale.setScalar(b.s); bD.updateMatrix(); belt.setMatrixAt(k, bD.matrix); });
+      belt.instanceMatrix.needsUpdate = true;
+      crossers.forEach(c => { if (!calm) c.t += dt / c.dur; if (c.t >= 1) launch(c); c.m.position.lerpVectors(c.a, c.b, c.t); c.m.rotation.set(time * .18 + c.seed, time * .13, 0); c.m.scale.setScalar(c.s * Math.min(1, c.t * 10, (1 - c.t) * 10)); });
+      FAR.forEach((f, k) => { if (!calm) f.a += f.w * dt; fD.position.set(Math.cos(f.a) * f.r, f.y, Math.sin(f.a) * f.r); fD.rotation.set(f.rx + time * .04, f.a, 0); fD.scale.setScalar(f.s); fD.updateMatrix(); farRocks.setMatrixAt(k, fD.matrix); });
+      farRocks.instanceMatrix.needsUpdate = true;
+      ISLETS.forEach((o, k) => {
+        if (!calm) o.a += o.w * dt;
+        iBase.position.set(Math.cos(o.a) * o.r, o.y + Math.sin(time * .4 + o.ph) * .5, Math.sin(o.a) * o.r); iBase.rotation.set(0, o.a, 0); iBase.scale.setScalar(o.s);
+        isletParts.forEach(pt => { iPart.position.set(pt.o[0], pt.o[1], pt.o[2]); iPart.rotation.set(pt.rx, 0, 0); iBase.updateMatrixWorld(true); pt.im.setMatrixAt(k, iPart.matrixWorld); });
+      });
+      isletParts.forEach(pt => { pt.im.instanceMatrix.needsUpdate = true; });
+      if (!calm) { nextStreak -= dt; if (nextStreak <= 0) { streak(); nextStreak = mix > .5 ? 7 + Math.random() * 6 : 2.2 + Math.random() * 3.4; } }
+      streaks.forEach(q => { if (!q.on) return; q.t += dt; q.m.position.x += q.vx * dt; q.m.position.y += q.vy * dt; q.m.material.uniforms.uA.value = Math.min(1, q.t / .15) * Math.min(1, (q.life - q.t) / (q.life * .35)) * (q.day ? .55 : .95); q.m.visible = q.t < q.life; if (q.t >= q.life) q.on = false; });
+    };
+
+    // Camera path: overview, five stops (stop 4 frames the waterfall too), then a wide closing shot
+    let camC, lookC;
+    const wf = lip(9, 0); wf.y = .2;
+    const build = k => {
+      const cp = [new T.Vector3(0, 13, 21).multiplyScalar(k)], lp = [new T.Vector3(0, 0, 0)];
+      S.forEach((s, i) => {
+        const tgt = i === 3 ? s.p.clone().lerp(wf, .5).setY(.6) : s.p.clone().add(new T.Vector3(0, .9, 0));
+        const a = Math.atan2(tgt.z, tgt.x), o = new T.Vector3(Math.cos(a), 0, Math.sin(a)), t = new T.Vector3(-Math.sin(a), 0, Math.cos(a));
+        cp.push(tgt.clone().addScaledVector(o, (i === 3 ? 7.4 : 5.4) * k).addScaledVector(t, 1.5).add(new T.Vector3(0, (i === 3 ? 2.6 : 2.4) * k, 0)));
+        lp.push(tgt);
+      });
+      cp.push(new T.Vector3(-15, 15, 17).multiplyScalar(k)); lp.push(new T.Vector3(0, -1, 0));
+      camC = new T.CatmullRomCurve3(cp, false, 'centripetal'); lookC = new T.CatmullRomCurve3(lp, false, 'centripetal');
+    };
+    const N = 6, look = new T.Vector3(), fwd = new T.Vector3(), upV = new T.Vector3(), rtV = new T.Vector3(), tmp = new T.Vector3();
+    let tall = false;
+    const skyAt = (obj, ox, oy, dist) => {
+      camera.getWorldDirection(fwd); rtV.set(1, 0, 0).applyQuaternion(camera.quaternion); upV.set(0, 1, 0).applyQuaternion(camera.quaternion);
+      obj.position.copy(camera.position).addScaledVector(fwd, dist).addScaledVector(rtV, ox).addScaledVector(upV, oy);
+    };
+
+    // Colour pairs from night to day
+    const P = (a, b) => [new T.Color(a), new T.Color(b)], lerpC = (p, out, m) => out.copy(p[0]).lerp(p[1], m);
+    const pal = { top: P(0x040a1a, 0x2f7fd6), bot: P(0x152b57, 0xf2dcb4), fog: P(0x0b1733, 0xc9def0), hs: P(0x6f86c8, 0xcfe4ff), hg: P(0x0b1428, 0x5a4a30), key: P(0xa8bcff, 0xffeccc), hi: P(0x9cc9ee, 0xeaf7ff), lo: P(0x1d4f7a, 0x3d8fd1), water: P(0x1b4b73, 0x3f8fc9), cloud: P(0x2a3a5c, 0xffffff), slate: P(0x2a466a, 0x47695a), leaf: P(0x1a5650, 0x2c7448), ast: P(0x2b3650, 0x7a6e60), far: P(0x1a2440, 0x9fb0bf) };
+    const nightDir = new T.Vector3(-.45, .8, .4).normalize(), dayDir = new T.Vector3(.5, .78, .32).normalize();
+    let mix = mixTarget;
+    const applyMix = () => {
+      lerpC(pal.top, skyMat.uniforms.top.value, mix); lerpC(pal.bot, skyMat.uniforms.bot.value, mix); lerpC(pal.fog, scene.fog.color, mix);
+      lerpC(pal.hs, hemi.color, mix); lerpC(pal.hg, hemi.groundColor, mix); hemi.intensity = .5 + .28 * mix; scene.fog.near = 34 + 14 * mix; scene.fog.far = 90 + 40 * mix;
+      lerpC(pal.key, key.color, mix); key.intensity = .75 + .4 * mix;
+      key.position.copy(nightDir).lerp(dayDir, mix).normalize().multiplyScalar(45);
+      [flow, flowFlat].forEach(f => { lerpC(pal.hi, f.uniforms.hi.value, mix); lerpC(pal.lo, f.uniforms.lo.value, mix); });
+      lerpC(pal.water, waterMat.color, mix); lerpC(pal.cloud, cloudMat.color, mix); cloudMat.opacity = .38 + .57 * mix;
+      lerpC(pal.slate, slate.color, mix); lerpC(pal.leaf, leaf.color, mix); lerpC(pal.ast, astMat.color, mix); lerpC(pal.far, farMat.color, mix);
+      starMat.opacity = .9 * (1 - mix); moonMat.uniforms.alpha.value = 1 - mix; moonGlow.material.opacity = 1 - mix; moon.visible = moonGlow.visible = mix < .99;
+      sunMat.opacity = mix; sunGlow.material.opacity = mix; sun.visible = sunGlow.visible = mix > .01;
+      lampMat.opacity = 1 - mix * .85; lamps.forEach(h => h.material.opacity = .85 * (1 - mix));
+      fish.forEach(f => f.mat.emissiveIntensity = .12 + .4 * (1 - mix));
+    };
+
+    // Pins and fish tags follow their 3D anchors
+    const pins = $$('.pin'), tags = $$('.ftag');
+    const toScreen = (v, el, show) => {
+      tmp.copy(v).project(camera);
+      const vis = show && tmp.z < 1 && Math.abs(tmp.x) < 1.1 && Math.abs(tmp.y) < 1.1;
+      el.classList.toggle('off', !vis);
+      if (vis) { const w = stage.clientWidth, x = Math.min(w - 70, Math.max(70, (tmp.x + 1) / 2 * w)), y = Math.max(118, (1 - tmp.y) / 2 * stage.clientHeight); el.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) translate(-50%,-125%)`; }
+    };
+
+    // Picking: stations fly you to their stop, fish open their tool
+    const ray = new T.Raycaster(), ndc = new T.Vector2(), pickables = [...S.map(s => s.g), ...fish.map(f => f.g)];
+    let hover = -1;
+    const pick = (x, y) => {
+      const r = canvas.getBoundingClientRect(); ndc.set((x - r.left) / r.width * 2 - 1, -(y - r.top) / r.height * 2 + 1);
+      ray.setFromCamera(ndc, camera);
+      for (const h of ray.intersectObjects(pickables, true)) { let o = h.object; while (o && !o.userData.kind) o = o.parent; if (o && (o.userData.kind === 'station' || o.visible)) return o.userData; }
+      return null;
+    };
+    let down = null;
+    canvas.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; });
+    canvas.addEventListener('pointerup', e => {
+      if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 8) return; down = null;
+      const u = pick(e.clientX, e.clientY); if (!u) return;
+      if (u.kind === 'station') go(u.i + 1); else openCatch(u.i);
+    });
+    canvas.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      const u = pick(e.clientX, e.clientY); hover = u && u.kind === 'station' ? u.i : -1;
+      canvas.style.cursor = u ? 'pointer' : '';
+    });
+
+    // Scroll drives the camera; time drives water, fish, clouds and a gentle bob
+    let target = 0, cur = -1, live = true, raf = 0, last = 0, time = 0;
+    const measure = () => {
+      const r = trail.getBoundingClientRect(), span = trail.offsetHeight - innerHeight;
+      let p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
+      if (calm) p = Math.round(p * N) / N;
+      target = p; kick();
+    };
+    const frame = now => {
+      raf = 0; if (!live || document.hidden || !camC) return;
+      const dt = last ? Math.min(.05, (now - last) / 1000) : .016; last = now;
+      if (!calm) time += dt;
+      cur = cur < 0 || calm ? target : cur + (target - cur) * (1 - Math.exp(-dt * 4));
+      if (Math.abs(target - cur) < .0003) cur = target;
+      mix = calm ? mixTarget : mix + (mixTarget - mix) * (1 - Math.exp(-dt * 3)); if (Math.abs(mixTarget - mix) < .002) mix = mixTarget;
+      applyMix();
+      isl.position.y = Math.sin(time * .6) * .12; clouds.rotation.y = time * .012;
+      flow.uniforms.time.value = flowFlat.uniforms.time.value = time;
+      skyLife(dt);
+      camC.getPoint(cur, camera.position); lookC.getPoint(cur, look); camera.lookAt(look); camera.updateMatrixWorld();
+      skyAt(moon, tall ? 7 : 24, tall ? 18 : 15, 95); moonGlow.position.copy(moon.position);
+      skyAt(sun, tall ? -6 : 28, tall ? 20 : 17, 110); sunGlow.position.copy(sun.position);
+      const near = 1 - Math.min(1, Math.abs(cur * N - Math.round(cur * N)) * 2.4), at = Math.round(cur * N);
+      glowL.position.set(look.x, look.y + 1.8 + isl.position.y, look.z); glowL.intensity = cur > .03 && cur < .97 ? (1.3 - mix * .7) * near : 0;
+      S.forEach((s, i) => { s.ring.material.opacity = i === hover ? .95 : (at === i + 1 && near > .5 ? .7 : 0); });
+      fish.forEach(f => {
+        if (!f.air) {
+          f.g.visible = false; if (calm) return; f.wait -= dt;
+          if (f.wait <= 0) { const j = (Math.random() - .5) * .8, out = Math.random() > .5; f.s.copy(lip(out ? 8.5 : 6.6, j)); f.e.copy(lip(out ? 6.7 : 8.4, -j * .6)); f.h = 1.3 + Math.random() * .6; f.t = 0; f.air = true; f.g.visible = true; splash(f.s); }
+          return;
+        }
+        f.t += dt; const u = Math.min(1, f.t / f.dur);
+        f.g.position.copy(f.s).lerp(f.e, u); f.g.position.y = TOP + .05 + 4 * f.h * u * (1 - u);
+        tmp.copy(f.e).sub(f.s).divideScalar(f.dur); tmp.y = 4 * f.h * (1 - 2 * u) / f.dur;
+        f.g.lookAt(tmp.add(f.g.position).add(isl.position));
+        if (u >= 1) { f.air = false; f.wait = 1.2 + Math.random() * 2.6; splash(f.e); }
+      });
+      rings.forEach(r => { const t = r.userData.t += dt; r.material.opacity = Math.max(0, .8 - t * .9); r.scale.setScalar(1 + t * 7); });
+      renderer.render(scene, camera);
+      S.forEach((s, i) => { tmp.copy(s.p).add(isl.position); tmp.y += 2.9; toScreen(tmp, pins[i], !(at === i + 1 && near > .4)); pins[i].classList.toggle('hot', hover === i); });
+      fish.forEach((f, i) => { tmp.copy(f.g.position).add(isl.position); tmp.y += .7; toScreen(tmp, tags[i], f.air && at === 4 && near > .3); });
+      if (cur !== target || mix !== mixTarget || !calm) kick();
+    };
+    kick = () => { if (!raf && live && !document.hidden) raf = requestAnimationFrame(frame); };
+    const size = () => {
+      const w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+      tall = w / h < .8;
+      renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = tall ? 50 : 42; build(tall ? 1.3 : 1);
+      if (w >= 900) camera.setViewOffset(w, h, -w * .16, 0, w, h); else camera.setViewOffset(w, h, 0, h * .18, w, h);
+      camera.updateProjectionMatrix(); cur = -1; measure();
+    };
+    new ResizeObserver(size).observe(stage);
+    addEventListener('scroll', measure, { passive: true });
+    document.addEventListener('visibilitychange', () => { last = 0; kick(); });
+    new IntersectionObserver(es => { live = es[0].isIntersecting; last = 0; if (live) measure(); }).observe(trail);
+    canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); root.classList.add('no3d'); });
+    applyMix(); size();
+  }
+}
+</script>
+<div class="cvtoast" role="status" aria-live="polite"></div>
+<script>
+// CV downloads: inside Claude's artifact viewer the file goes through the downloads capability; on a normal website the plain link works
+(() => {
+  const host = window.claude && typeof window.claude.use === 'function';
+  const ready = host ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null);
+  const toast = document.querySelector('.cvtoast');
+  const say = m => { if (!toast) return; toast.textContent = m; toast.classList.add('on'); clearTimeout(say.t); say.t = setTimeout(() => toast.classList.remove('on'), 4200); };
+  document.addEventListener('click', async e => {
+    const a = e.target.closest('a[data-cv]');
+    if (!a || !host) return;
+    e.preventDefault();
+    const d = await ready;
+    if (!d) { say('Downloads are off in this preview. Email me and I will send the CV.'); return; }
+    try {
+      const blob = await (await fetch(a.getAttribute('href'))).blob();
+      await d.save({ filename: a.getAttribute('download'), data: blob });
+      say('Saved: ' + a.getAttribute('download'));
+    } catch (err) {
+      if (err && err.code === 'declined') return;
+      say(err && err.code === 'rate_limited' ? 'One moment, a save is already open.' : 'That download did not go through. Email me and I will send the CV.');
+    }
+  });
+})();
+</script>
+<script src="../../contact.js"></script>
+<script>
+// Email buttons read the address from contact.js (filled in by the site owner); without it they stay on LinkedIn or hidden
+(() => { const e = String(window.SITE_EMAIL || '').trim(); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)) return;
+  document.querySelectorAll('[data-email-row]').forEach(r => { r.hidden = false; });
+  document.querySelectorAll('a[data-email]').forEach(a => { const s = a.getAttribute('data-email'), l = a.getAttribute('data-label'); a.href = 'mailto:' + e + (s ? '?subject=' + encodeURIComponent(s) : ''); a.removeAttribute('target'); a.removeAttribute('rel'); if (l) a.textContent = l === '@' ? e : l; a.hidden = false; }); })();
+</script>
+</body>
+</html>
